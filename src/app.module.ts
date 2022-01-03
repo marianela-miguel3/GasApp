@@ -5,9 +5,10 @@ import { AccesoriosModule } from './accesorios/accesorios.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { TramoModule } from './tramo/tramo.module';
 @Module({
   imports:[ServeStaticModule.forRoot({rootPath:join(__dirname,"..","app"),
-}),TypeOrmModule.forRoot(),AccesoriosModule],
+}),TypeOrmModule.forRoot(),AccesoriosModule, TramoModule],
   controllers: [AppController],
   providers: [AppService],
 })
