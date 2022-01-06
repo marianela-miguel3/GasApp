@@ -6,6 +6,7 @@ import ArtefactoDTO from './artefactoDTO';
 @Controller('artefactos')
 export class ArtefactoController {
     constructor(private readonly artefactoService: ArtefactoService) { }
+    
     @Get()
     public async getArtefactos(): Promise<Artefacto[]> {
         return this.artefactoService.getArtefactos()
