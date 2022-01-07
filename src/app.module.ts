@@ -15,6 +15,7 @@ import { PresupuestoModule } from './presupuesto/presupuesto.module';
 import { PresupuestoDeArtefactosModule } from './presupuesto-de-artefactos/presupuesto-de-artefactos.module';
 @Module({
   imports:[ServeStaticModule.forRoot({rootPath:join(__dirname,"..","app"),
+
 }),TypeOrmModule.forRoot(),AccesoriosModule, ArtefactoModule, TramoModule, UsuarioModule, 
 TramoaccesorioModule,CanioModule, ConsumoModule, PresupuestoModule, PresupuestoDeArtefactosModule],
   controllers: [AppController],
