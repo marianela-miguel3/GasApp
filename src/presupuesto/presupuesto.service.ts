@@ -12,7 +12,10 @@ export class PresupuestoService {
 
     public async getPresupuestos(): Promise<Presupuesto[]> {
         try {
-            const presupuestos: Presupuesto[] = await this.repoPresupuesto.find();
+            const presupuestos: Presupuesto[] = await this.repoPresupuesto.find(
+                { relations: ['presupuestoArtefactos'] }
+
+            );
             return presupuestos;
         } catch (error) {
             throw new HttpException( { error: `Error buscando los presupuestos: ${error}`}, HttpStatus.NOT_FOUND)
@@ -20,7 +23,9 @@ export class PresupuestoService {
     }
     public async getPresupuesto(idPresupuesto:number): Promise<Presupuesto> {
         try {
-            const presupuesto: Presupuesto = await this.repoPresupuesto.findOne(idPresupuesto);
+            const presupuesto: Presupuesto = await this.repoPresupuesto.findOne(idPresupuesto,
+                { relations: ['presupuestoArtefactos'] }
+                );
             return presupuesto;
         } catch (error) {
             throw new HttpException( { error: `Error buscando el presupuesto: ${idPresupuesto} ${error}`}, HttpStatus.NOT_FOUND);
@@ -28,7 +33,7 @@ export class PresupuestoService {
     }
     public async addPresupuesto(presupuestoDto:PresupuestoDto): Promise<Presupuesto> {
         try {
-            const presupuestoCreado: Presupuesto = await this.repoPresupuesto.save(new Presupuesto(presupuestoDto.idPresupuesto,presupuestoDto.fecha,presupuestoDto.total,presupuestoDto.idUsuario));
+            const presupuestoCreado: Presupuesto = await this.repoPresupuesto.save(new Presupuesto(presupuestoDto.fecha,presupuestoDto.total,presupuestoDto.idUsuario));
             if(presupuestoCreado.getIdPresupuesto()){
                 return presupuestoCreado;
             }else{

@@ -11,7 +11,10 @@ export class ArtefactoService {
 
     public async getArtefactos(): Promise<Artefacto[]> {
         try {
-            const artefactos: Artefacto[] = await this.repoArtefacto.find()
+            const artefactos: Artefacto[] = await this.repoArtefacto.find(
+                { relations: ['tramos'] }
+
+            )
             return artefactos;
         } catch (error) {
             throw new HttpException({ error: `Error buscando los artefactos: ${error}` }, HttpStatus.NOT_FOUND);
@@ -20,7 +23,9 @@ export class ArtefactoService {
 
     public async getArtefacto(idArtef: number): Promise<Artefacto> {
         try {
-            const artefacto: Artefacto = await this.repoArtefacto.findOne(idArtef)
+            const artefacto: Artefacto = await this.repoArtefacto.findOne(idArtef,
+                { relations: ['tramos'] }
+                )
             return artefacto;
         } catch (error) {
             throw new HttpException({ error: `Error buscando el artefacto: ${error}` }, HttpStatus.NOT_FOUND);

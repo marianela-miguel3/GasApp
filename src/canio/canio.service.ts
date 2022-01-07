@@ -11,7 +11,9 @@ export class CanioService {
 
     public async getCanios(): Promise<Canio[]> {
         try {
-            const canios: Canio[] = await this.repoCanio.find();
+            const canios: Canio[] = await this.repoCanio.find(
+                {relations: ['accesorios','consumo']}
+            );
             return canios;
         } 
         catch (error) {
@@ -21,7 +23,9 @@ export class CanioService {
 
     public async getCanio(idCanio: number): Promise<Canio> {
         try {
-            const canio: Canio = await this.repoCanio.findOne(idCanio);
+            const canio: Canio = await this.repoCanio.findOne(idCanio,
+                {relations: ['accesorios','consumo']}
+                );
             return canio;
         } catch (error) {
             throw new HttpException({ error: `Error buscando el caño: ${error}` }, HttpStatus.NOT_FOUND);

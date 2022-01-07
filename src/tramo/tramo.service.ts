@@ -12,7 +12,11 @@ export class TramoService {
 
     public async getTramos(): Promise<Tramo[]> {
         try {
-            const tramos: Tramo[] = await this.repoTramo.find();
+            const tramos: Tramo[] = await this.repoTramo.find(
+                { relations: ['tramoAccesorios' , 'artefacto'] },
+              
+
+            );
             return tramos;
         } catch (error) {
             throw new HttpException( { error: `Error Buscando los Tramos: ${error}`}, HttpStatus.NOT_FOUND)
@@ -20,7 +24,9 @@ export class TramoService {
     }
     public async getTramo(idTramo:number): Promise<Tramo> {
         try {
-            const tramos: Tramo = await this.repoTramo.findOne(idTramo);
+            const tramos: Tramo = await this.repoTramo.findOne(idTramo,
+                { relations: ['tramoAccesorios'] }
+                );
             return tramos;
         } catch (error) {
             throw new HttpException( { error: `Error Buscando el Tramo de: ${idTramo} ${error}`}, HttpStatus.NOT_FOUND)

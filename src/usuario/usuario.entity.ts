@@ -1,8 +1,9 @@
+import Presupuesto from "src/presupuesto/presupuesto.entity";
 import {Column, Entity, OneToMany,PrimaryColumn, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity("usuario")
 export default class Usuario{
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     private idUsuario:number;
     @Column()
     nombre:string;
@@ -15,8 +16,11 @@ export default class Usuario{
     @Column()
     email:string;
 
-    constructor(idUsuario:number,nombre:string,contraseña:string,domicilio:string,telefono:number,email:string){
-        this.idUsuario=idUsuario;
+    @OneToMany(() =>Presupuesto, presupuesto => presupuesto.usuario)
+    public presupuestos : Presupuesto[];
+    
+    constructor(nombre:string,contraseña:string,domicilio:string,telefono:number,email:string){
+        // this.idUsuario=idUsuario; 
         this.nombre=nombre;
         this.contraseña=contraseña;
         this.domicilio=domicilio;
@@ -29,6 +33,9 @@ export default class Usuario{
     }
     public getNombre():string{
         return this.nombre;
+    }
+    public setNombre(nombreNuevo:string):void{
+        this.nombre = nombreNuevo;
     }
     public setContraseña(contraseñaNueva:string):void{
         this.contraseña=contraseñaNueva;

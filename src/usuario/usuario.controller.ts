@@ -27,7 +27,7 @@ export class UsuarioController {
     }
 
     @Delete(`:id`)
-    public delUsuario(@Param("id") id:string):Promise<Usuario[]>{
+    public delUsuario(@Param(`id`) id:string):Promise<Usuario[]>{
         return this.usuarioService.delUsuario(parseInt(id));
     }
 }
