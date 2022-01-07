@@ -13,7 +13,7 @@ equivalente:number;
 @Column()
 idCaño:number;
 @Column()
-precio:number;
+private precio:number;
 
 constructor(idAccesorio:number,nombre_accesorio:string,diametro:string,equivalente:number,idCaño:number,precio:number){
 this.idAccesorio=idAccesorio;

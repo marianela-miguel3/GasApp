@@ -28,7 +28,7 @@ export class TramoService {
     }
     public async addTramo(tramoDto:TramoDto): Promise<Tramo> {
         try {
-            const tramoCreado: Tramo = await this.repoTramo.save(new Tramo(tramoDto.idTramo,tramoDto.nombre_tramo,tramoDto.longitud_real,tramoDto.longitud_de_calculo,tramoDto.artefactos_idArtefacto)) //tramoDto.artefacto
+            const tramoCreado: Tramo = await this.repoTramo.save(new Tramo(tramoDto.nombre_tramo,tramoDto.longitud_real,tramoDto.longitud_de_calculo,tramoDto.artefactos_idArtefacto)) //tramoDto.artefacto
             if(tramoCreado.getIdTramo()){
                 return tramoCreado;
             }else{
