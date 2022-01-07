@@ -10,9 +10,11 @@ import { TramoModule } from './tramo/tramo.module';
 // import { ArtefactoController } from './artefacto/artefacto.controller';
 // import { ArtefactoService } from './artefacto/artefacto.service';
 import { ArtefactoModule } from './artefacto/artefacto.module';
+import { PresupuestoModule } from './presupuesto/presupuesto.module';
+import { PresupuestoDeArtefactosModule } from './presupuesto-de-artefactos/presupuesto-de-artefactos.module';
 @Module({
   imports:[ServeStaticModule.forRoot({rootPath:join(__dirname,"..","app"),
-}),TypeOrmModule.forRoot(),AccesoriosModule, ArtefactoModule, TramoModule],
+}),TypeOrmModule.forRoot(),AccesoriosModule, ArtefactoModule, TramoModule, PresupuestoModule, PresupuestoDeArtefactosModule],
   controllers: [AppController
     // , ArtefactoController
   ],
