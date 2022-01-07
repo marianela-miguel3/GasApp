@@ -1,35 +1,36 @@
 import PresupuestoDeArtefactos from "src/presupuesto-de-artefactos/presupuesto-de-artefactos.entity";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
+import Usuario from "src/usuario/usuario.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("presupuesto")
 export default class Presupuesto{
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     private idPresupuesto:number;
     @Column()
     private fecha:Date;
     @Column()
     private total:number;
-    @Column()
-    private idUsuario:number;
+    // @Column()
+    // private idUsuario:number;
 
-    // @ManyToOne(type => Usuario, usuario => usuario.presupuesto)
-    // @JoinColumn({name:"idUsuario"});
-    // public usuario:Usuario;
+    @ManyToOne(type => Usuario, usuario => usuario.presupuestos)
+    @JoinColumn({name:"idUsuario"})
+    public usuario:Usuario;
 
-    // @OneToMany(type => PresupuestoDeArtefactos, presupuestoArtefactos => presupuestoArtefactos.presupuesto)
-    // public presupuestoArtefactos: PresupuestoDeArtefactos[];
+    @OneToMany(type => PresupuestoDeArtefactos, presupuestoArtefactos => presupuestoArtefactos.presupuesto)
+    public presupuestoArtefactos: PresupuestoDeArtefactos[];
 
-    public constructor(idPresupuesto:number,fecha:Date,total:number,idUsuario:number){
-        this.idPresupuesto=idPresupuesto;
+    public constructor(fecha:Date,total:number,idUsuario:Usuario){
+        // this.idPresupuesto=idPresupuesto; 
         this.fecha=fecha;
         this.total=total;
-        this.idUsuario=idUsuario;
+        this.usuario=idUsuario;
     }
     public getIdPresupuesto():number{
         return this.idPresupuesto;
     }
-    public getIdUsuario():number{
-        return this.idUsuario;
+    public getIdUsuario():Usuario{
+        return this.usuario;
     }
     public setFecha(fecha:Date){
         this.fecha=fecha;

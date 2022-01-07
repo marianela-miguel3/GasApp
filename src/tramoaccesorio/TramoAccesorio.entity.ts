@@ -1,21 +1,31 @@
-import {Column, Entity, OneToMany,PrimaryColumn, PrimaryGeneratedColumn} from "typeorm";
+import Accesorio from "src/accesorios/Accesorio.entity";
+import Tramo from "src/tramo/tramo.entity";
+import {Column, Entity, JoinColumn, ManyToOne, OneToMany,PrimaryColumn, PrimaryGeneratedColumn} from "typeorm";
 @Entity("tramosaccesorios")
 export default class TramoAccesorio{
 @PrimaryGeneratedColumn()
 private idTramoAccesorio:number;
 @Column()
 private idTramo:number;
-@Column()
-private idAccesorio:number;
+// @Column()
+// private idAccesorio:number;
 @Column()
 private cantidad:number;
 @Column()
 private equivalenteTramo:number;
 
-constructor(idTramo:number,idAccesorio:number,cantidad:number,equivalenteTramo:number){
+@ManyToOne(type => Tramo, tramo => tramo.tramoAccesorios)
+@JoinColumn({name:'idTramo'})
+public tramo:Tramo[];
+
+@ManyToOne(type => Accesorio, accesorio => accesorio.tramoAccesorios)
+@JoinColumn({name:'idAccesorio'})
+public accesorio:Accesorio;
+
+constructor(idTramo:number,idAccesorio:Accesorio,cantidad:number,equivalenteTramo:number){
     //this.idTramoAccesorio=idTramoAccesorio;
     this.idTramo=idTramo;
-    this.idAccesorio=idAccesorio;
+    this.accesorio=idAccesorio;
     this.cantidad=cantidad;
     this.equivalenteTramo=equivalenteTramo;
 }
@@ -37,8 +47,8 @@ public setEquivalenteTramo(equivalenteNuevo:number):void{
 public setTramo(tramoNuevo:number):void{
     this.idTramo=tramoNuevo;
 }
-public setAccesorio(accesorioNuevo:number):void{
-    this.idAccesorio=accesorioNuevo;
+public setAccesorio(accesorioNuevo:Accesorio):void{
+    this.accesorio=accesorioNuevo;
 }
 }
 

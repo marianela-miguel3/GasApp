@@ -21,7 +21,7 @@ export class PresupuestoController {
     public async createPresupuesto(@Body() presupuestoDto:PresupuestoDto): Promise<Presupuesto>{
         return await this.presupuestoService.addPresupuesto(presupuestoDto);
     }
-    @Put()
+    @Put(':id')
     public async updatePresupuesto(@Body() presupuestoDto:PresupuestoDto): Promise<Presupuesto[]>{
         return await this.presupuestoService.updatePresupuesto(presupuestoDto);
     }

@@ -11,7 +11,9 @@ export class AccesoriosService {
 
 public async getAccesorios() : Promise<Accesorio[]> {    
     try {
-        const accesorios: Accesorio[] = await this.repoAccesorio.find()
+        const accesorios: Accesorio[] = await this.repoAccesorio.find(
+          {relations: ['tramoAccesorios','canio']}
+        )
         return accesorios;          
     } catch (error) {
         throw new HttpException( { error : `Error buscando los accesorios: ${error}`}, HttpStatus.NOT_FOUND);
@@ -20,7 +22,9 @@ public async getAccesorios() : Promise<Accesorio[]> {
 
 public async getAccesorio(id: number): Promise<Accesorio> {
     try{
-      const accesorio: Accesorio= await this.repoAccesorio.findOne(id)
+      const accesorio: Accesorio= await this.repoAccesorio.findOne(id,
+        {relations: ['tramoAccesorios','canio']}
+        )
       return accesorio;
     } catch (error){
       throw new HttpException( { error : `Error buscando el id ingresado: ${error}`}, HttpStatus.NOT_FOUND);
@@ -29,7 +33,7 @@ public async getAccesorio(id: number): Promise<Accesorio> {
 
   public async addAccesorio(accesorio: AccesorioDTO): Promise<Accesorio[]>{
     try{
-      let accesorioNuevo= new Accesorio(accesorio.idAccesorio,accesorio.nombre_accesorio,accesorio.diametro,accesorio.equivalente,accesorio.idCaño,accesorio.precio);
+      let accesorioNuevo= new Accesorio(accesorio.idAccesorio,accesorio.nombre_accesorio,accesorio.diametro,accesorio.equivalente,accesorio.idCanio,accesorio.precio);
       await this.repoAccesorio.save(accesorioNuevo);
       const accesorios: Accesorio[]=await this.repoAccesorio.find()
       return accesorios;
@@ -47,7 +51,7 @@ public async getAccesorio(id: number): Promise<Accesorio> {
       accesorioActualizado.nombre_accesorio;
       accesorioActualizado.diametro;
       accesorioActualizado.equivalente;
-      accesorioActualizado.idCaño;
+      // accesorioActualizado.idCanio;
       accesorioActualizado.setPrecio(accesorio.precio);
       await this.repoAccesorio.save(accesorioActualizado);
       const accesorios: Accesorio[]= await this.repoAccesorio.find()

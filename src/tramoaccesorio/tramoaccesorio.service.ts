@@ -11,26 +11,21 @@ export class TramoaccesorioService {
 
 public async getTramosAccesorios() : Promise<TramoAccesorio[]> {    
     try {
-        const tramosAccesorios: TramoAccesorio[] = await this.repoTramoAccesorio.find()
+        const tramosAccesorios: TramoAccesorio[] = await this.repoTramoAccesorio.find(
+          {relations: ['accesorio']}
+        )
         return tramosAccesorios;          
     } catch (error) {
         throw new HttpException( { error : `Error buscando los tramos de accesorios: ${error}`}, HttpStatus.NOT_FOUND);
     }  
 }
 
-//   public async getTramoAccesorio(idTramo:number,idAccesorio:number): Promise<TramoAccesorio> {
-//     try{
-//       const tramoAccesorio: TramoAccesorio= await this.repoTramoAccesorio.findOne({
-//           where: { idTramo:`${idTramo}`, idAccesorio: `${idAccesorio}`}
-//       });
-//       return tramoAccesorio;
-//     } catch (error){
-//       throw new HttpException( { error : `Error buscando el id ingresado: ${error}`}, HttpStatus.NOT_FOUND);
-//     }
-//   }
+
 public async getTramoAccesorio(id:number): Promise<TramoAccesorio> {
     try{
-      const tramoAccesorio: TramoAccesorio= await this.repoTramoAccesorio.findOne(id)
+      const tramoAccesorio: TramoAccesorio= await this.repoTramoAccesorio.findOne(id,
+        {relations: ['accesorio']}
+        )
       return tramoAccesorio;
     } catch (error){
       throw new HttpException( { error : `Error buscando el id ingresado: ${error}`}, HttpStatus.NOT_FOUND);

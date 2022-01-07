@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import PresupuestoDeArtefactos from "src/presupuesto-de-artefactos/presupuesto-de-artefactos.entity";
+import Tramo from "src/tramo/tramo.entity";
+import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 
 @Entity ('artefactos')
 export default class Artefacto {
@@ -10,6 +12,12 @@ export default class Artefacto {
     private calorias:number;
     @Column()
     private metrosCubicos:number;
+
+    @OneToMany(type => PresupuestoDeArtefactos,presupuestoArtefactos => presupuestoArtefactos.artefacto)
+    public presupuestoArtefactos: PresupuestoDeArtefactos[];
+
+    @OneToMany(type => Tramo, tramos => tramos.artefacto)
+    public tramos:Tramo[];
 
     constructor(idArtef:number, nombArtef:string, calArtef:number, mtsCubicos:number) {
         this.idArtefacto=idArtef;

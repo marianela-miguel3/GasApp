@@ -12,7 +12,10 @@ export class ConsumoService {
     //GET
     public async getConsumos(): Promise<Consumo[]> {
         try {
-            const consumos: Consumo[] = await this.repoConsumo.find();
+            const consumos: Consumo[] = await this.repoConsumo.find(
+                {relations: ['canio']}
+
+            );
             return consumos;
         } catch (error) {
             throw new HttpException({ error: `Error buscando los consumos: ${error}` }, HttpStatus.NOT_FOUND);
@@ -22,7 +25,9 @@ export class ConsumoService {
     //GET(:ID)
     public async getConsumo(idConsumo: number): Promise<Consumo> {
         try {
-            const consumo: Consumo = await this.repoConsumo.findOne(idConsumo);
+            const consumo: Consumo = await this.repoConsumo.findOne(idConsumo,
+                {relations: ['canio']}
+                );
             return consumo;
         } catch (error) {
             throw new HttpException({ error: `Error buscando el consumo: ${error}` }, HttpStatus.NOT_FOUND);
