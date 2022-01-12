@@ -43,8 +43,8 @@
             </thead>
             <tbody>
               <tr>
-                <td></td>
-                <td><p>Tramo<select name="" id="">
+                <td id="idTramo"></td>
+                <td ><select name="" id="comienzoTramo">
                         <option value="a">-</option>
                         <option value="a">A</option>
                         <option value="b">B</option>
@@ -64,7 +64,7 @@
                         <option value="b">8</option>
                         <option value="c">9</option>
                 </select></td>
-                <td><select name="" id="">
+                <td><select name="" id="finTramo">
                         <option value="a">-</option>
                         <option value="a">1</option>
                         <option value="b">2</option>
@@ -79,10 +79,10 @@
                     </select>
                 </td>
                 <td>
-                    <input type="number">
+                    <input type="number" id="longitudReal">
                 </td>
                 <td>
-                    <input type="number">
+                    <input type="number" id="longitudCalculo">
                 </td>
                 <td>
                     <select name="" id="artefacto">
@@ -96,14 +96,25 @@
                     </select>
                 </td>
                 <td>
-                    <input type="number">
+                    <input type="number" id="calorias">
                 </td>
-              </tr>
-              
+              </tr>              
             </tbody>
           </table>
+          <table>
+            <thead>
+                <td>Id</td>
+                <td>Nombre</td>
+                <td>Longitud real</td>
+                <td>Longitud de calculo</td>
+                <td>Id artefacto</td>
+            </thead>
+            <tbody id="container"></tbody>
+        </table>
         </div>
-        
-        
+        <div>
+          <button id="agregarTramo">Agregar Tramo</button>
+        </div>
+        <script src="./proyecto.js"></script>
 </body>
 </html>
