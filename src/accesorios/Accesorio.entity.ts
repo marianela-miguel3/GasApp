@@ -1,6 +1,6 @@
 import Canio from "src/canio/canio.entity";
 import TramoAccesorio from "src/tramoaccesorio/TramoAccesorio.entity";
-import {Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany,PrimaryColumn} from "typeorm";
+import {Column, Entity, OneToMany,PrimaryColumn} from "typeorm";
 
 @Entity("accesorios")
 export default class Accesorio{
@@ -20,16 +20,16 @@ private precio:number;
 @OneToMany(type => TramoAccesorio, tramoAccesorios => tramoAccesorios.accesorio)
 public tramoAccesorios:TramoAccesorio[];
 
-@ManyToOne(type => Canio,canio => canio.accesorios)
-@JoinColumn({name:'idCanio'})
-public canio:Canio;
+// @ManyToOne(type => Canio,canio => canio.accesorios)
+// @JoinColumn({name:'idCanio'})
+// public canio:Canio;
 
-constructor(idAccesorio:number,nombre_accesorio:string,diametro:string,equivalente:number,idCanio:Canio,precio:number){
+constructor(idAccesorio:number,nombre_accesorio:string,diametro:string,equivalente:number,precio:number){
 this.idAccesorio=idAccesorio;
 this.nombre_accesorio=nombre_accesorio;
 this.diametro=diametro;
 this.equivalente=equivalente;
-this.canio=idCanio;
+// this.canio=idCanio;
 this.precio=precio;
 }
 public getIdAccesorio():number{

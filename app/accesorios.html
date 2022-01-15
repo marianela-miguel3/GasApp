@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="accesorios.css">
+    <title>Accesorio</title>
+</head>
+<body>
+    <div id="cargando"></div>
+    <div class="flex">
+    <div>
+        <table>
+        <thead class="achicar">
+            <tr>
+            <th>idAccesorio</th>
+            <th>nombre_accesorio</th>
+            <th>diametro</th>
+            <th>equivalente</th>
+            <th>precio</th>
+            </tr>
+        </thead>
+        <tbody id="container"></tbody>
+    </table>
+    </div>
+    <div class="segundaTabla">
+    <table class="tabla">
+        <thead>
+            <tr>
+            <th>idTramo</th>
+            <th>idAccesorio</th>
+            <th>Cantidad</th>
+            <th>EquivalenteTramo</th>
+            <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody id="container"></tbody>
+        <tr>
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+        </tr>
+    </table>
+    </div>
+    </div>
+    <script src="./accesorios.js"></script>
+</body>
+</html>

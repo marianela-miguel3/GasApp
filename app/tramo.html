@@ -32,7 +32,7 @@
             <table class="table">
             <thead>
               <tr>
-                <th scope="col">Numero de Tramo</th>
+                <!-- <th scope="col">Numero de Tramo</th> -->
                 <th scope="col">Comienzo del Tramo</th>
                 <th scope="col">Fin del Tramo</th>
                 <th scope="col">Longitud Real</th>
@@ -43,39 +43,38 @@
             </thead>
             <tbody>
               <tr>
-                <td id="idTramo"></td>
                 <td ><select name="" id="comienzoTramo">
-                        <option value="a">-</option>
-                        <option value="a">A</option>
-                        <option value="b">B</option>
-                        <option value="b">C</option>
-                        <option value="b">D</option>
-                        <option value="b">E</option>
-                        <option value="b">F</option>
-                        <option value="b">G</option>
-                        <option value="b">H</option>
-                        <option value="a">1</option>
-                        <option value="b">2</option>
-                        <option value="b">3</option>
-                        <option value="b">4</option>
-                        <option value="b">5</option>
-                        <option value="b">6</option>
-                        <option value="b">7</option>
-                        <option value="b">8</option>
-                        <option value="c">9</option>
+                        <option value="-">-</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="E">E</option>
+                        <option value="F">F</option>
+                        <option value="G">G</option>
+                        <option value="H">H</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
                 </select></td>
                 <td><select name="" id="finTramo">
-                        <option value="a">-</option>
-                        <option value="a">1</option>
-                        <option value="b">2</option>
-                        <option value="b">3</option>
-                        <option value="b">4</option>
-                        <option value="b">5</option>
-                        <option value="b">6</option>
-                        <option value="b">7</option>
-                        <option value="b">8</option>
-                        <option value="s">9</option>
-                        <option value="s">M</option>
+                        <option value="-">-</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="M">M</option>
                     </select>
                 </td>
                 <td>
@@ -103,11 +102,11 @@
           </table>
           <table>
             <thead>
-                <td>Id</td>
+                <!-- <td>Id</td> -->
                 <td>Nombre</td>
                 <td>Longitud real</td>
                 <td>Longitud de calculo</td>
-                <td>Id artefacto</td>
+                <td>Consumo (m3)</td>
             </thead>
             <tbody id="container"></tbody>
         </table>
@@ -115,6 +114,7 @@
         <div>
           <button id="agregarTramo">Agregar Tramo</button>
         </div>
+        <button class="boton"><a href="./accesorios.html">Cargar Accesorios</a></button>
         <script src="./proyecto.js"></script>
 </body>
 </html>
