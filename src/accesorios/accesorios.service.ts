@@ -12,7 +12,7 @@ export class AccesoriosService {
 public async getAccesorios() : Promise<Accesorio[]> {    
     try {
         const accesorios: Accesorio[] = await this.repoAccesorio.find(
-          {relations: ['tramoAccesorios','canio']}
+          {relations: ['tramoAccesorios']}
         )
         return accesorios;          
     } catch (error) {
@@ -23,7 +23,7 @@ public async getAccesorios() : Promise<Accesorio[]> {
 public async getAccesorio(id: number): Promise<Accesorio> {
     try{
       const accesorio: Accesorio= await this.repoAccesorio.findOne(id,
-        {relations: ['tramoAccesorios','canio']}
+        {relations: ['tramoAccesorios']}
         )
       return accesorio;
     } catch (error){
@@ -33,7 +33,7 @@ public async getAccesorio(id: number): Promise<Accesorio> {
 
   public async addAccesorio(accesorio: AccesorioDTO): Promise<Accesorio[]>{
     try{
-      let accesorioNuevo= new Accesorio(accesorio.idAccesorio,accesorio.nombre_accesorio,accesorio.diametro,accesorio.equivalente,accesorio.idCanio,accesorio.precio);
+      let accesorioNuevo= new Accesorio(accesorio.idAccesorio,accesorio.nombre_accesorio,accesorio.diametro,accesorio.equivalente,accesorio.precio);
       await this.repoAccesorio.save(accesorioNuevo);
       const accesorios: Accesorio[]=await this.repoAccesorio.find()
       return accesorios;

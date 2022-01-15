@@ -5,6 +5,5 @@ export default class AccesorioDTO{
     readonly nombre_accesorio:string;
     readonly diametro:string;
     readonly equivalente:number;
-    readonly idCanio:Canio;
     readonly precio:number;
 }

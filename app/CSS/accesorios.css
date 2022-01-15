@@ -1,0 +1,20 @@
+.flex{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+    align-content: center;
+    /* width: 200px; */
+   /* flex-flow:nowrap; */
+}
+/* .segundaTabla{
+} */
+
+/* .tabla{
+    width: 100px;
+} */
+body{
+    width: 100%;
+}
+.achicar{
+    width:50px;
+}
