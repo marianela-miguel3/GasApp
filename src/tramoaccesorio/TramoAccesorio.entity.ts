@@ -21,7 +21,6 @@ public tramo:Tramo[];
 @ManyToOne(type => Accesorio, accesorio => accesorio.tramoAccesorios)
 @JoinColumn({name:'idAccesorio'})
 public accesorio:Accesorio;
-
 constructor(idTramo:number,idAccesorio:Accesorio,cantidad:number,equivalenteTramo:number){
     //this.idTramoAccesorio=idTramoAccesorio;
     this.idTramo=idTramo;
@@ -29,6 +28,7 @@ constructor(idTramo:number,idAccesorio:Accesorio,cantidad:number,equivalenteTram
     this.cantidad=cantidad;
     this.equivalenteTramo=equivalenteTramo;
 }
+
 public getIdTramoAccesorio():number{
     return this.idTramoAccesorio;
 }
