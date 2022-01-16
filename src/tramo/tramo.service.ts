@@ -1,5 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import Accesorio from 'src/accesorios/Accesorio.entity';
 import { Repository } from 'typeorm';
 import { TramoDto } from './tramo.dto';
 import Tramo from './tramo.entity';
@@ -7,15 +8,19 @@ import Tramo from './tramo.entity';
 @Injectable()
 export class TramoService {
 
-    constructor(@InjectRepository(Tramo) private readonly repoTramo: Repository<Tramo>) {
-    }
+    constructor(@InjectRepository(Tramo) private readonly repoTramo: Repository<Tramo>,
+    @InjectRepository(Accesorio) private readonly repoAccesorio: Repository<Accesorio>) {}
+
+    // public async getTramoNombre(nombre:string):Tramo{
+    //  try{
+    //      const tramo: Tramo=await this.repoTramo.find({
+    //          where : {nombre_tramo :`${nombre}`}});
+
 
     public async getTramos(): Promise<Tramo[]> {
         try {
             const tramos: Tramo[] = await this.repoTramo.find(
-                { relations: ['tramoAccesorios' , 'artefacto'] },
-              
-
+                { relations: ['tramoAccesorios'] },
             );
             return tramos;
         } catch (error) {
@@ -34,7 +39,7 @@ export class TramoService {
     }
     public async addTramo(tramoDto:TramoDto): Promise<Tramo> {
         try {
-            const tramoCreado: Tramo = await this.repoTramo.save(new Tramo(tramoDto.nombre_tramo,tramoDto.longitud_real,tramoDto.longitud_de_calculo,tramoDto.artefactos_idArtefacto)) //tramoDto.artefacto
+            const tramoCreado: Tramo = await this.repoTramo.save(new Tramo(tramoDto.nombre_tramo,tramoDto.longitud_real,tramoDto.longitud_de_calculo,tramoDto.metros_cubicos)) //tramoDto.artefacto
             if(tramoCreado.getIdTramo()){
                 return tramoCreado;
             }else{

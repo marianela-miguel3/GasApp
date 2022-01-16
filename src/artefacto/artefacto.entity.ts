@@ -16,8 +16,8 @@ export default class Artefacto {
     @OneToMany(type => PresupuestoDeArtefactos,presupuestoArtefactos => presupuestoArtefactos.artefacto)
     public presupuestoArtefactos: PresupuestoDeArtefactos[];
 
-    @OneToMany(type => Tramo, tramos => tramos.artefacto)
-    public tramos:Tramo[];
+    // @OneToMany(type => Tramo, tramos => tramos.artefacto)
+    // public tramos:Tramo[];
 
     constructor(idArtef:number, nombArtef:string, calArtef:number, mtsCubicos:number) {
         this.idArtefacto=idArtef;

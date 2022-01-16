@@ -11,11 +11,11 @@ let tramos=[];
 
 agregarTramo.addEventListener('click',()=>{
     let tramo={
-        "idTramo":idTramo.value,
+        // "idTramo":idTramo.value,
         "nombre_tramo": `${comienzoTramo.value} ${parseInt(finTramo.value)}`,
         "longitud_real": longitudReal.value,
         "longitud_de_calculo":longitudCalculo.value,
-        "artefactos_idArtefacto":idTramo.value
+        "metros_cubicos":(calorias.value/9300).toFixed(2)
     };
     tramos.push(tramo);
     crearTramo(tramo);
@@ -41,11 +41,11 @@ agregarTramo.addEventListener('click',()=>{
     for (let i = 0; i < tramos.length; i++) {
       html += `
                  <tr>
-                     <td>${tramos[i].idTramo}</td>
+                     <td>${artefacto.value}</td>
                      <td>${tramos[i].nombre_tramo}</td>
                      <td>${tramos[i].longitud_real}</td>
                      <td>${tramos[i].longitud_de_calculo}</td>
-                     <td>${tramos[i].artefactos_idArtefacto}</td>
+                     <td>${tramos[i].metros_cubicos}</td>
                      </tr>`;
     }
     container.innerHTML = html;

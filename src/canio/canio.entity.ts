@@ -9,8 +9,8 @@ export default class Canio {
     @Column()
     private nombre:string;
 
-    @OneToMany(type => Accesorio,accesorios => accesorios.canio)
-    public accesorios:Accesorio[];
+    // @OneToMany(type => Accesorio,accesorios => accesorios.canio)
+    // public accesorios:Accesorio[];
 
     @OneToOne(type => Consumo, consumo => consumo.canio)
     public consumo:Consumo;

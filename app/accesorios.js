@@ -1,6 +1,14 @@
 let cargando=document.getElementById(`cargando`);
 let container=document.getElementById(`container`);
 let accesorios=[];
+let idTramo=document.getElementById(`idTramo`);
+let accesorio=document.getElementById(`accesorio`);
+let cantidad=document.getElementById(`cantidad`);
+let sumaEquivalente=document.getElementById(`sumaEquivalente`);
+let precio=document.getElementById(`precio`);
+let cargar=document.getElementById(`cargar`);
+let mostrar=document.getElementById(`mostrar`);
+let tramosAccesorios=[];
 load();
 
 async function load() {
@@ -32,4 +40,45 @@ async function load() {
                      </tr>`;
     }
     container.innerHTML = html;
+  }
+//para ir cargando los tramos-accesorios
+
+  cargar.addEventListener('click',()=>{
+    let tramoAccesorio={
+        // "idTramo":idTramo.value,
+        "idTramo": idTramo.value,
+        "idAccesorio": accesorio.value,
+        "cantidad":cantidad.value,
+        "equivalenteTramo":(accesorios[i].getEquivalente())*cantidad.value,
+        "tramo_precio_accesorio":(accesorios[accesorio.value].getPrecio())*cantidad.value
+    };
+    tramosAccesorios.push(tramoAccesorio);
+    crearTramoAccesorio(tramoAccesorio);
+    actualizarTramoAccesorio();
+});
+
+
+    async function crearTramoAccesorio(tramoAccesorio){
+    let response= await fetch("/tramoAccesorio",{
+      method: "POST",
+      headers:{
+        "Content-Type":"application/json",
+      },
+      body:JSON.stringify(tramoAccesorio)
+   });
+   let r=await response.json();
+  }
+
+  function actualizarTramoAccesorio() {
+    html = '';
+    for (let i = 0; i < tramosAccesorios.length; i++) {
+      html += `
+                 <tr>
+                     <td>${tramosAccesorios[i].idAccesorio}</td>
+                     <td>${tramosAccesorios[i].cantidad}</td>
+                     <td>${tramosAccesorios[i].equivalenteTramo}</td>
+                     <td>${tramosAccesorios[i].tramo_precio_accesorio}</td>
+                     </tr>`;
+    }
+    mostrar.innerHTML = html;
   }

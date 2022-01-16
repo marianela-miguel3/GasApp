@@ -41,6 +41,12 @@ public setPrecio(precioNuevo:number):void{
 public getDiametro():string{
     return this.diametro;
 }
+public getEquivalente():number{
+    return this.equivalente;
+}
+public getPrecio():number{
+    return this.precio;
+}
 
 }
 

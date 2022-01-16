@@ -3,18 +3,22 @@
     flex-direction: row;
     /* justify-content: space-around; */
     align-content: center;
-    /* width: 200px; */
+    width: 150px;
    /* flex-flow:nowrap; */
 }
-/* .segundaTabla{
+.tamaño{
+    width: 15px;
+}
+/* .div1{
+    display: flex;
+}
+.div2{
+    display: flex;
 } */
 
 /* .tabla{
     width: 100px;
 } */
-body{
-    width: 100%;
-}
-.achicar{
+/* .achicar{
     width:50px;
-}
+} */

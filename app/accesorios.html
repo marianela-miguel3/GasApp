@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="accesorios.css">
+    <link rel="stylesheet" href="./CSS/accesorios.css">
     <title>Accesorio</title>
 </head>
 <body>
     <div id="cargando"></div>
     <div class="flex">
-    <div>
+    <div class="div1">
         <table>
         <thead class="achicar">
             <tr>
@@ -24,26 +24,29 @@
         <tbody id="container"></tbody>
     </table>
     </div>
-    <div class="segundaTabla">
+    <div class="div2">
+        <input type="string" id="idTramo">Ingrese el Id del tramo</input>
+        <input type="string" id="accesorio">Ingrese el Id del accesorio</input>
+        <input type="string" id="cantidad">Ingrese la cantidad</input>
     <table class="tabla">
         <thead>
             <tr>
-            <th>idTramo</th>
             <th>idAccesorio</th>
             <th>Cantidad</th>
             <th>EquivalenteTramo</th>
             <th>Precio</th>
             </tr>
         </thead>
-        <tbody id="container"></tbody>
-        <tr>
-            <td><input type="number"></td>
-            <td><input type="number"></td>
-            <td><input type="number"></td>
-            <td><input type="number"></td>
-            <td><input type="number"></td>
+        <tbody></tbody>
+        <tr id="mostrar">
+            <!-- <td></td>
+            <td></td>
+            <td></td>
+            <td></td> -->
         </tr>
+        <!-- <tr id="mostrar"></tr> -->
     </table>
+    <button id="cargar">Cargar Accesorio</button>
     </div>
     </div>
     <script src="./accesorios.js"></script>

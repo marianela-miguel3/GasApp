@@ -12,28 +12,26 @@ export default class Tramo{
     private longitud_real:number;
     @Column()
     private longitud_de_calculo:number;
-    // @Column()
-    // private artefactos_idArtefacto:number;
+    @Column()
+    private metros_cubicos:number;
     
-    @ManyToOne(type => Artefacto, artefacto => artefacto.tramos)
-    @JoinColumn({name:"artefactos_idArtefacto"})
-    public artefacto:Artefacto;
+    // @ManyToOne(type => Artefacto, artefacto => artefacto.tramos)
+    // @JoinColumn({name:"artefactos_idArtefacto"})
+    // public artefacto:Artefacto;
 
     @OneToMany(type => TramoAccesorio,tramoAccesorios => tramoAccesorios.tramo)
     public tramoAccesorios:TramoAccesorio[];
 
-    public constructor(nombre_tramo:string,longitud_real:number,longitud_de_calculo:number,artefactos_idArtefacto:Artefacto){    //artefacto?:Artefacto
+    public constructor(nombre_tramo:string,longitud_real:number,longitud_de_calculo:number,metros_cubicos:number){    //artefacto?:Artefacto
         this.nombre_tramo=nombre_tramo;
         this.longitud_real=longitud_real;
         this.longitud_de_calculo=longitud_de_calculo;
-        this.artefacto=artefactos_idArtefacto;
+        this.metros_cubicos=metros_cubicos;
     }
     public getIdTramo():number{
         return this.idTramo;
     }
-    public getIdArtefacto():Artefacto{
-        return this.artefacto;
-    }
+
     public setNombre_tramo(nombre_tramo:string){
         this.nombre_tramo=nombre_tramo;
     }
