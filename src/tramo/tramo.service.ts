@@ -11,11 +11,6 @@ export class TramoService {
     constructor(@InjectRepository(Tramo) private readonly repoTramo: Repository<Tramo>,
     @InjectRepository(Accesorio) private readonly repoAccesorio: Repository<Accesorio>) {}
 
-    // public async getTramoNombre(nombre:string):Tramo{
-    //  try{
-    //      const tramo: Tramo=await this.repoTramo.find({
-    //          where : {nombre_tramo :`${nombre}`}});
-
 
     public async getTramos(): Promise<Tramo[]> {
         try {

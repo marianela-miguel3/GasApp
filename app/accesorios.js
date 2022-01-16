@@ -42,15 +42,29 @@ async function load() {
     container.innerHTML = html;
   }
 //para ir cargando los tramos-accesorios
-
+ function cargarEquivalente(){
+for (let i=0; i<accesorios.length; i++){
+  if(accesorios[i].idAccesorio==accesorio.value){
+      return accesorios[i].equivalente;
+  }
+}
+}
+function cargarPrecio(){
+  for (let i=0; i<accesorios.length; i++){
+    if(accesorios[i].idAccesorio==accesorio.value){
+        return accesorios[i].precio;
+    }
+  }
+  }
   cargar.addEventListener('click',()=>{
+    console.log(accesorios);
     let tramoAccesorio={
         // "idTramo":idTramo.value,
         "idTramo": idTramo.value,
         "idAccesorio": accesorio.value,
         "cantidad":cantidad.value,
-        "equivalenteTramo":(accesorios[i].getEquivalente())*cantidad.value,
-        "tramo_precio_accesorio":(accesorios[accesorio.value].getPrecio())*cantidad.value
+        "equivalenteTramo":(cargarEquivalente()*cantidad.value).toFixed(2),
+        "tramo_precio_accesorio":cargarPrecio()*cantidad.value
     };
     tramosAccesorios.push(tramoAccesorio);
     crearTramoAccesorio(tramoAccesorio);
