@@ -5,6 +5,7 @@ let tramos=[];
 let tramosAccesorios=[];
 loadTramo();
 loadTramoAccesorio();
+cargarEquivalenteTotal();
 
 async function loadTramo() {
     cargando.innerHTML = `<h1>Loading.....</h1>`;
@@ -13,6 +14,7 @@ async function loadTramo() {
       if (response.ok) {
         tramos = await response.json();
         actualizarTramos();
+        console.log(tramos)
         cargando.innerHTML = '';
       } else cargando.innerHTML = `<h1>Error=Failed URL</h1>`;
     } catch (err) {
@@ -34,9 +36,11 @@ async function loadTramo() {
   async function loadTramoAccesorio() {
     cargando.innerHTML = `<h1>Loading.....</h1>`;
     try {
-      let response = await fetch(`/tramoAccesorio`);
+      let response = await fetch(`/tramoaccesorio`);
       if (response.ok) {
         tramosAccesorios = await response.json();
+        cargarEquivalenteTotal();
+        console.log(tramosAccesorios)
         cargando.innerHTML = '';
       } else cargando.innerHTML = `<h1>Error=Failed URL</h1>`;
     } catch (err) {
@@ -49,12 +53,12 @@ async function loadTramo() {
       for(let i=0; i<tramosAccesorios.length; i++){
           total+=tramosAccesorios[i].equivalenteTramo;
       }
-      return total;
+     mostrarEquivalente.innerHTML=total
   }
 
-  calcularEquivalente.addEventListener('click',()=>{
-   mostrarEquivalente.innerHTML=cargarEquivalenteTotal();
-});
+//   calcularEquivalente.addEventListener('click',()=>{
+//    mostrarEquivalente.innerHTML=cargarEquivalenteTotal();
+// });
 
 //   function actualizarTramosAccesorios() {
 //   let padre=document.createElement("tr");
