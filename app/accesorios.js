@@ -66,14 +66,14 @@ function cargarPrecio(){
         "equivalenteTramo":(cargarEquivalente()*cantidad.value).toFixed(2),
         "tramo_precio_accesorio":cargarPrecio()*cantidad.value
     };
-    tramosAccesorios.push(tramoAccesorio);
     crearTramoAccesorio(tramoAccesorio);
+    tramosAccesorios.push(tramoAccesorio);
     actualizarTramoAccesorio();
 });
 
 
     async function crearTramoAccesorio(tramoAccesorio){
-    let response= await fetch("/tramoAccesorio",{
+    let response= await fetch("/tramoaccesorio",{
       method: "POST",
       headers:{
         "Content-Type":"application/json",
@@ -81,6 +81,7 @@ function cargarPrecio(){
       body:JSON.stringify(tramoAccesorio)
    });
    let r=await response.json();
+   console.log(r)
   }
 
   function actualizarTramoAccesorio() {

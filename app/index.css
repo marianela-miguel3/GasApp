@@ -1,43 +1,76 @@
-.encabezado{
-    background-color: white;
+* {
+    margin: 0;
+}
+.container{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.header{
+    background-color:rgb(250, 170, 51);
+    height: 80px;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.nav{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    max-width: 992px;
+    margin: 0 auto;
+}
+.nav-link{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 0 10px;
+    line-height: 80px;
+    width: max-content;
+    padding: 8px 12px;
+}
+.nav-link:hover{
+    background-color: rgb(194, 113, 14);
+    border-radius: 3px;
+    transition: 0.5s;
+}
+.logo{
+    font-size: 40px;
+    color: white;
+    padding: 0 40px;
+    line-height: 80px;
+}
+.nav-menu{
+    display: flex;
+    margin-right: 40px;
+    list-style: none;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 500px;
 }
 .titulo{
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 250%;
-}
-.encabezado2{
-    margin-top: 10px;
-    display: flex;
-    font-size: 24px;
-}
-.cuerpo{
-    margin-top: 8%;
-    margin-left: 15%;
-    width: 30%;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 1.5rem;
-}
-.contacto{
-    margin-left: 10px;
-}
-.boton{
-    background-color: white;
-    margin-top: 1rem;
-    width: 12rem;
-    height: 5rem;
-    font-size: 1.5rem;
-    border-radius: 10px;
-    font-family:'Libre Franklin', sans-serif;
-}
-.servicio{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 3rem;
-}
-.imagen{
-    display: inline;
+    font-size: 30px;
+    position: absolute;
+    margin: 250px;
+    color: whitesmoke;
 }
 .parrafo{
-    display: inline;
+    margin-top: 350px;
+    margin-left: 250px;
+    width: 500px;
+    position: absolute;
+    font-size: 30px;
+    color: honeydew;
+}
+.boton{
+    background: rgba(248, 248, 248, 0.959);
+    margin-top: 650px;
+    margin-left: 250px;
+    position: absolute;
+    font-size: 30px;
+    width: max-content;
+    height: max-content;
+    font-family:'Libre Franklin', sans-serif;
+    border-radius: 10px;
 }
