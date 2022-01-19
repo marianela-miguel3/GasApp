@@ -34,7 +34,7 @@ public async getTramoAccesorio(id:number): Promise<TramoAccesorio> {
 
   public async addTramoAccesorio(tramoAccesorio: TramoAccesorioDTO): Promise<TramoAccesorio[]>{
     try{
-      let tramoAccesorioNuevo= new TramoAccesorio(tramoAccesorio.idTramo,tramoAccesorio.idAccesorio,tramoAccesorio.cantidad,tramoAccesorio.equivalenteTramo);
+      let tramoAccesorioNuevo= new TramoAccesorio(tramoAccesorio.idTramo,tramoAccesorio.idAccesorio,tramoAccesorio.cantidad,tramoAccesorio.equivalenteTramo,tramoAccesorio.tramo_precio_accesorio);
       await this.repoTramoAccesorio.save(tramoAccesorioNuevo);
       const tramosAccesorios: TramoAccesorio[]=await this.repoTramoAccesorio.find()
       return tramosAccesorios;

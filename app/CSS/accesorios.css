@@ -1,13 +1,17 @@
 .flex{
     display: flex;
-    flex-direction: row;
+    /* /* flex-direction: row; */
     /* justify-content: space-around; */
-    align-content: center;
-    width: 150px;
+    align-content: center; 
+    /* width: 150px; */
    /* flex-flow:nowrap; */
 }
 .tamaño{
-    width: 15px;
+    height: 30px;
+    width: 60px;
+}
+.block{
+    display: block;
 }
 /* .div1{
     display: flex;

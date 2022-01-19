@@ -12,24 +12,18 @@ nombre_accesorio:string;
 diametro:string;
 @Column()
 equivalente:number;
-// @Column()
-// idCaño:number;
 @Column()
 private precio:number;
 
 @OneToMany(type => TramoAccesorio, tramoAccesorios => tramoAccesorios.accesorio)
 public tramoAccesorios:TramoAccesorio[];
 
-// @ManyToOne(type => Canio,canio => canio.accesorios)
-// @JoinColumn({name:'idCanio'})
-// public canio:Canio;
 
 constructor(idAccesorio:number,nombre_accesorio:string,diametro:string,equivalente:number,precio:number){
 this.idAccesorio=idAccesorio;
 this.nombre_accesorio=nombre_accesorio;
 this.diametro=diametro;
 this.equivalente=equivalente;
-// this.canio=idCanio;
 this.precio=precio;
 }
 public getIdAccesorio():number{

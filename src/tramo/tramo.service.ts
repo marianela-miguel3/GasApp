@@ -61,16 +61,17 @@ export class TramoService {
         }
     }
     public async delTramo(idTramo:number): Promise<Tramo[]> {
-        try {
+        // try {
             const tramo: Tramo = await this.repoTramo.findOne(idTramo);
-            if(!tramo) {
-                throw new HttpException("El tramo no existe", 404);
-            }
+            console.log(tramo);
+            // if(!tramo) {
+            //     throw new HttpException("El tramo no existe", 404);
+            // }
             await this.repoTramo.remove(tramo);
             const tramos: Tramo[] = await this.repoTramo.find();
             return tramos;
-        } catch (error) {
-            throw new HttpException("El tramo no existe", 404);
-        }
     }
+        // } catch (error) {
+        //     throw new HttpException("El tramo no existe", 404);
+        // }
 }

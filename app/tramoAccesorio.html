@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/tramoaccesorio.css">
     <title>tramoAccesorio</title>
 </head>
 <body>
     <div id="cargando"></div>
-    <table>
+    <div class="container">
+    <table class="tabla" cellSpacing="1" cellPadding="2">
         <thead>
             <tr>
+            <th>idTramo</th>  
             <th>Nombre de tramo</th>
             <th>Longitud real</th>
             <th>Longitud de calculo</th>
@@ -31,7 +34,8 @@
         <tbody id="mostrarEquivalente">
         </tbody>
     </table>
-    <button id="calcularEquivalente">Calcular Equivalente</button>
+    </div>
+    <!-- <button id="calcularEquivalente">Calcular Equivalente</button> -->
     <button><a href="./accesorios.html">Volver</a></button>
     
     <script src="./tramoAccesorio.js"></script>
