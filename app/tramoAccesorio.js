@@ -5,6 +5,7 @@ let tramos=[];
 let tramosAccesorios=[];
 loadTramo();
 loadTramoAccesorio();
+cargarEquivalenteTotal();
 
 async function loadTramo() {
     cargando.innerHTML = `<h1>Loading.....</h1>`;
@@ -13,6 +14,7 @@ async function loadTramo() {
       if (response.ok) {
         tramos = await response.json();
         actualizarTramos();
+        console.log(tramos)
         cargando.innerHTML = '';
       } else cargando.innerHTML = `<h1>Error=Failed URL</h1>`;
     } catch (err) {
@@ -52,7 +54,6 @@ async function loadTramo() {
           total+=tramosAccesorios[i].equivalenteTramo;
       }
       mostrarEquivalente.innerHTML=total;
-
   }
 
 //   calcularEquivalente.addEventListener('click',()=>{

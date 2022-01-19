@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./CSS/tramoaccesorio.css">
+    <link rel="stylesheet" href="./CSS/tramoAccesorio.css">
     <title>tramoAccesorio</title>
 </head>
 <body>
-    <div id="cargando"></div>
+    <header class="header">
+        <nav class="nav">
+            <h2 class="logo">
+                GasApp
+            </h2>
+        </nav>
+    </header>
     <div class="container">
-    <table class="tabla" cellSpacing="1" cellPadding="2">
+        <div id="cargando"></div>
+    <table class="tabla1">
         <thead>
             <tr>
             <th>idTramo</th>  
@@ -25,19 +32,22 @@
         </tr>
         
     </table>
-    <table>
+    <table class="tabla2">
         <thead>
             <tr>
                 <th>Equivalente Total</th>
             </tr>
         </thead>
-        <tbody id="mostrarEquivalente">
+        <tbody>
+            <tr>
+                <td  id="mostrarEquivalente"></td>
+            </tr>
         </tbody>
     </table>
     </div>
-    <!-- <button id="calcularEquivalente">Calcular Equivalente</button> -->
+    <button id="calcularEquivalente">Calcular Equivalente</button>
     <button><a href="./accesorios.html">Volver</a></button>
-    
+    </div>
     <script src="./tramoAccesorio.js"></script>
 </body>
 </html>

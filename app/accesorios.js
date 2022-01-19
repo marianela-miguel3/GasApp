@@ -90,6 +90,7 @@ function cargarPrecio(){
 
     async function crearTramoAccesorio(tramoAccesorio){
     let response= await fetch(`/tramoaccesorio`,{
+
       method: "POST",
       headers:{
         "Content-Type":"application/json",
@@ -97,6 +98,7 @@ function cargarPrecio(){
       body:JSON.stringify(tramoAccesorio)
    });
    let r=await response.json();
+   console.log(r)
   }
 
   function actualizarTramoAccesorio() {
