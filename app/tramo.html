@@ -26,7 +26,7 @@
               </div>
             </div>
           </nav>
-
+        <div id="cargando"></div>
         <div class="container">
 
             <table class="table">
@@ -102,19 +102,25 @@
           <table>
             <thead>
                 <!-- <td>Id</td> -->
-                <td>Artefacto</td>
+
+                
+                <td>idTramo</td>
                 <td>Nombre</td>
                 <td>Longitud real</td>
                 <td>Longitud de calculo</td>
                 <td>Consumo (m3)</td>
+                <td>Artefacto</td>
             </thead>
             <tbody id="container"></tbody>
         </table>
         </div>
         <div>
           <button id="agregarTramo">Agregar Tramo</button>
+          <button id="eliminarTramo">Eliminar Tramo</button>
+          <input type="number" id="idTramoAEliminar">
         </div>
         <button class="boton"><a href="./accesorios.html">Cargar Accesorios</a></button>
-        <script src="./proyecto.js"></script>
+        <div id="error"></div>
+        <script src="./tramos.js"></script>
 </body>
 </html>

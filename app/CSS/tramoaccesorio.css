@@ -1,0 +1,7 @@
+.container{
+    display: flex;
+}
+.tabla{
+    align-items: center;
+    border: 1px;
+}

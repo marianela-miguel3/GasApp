@@ -14,15 +14,13 @@ export default class Tramo{
     private longitud_de_calculo:number;
     @Column()
     private metros_cubicos:number;
-    
-    // @ManyToOne(type => Artefacto, artefacto => artefacto.tramos)
-    // @JoinColumn({name:"artefactos_idArtefacto"})
-    // public artefacto:Artefacto;
 
-    @OneToMany(type => TramoAccesorio,tramoAccesorios => tramoAccesorios.tramo)
+    @OneToMany(type => TramoAccesorio,tramoAccesorios => tramoAccesorios.tramo,{
+        cascade: true,
+    })
     public tramoAccesorios:TramoAccesorio[];
 
-    public constructor(nombre_tramo:string,longitud_real:number,longitud_de_calculo:number,metros_cubicos:number){    //artefacto?:Artefacto
+    public constructor(nombre_tramo:string,longitud_real:number,longitud_de_calculo:number,metros_cubicos:number){    
         this.nombre_tramo=nombre_tramo;
         this.longitud_real=longitud_real;
         this.longitud_de_calculo=longitud_de_calculo;

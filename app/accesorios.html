@@ -10,9 +10,9 @@
 <body>
     <div id="cargando"></div>
     <div class="flex">
-    <div class="div1">
+   
         <table>
-        <thead class="achicar">
+        <thead>
             <tr>
             <th>idAccesorio</th>
             <th>nombre_accesorio</th>
@@ -29,8 +29,11 @@
         <input type="number" id="accesorio">Ingrese el Id del accesorio</input>
         <input type="number" id="cantidad">Ingrese la cantidad</input>
     <table class="tabla">
+
         <thead>
             <tr>
+            <th>idTA</th>
+            <th>idTramo</th>
             <th>idAccesorio</th>
             <th>Cantidad</th>
             <th>EquivalenteTramo</th>
@@ -38,17 +41,15 @@
             </tr>
         </thead>
         <tbody id="mostrar"></tbody>
-        <tr>
-            <!-- <td></td>
-            <td></td>
-            <td></td>
-            <td></td> -->
-        </tr>
-        <!-- <tr id="mostrar"></tr> -->
     </table>
     <button id="cargar">Cargar Accesorio</button>
+    <button id="calcularEquivalente">Calcular Equivalente Total</button>
+    <div id="mostrarCalculo"></div>
     <button><a href="./tramoAccesorio.html">Siguiente</a></button>
     <button><a href="./tramo.html">Volver</a></button>
+    </div>
+    </div>
+    
     <script src="./accesorios.js"></script>
 </body>
 </html>

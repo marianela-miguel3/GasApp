@@ -5,18 +5,16 @@ import {Column, Entity, JoinColumn, ManyToOne, OneToMany,PrimaryColumn, PrimaryG
 export default class TramoAccesorio{
 @PrimaryGeneratedColumn()
 private idTramoAccesorio:number;
-// @Column()
-// private idTramo:number;
-// @Column()
-// private idAccesorio:number;
 @Column()
 private cantidad:number;
 @Column()
 private equivalenteTramo:number;
 @Column()
-private tramo_precio_accesorio:number
+private tramo_precio_accesorio:number;
 
-@ManyToOne(type => Tramo, tramo => tramo.tramoAccesorios)
+@ManyToOne(type => Tramo, tramo => tramo.tramoAccesorios, {
+    onDelete: 'CASCADE',
+})
 @JoinColumn({name:'idTramo'})
 public tramo:Tramo;
 
@@ -40,6 +38,9 @@ public getCantidad():number{
 }
 public getEquivalenteTramo():number{
     return this.equivalenteTramo;
+}
+public getPrecioTramo():number{
+    return this.tramo_precio_accesorio;
 }
 public setCantidad(cantidadNuevo:number):void{
     this.cantidad=cantidadNuevo;

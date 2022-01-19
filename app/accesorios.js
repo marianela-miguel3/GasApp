@@ -8,8 +8,10 @@ let sumaEquivalente=document.getElementById(`sumaEquivalente`);
 let precio=document.getElementById(`precio`);
 let cargar=document.getElementById(`cargar`);
 let mostrar=document.getElementById(`mostrar`);
+let calcularEquivalente=document.getElementById(`calcularEquivalente`);
 let tramosAccesorios=[];
 load();
+loadTramoAccesorio();
 
 async function load() {
     cargando.innerHTML = `<h1>Loading.....</h1>`;
@@ -41,6 +43,22 @@ async function load() {
     }
     container.innerHTML = html;
   }
+
+  async function loadTramoAccesorio() {
+    // mostrar.innerHTML = `<h1>Loading.....</h1>`;
+    try {
+      let response = await fetch(`/tramoaccesorio`);
+      if (response.ok) {
+        tramosAccesorios = await response.json();
+        actualizarTramoAccesorio();
+        // cargarEquivalenteTotal();
+        // cargando.innerHTML = '';
+      } else mostrar.innerHTML = `<h1>Error=Failed URL</h1>`;
+    } catch (err) {
+      mostrar.innerHTML = `<h1> ${err.message} </h1>`;
+    }
+  }
+
 //para ir cargando los tramos-accesorios
  function cargarEquivalente(){
 for (let i=0; i<accesorios.length; i++){
@@ -57,12 +75,10 @@ function cargarPrecio(){
   }
   }
   cargar.addEventListener('click',()=>{
-    console.log(accesorios);
     let tramoAccesorio={
-        // "idTramo":idTramo.value,
-        "idTramo": idTramo.value,
-        "idAccesorio": accesorio.value,
-        "cantidad":cantidad.value,
+        "idTramo": parseInt(idTramo.value),
+        "idAccesorio": parseInt(accesorio.value),
+        "cantidad":parseInt(cantidad.value),
         "equivalenteTramo":(cargarEquivalente()*cantidad.value).toFixed(2),
         "tramo_precio_accesorio":cargarPrecio()*cantidad.value
     };
@@ -73,7 +89,8 @@ function cargarPrecio(){
 
 
     async function crearTramoAccesorio(tramoAccesorio){
-    let response= await fetch("/tramoaccesorio",{
+    let response= await fetch(`/tramoaccesorio`,{
+
       method: "POST",
       headers:{
         "Content-Type":"application/json",
@@ -89,6 +106,8 @@ function cargarPrecio(){
     for (let i = 0; i < tramosAccesorios.length; i++) {
       html += `
                  <tr>
+                     <td>${tramosAccesorios[i].idTramoAccesorio}</td>
+                     <td>${tramosAccesorios[i].idTramo}</td>
                      <td>${tramosAccesorios[i].idAccesorio}</td>
                      <td>${tramosAccesorios[i].cantidad}</td>
                      <td>${tramosAccesorios[i].equivalenteTramo}</td>
@@ -97,3 +116,14 @@ function cargarPrecio(){
     }
     mostrar.innerHTML = html;
   }
+
+  calcularEquivalente.addEventListener('click',()=>{
+    let mostrarCalculo=document.getElementById(`mostrarCalculo`);
+      let total=0;
+      for(let i=0; i<tramosAccesorios.length; i++){
+        if(tramosAccesorios[i].idTramo==idTramo.value){
+          total+=tramosAccesorios[i].equivalenteTramo;
+        }
+        mostrarCalculo.innerHTML=parseInt(total);
+      }
+  });
