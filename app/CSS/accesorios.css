@@ -1,10 +1,9 @@
 .flex{
     display: flex;
-    /* /* flex-direction: row; */
-    /* justify-content: space-around; */
     align-content: center; 
-    /* width: 150px; */
-   /* flex-flow:nowrap; */
+}
+.divGeneral{
+    display: flex;
 }
 .tamaño{
     height: 30px;
