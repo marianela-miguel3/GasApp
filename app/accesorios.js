@@ -93,6 +93,7 @@ function cargarPrecio(){
         "idAccesorio": parseInt(accesorio.value),
         "cantidad":parseInt(cantidad.value),
         "equivalenteTramo":parseFloat(cargarEquivalente()*cantidad.value).toFixed(2),
+        // "equivalenteTramo":Number(cargarEquivalente()*cantidad.value).toFixed(2),
         "tramo_precio_accesorio":cargarPrecio()*cantidad.value
     };
     crearTramoAccesorio(tramoAccesorio);
@@ -149,26 +150,41 @@ function cargarPrecio(){
       "nombre_tramo": `${comienzoTramo.value} ${finTramo.value}`,
       "longitud_real": longitudReal.value,
       "longitud_de_calculo":longitudCalculo.value,
-      "equivalente_total":calcularEquivalenteTotal(),
-      "total":(calcularEquivalenteTotal() + parseInt(longitudCalculo.value)),
+      "equivalente_total":calcularEquivalenteTotal().value,
+      "total":calcularTotal(),
       "metros_cubicos":(calorias.value/9300).toFixed(2)
   };
   tramos.push(tramo);
   crearTramo(tramo);
   actualizarTramo();
   tramosAccesoriosCargados=[];
-  idTramo.value=" ";
+  // idTramo.value=0;
 });
 
-
+function calcularTotal(){
+  let a=calcularEquivalenteTotal();
+  let b=longitudCalculo.value;
+  suma=parseFloat(a)+parseFloat(b)
+  console.log(suma);
+  return suma;
+}
 async function calcularEquivalenteTotal(){
   let total=0;
       for(let i=0;i<tramosAccesoriosCargados.length;i++){
-        total+=tramosAccesoriosCargados[i].equivalenteTramo;
+        total+=parseFloat(tramosAccesoriosCargados[i].equivalenteTramo);
         }
         console.log(total);
-      return total;
+ return total;
 } 
+
+// function calcularEquivalenteTotal(){
+
+// const numeros= [3,10,20,78];
+// const acumular=(acumulador,numero)=> acumulador+numero;
+// let total= numeros.reduce(acumular,0);
+// console.log(total)
+// return total;
+// }
 
 
 async function crearTramo(tramo){
