@@ -10,6 +10,7 @@ let artefacto=document.getElementById(`artefacto`);
 let eliminarTramo=document.getElementById(`eliminarTramo`)
 let idTramoAEliminar=document.getElementById(`idTramoAEliminar`);
 let error=document.getElementById(`error`);
+let cargando=document.getElementById(`cargando`);
 let tramos=[];
 loadTramo();
 
@@ -63,9 +64,10 @@ agregarTramo.addEventListener('click',()=>{
                      <td>${tramos[i].longitud_real}</td>
                      <td>${tramos[i].longitud_de_calculo}</td>
                      <td>${tramos[i].metros_cubicos}</td>
+                     <td>${artefacto.value}</td>
                      </tr>`;
     }
-    container.innerHTML = html+`<td>${artefacto.value}</td>`;
+    container.innerHTML = html;
     // container.insertColumn(-1).innerHTML = '<tr><td>'+artefacto.value+'</td>'
 }
 

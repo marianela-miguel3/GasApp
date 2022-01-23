@@ -34,7 +34,7 @@ export class TramoService {
     }
     public async addTramo(tramoDto:TramoDto): Promise<Tramo> {
         try {
-            const tramoCreado: Tramo = await this.repoTramo.save(new Tramo(tramoDto.nombre_tramo,tramoDto.longitud_real,tramoDto.longitud_de_calculo,tramoDto.metros_cubicos)) //tramoDto.artefacto
+            const tramoCreado: Tramo = await this.repoTramo.save(new Tramo(tramoDto.nombre_tramo,tramoDto.longitud_real,tramoDto.longitud_de_calculo,tramoDto.equivalente_total,tramoDto.total,tramoDto.metros_cubicos,tramoDto.diametro_de_calculo,tramoDto.diametro_adoptado)) //tramoDto.artefacto
             if(tramoCreado.getIdTramo()){
                 return tramoCreado;
             }else{
@@ -50,9 +50,9 @@ export class TramoService {
             if(!tramoCambia) {
                 throw new HttpException("El tramo no existe", 404);
             }
-            tramoCambia.setNombre_tramo(tramoDto.nombre_tramo);
-            tramoCambia.setLongitud_real(tramoDto.longitud_real);
-            tramoCambia.setLongitud_de_calculo(tramoDto.longitud_de_calculo);
+            tramoCambia.setEquivalenteTotal(tramoDto.equivalente_total);
+            tramoCambia.setTotal(tramoDto.total);
+            tramoCambia.setDiametroAdoptado(tramoDto.diametro_adoptado);
             await this.repoTramo.save(tramoCambia);
             const tramos: Tramo[] = await this.repoTramo.find();
             return tramos;
