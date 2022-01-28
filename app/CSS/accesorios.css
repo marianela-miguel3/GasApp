@@ -1,27 +1,78 @@
+* {
+    margin: 0;
+}
 .flex{
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+}
+.header{
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    background-color:rgb(250, 170, 51);
+    height: 80px;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.nav{
     display: flex;
-    align-content: center; 
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0 auto;
 }
-.divGeneral{
-    display: flex;
+.logo{
+    font-size: 40px;
+    color: white;
+    padding: 0 40px;
+    line-height: 80px;
+    text-decoration: none;
 }
-.tamaño{
-    height: 30px;
-    width: 60px;
-}
-.block{
-    display: block;
-}
-/* .div1{
-    display: flex;
-}
-.div2{
-    display: flex;
-} */
 
-/* .tabla{
-    width: 100px;
-} */
-/* .achicar{
-    width:50px;
-} */
+.cargaTramo{
+    margin-top: 1%;
+    padding: 5 5px;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    width: 100%;
+}
+.accesorios{
+    margin: 1%;
+    display: flex;
+}
+.cargaAccesorios{
+    margin: 0 12%;
+    font-size: 18px;
+}
+.accesoriosCargados{
+    font-size: 18px;
+    height: 300px;
+    width: 40%;
+    overflow-y: scroll;
+}
+.mostrarTablas{
+    width: 60%;
+    font-size: 18px;
+    margin: 1% 20%;
+}
+button{
+    margin: 5px;
+    font-size: 20px;
+}
+input{
+    font-size: 80%;
+}
+select{
+    font-size: 80%;
+}
+table, tr, td, th, tbody{
+    border: 2px solid black;
+    border-collapse: collapse;
+    padding: 10px 10px;
+}
+.modificarTramo{
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+}
+.modTramo{
+    margin: 1% 1%;
+}
