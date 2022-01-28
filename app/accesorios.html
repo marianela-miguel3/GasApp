@@ -1,24 +1,158 @@
-            <div class="accesoriosCargados">
-                <div id="cargando2"></div>
-                <table class="tablaFin">
-                    <thead class="tablaFin">
-                        <tr class="tablaFin">
-                            <th class="tablaFin">Id de Accesorio</th>
-                            <th class="tablaFin">Nombre de Accesorio</th>
-                            <th class="tablaFin">Diametro</th>
-                            <th class="tablaFin">Equivalente</th>
-                            <th class="tablaFin">Precio</th>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/accesorios.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="flex">
+        <header class="header">
+            <nav class="nav">
+                <h2>
+                    <a href="index.html" class="logo">GasApp</a>
+                </h2>
+            </nav>
+        </header>
+        <div class="cargaTramo">
+            <div class="container"></div>
+                <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Comienzo del Tramo</th>
+                    <th scope="col">Fin del Tramo</th>
+                    <th scope="col">Longitud Real</th>
+                    <th scope="col">Longitud de Calculo</th>
+                    <th scope="col">Tipo de Artefacto</th>
+                    <th scope="col">Calorias</th>
+                </tr>
+                </thead>
+                    <tbody>
+                        <tr>
+                            <td ><select name="" id="comienzoTramo">
+                                    <option value="-">-</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                            </select></td>
+                            <td><select name="" id="finTramo">
+                                    <option value="-">-</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="M">M</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="number" id="longitudReal">
+                            </td>
+                            <td>
+                                <input type="number" id="longitudCalculo">
+                            </td>
+                            <td>
+                                <select name="" id="artefacto">
+                                    <option value="-">-</option>
+                                    <option value="Calefactor">Calefactor</option>
+                                    <option value="Termotanque">Termotanque</option>
+                                    <option value="Cocina">Cocina</option>
+                                    <option value="Calefon">Calefon</option>
+                                    <option value="Caldera">Caldera</option>
+                                    <option value="Anafe">Anafe</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="number" id="calorias">
+                            </td>
+                        </tr>              
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Eliminar Tramo</th>
                         </tr>
                     </thead>
-                    <tbody class="tablaFin" id="container"></tbody>
+                    <tbody>
+                        <tr>
+                            <td><input type="number" id="idTramoAEliminar"></td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+        <div class="accesorios">
+            <div class="cargaAccesorios">
+                <table class="tabla">
+                    <tr>
+                        <th class="cabecera">Ingrese el Id del accesorio</th>
+                        <th class="cabecera">Ingrese la cantidad</th>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td><input type="number" id="accesorio"></input></td>
+                            <td><input type="number" id="cantidad"></input></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="mostrarError"></div>
+            <button id="cargar">Cargar Accesorio</button>
+            <button id="cargarTramo">Cargar Tramo</button>
+            <button id="eliminarTramo">Eliminar Tramo</button>
+             
+                <table class="tabla">
+                    <thead>
+                        <tr>
+                        <th>idAccesorio</th>
+                        <th>Cantidad</th>
+                        <th>EquivalenteTramo</th>
+                        <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mostrar"></tbody>
+                </table>               
+            </div>
+            <div class="accesoriosCargados">
+                <div id="cargando2"></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id de Accesorio</th>
+                            <th>Nombre de Accesorio</th>
+                            <th>Diametro</th>
+                            <th>Equivalente</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="container"></tbody>
                 </table>
             </div>    
         </div> 
         <div class="mostrarTablas">
             <div id="recarga"></div>
-            <table class="tablaFin">
-                <thead class="tablaFin">
-                    <tr class="tablaFin">
+            <table>
+                <thead>
+                    <tr>
                     <th>idTramo</th>  
                     <th>Nombre de tramo</th>
                     <th>Longitud real</th>
@@ -58,6 +192,7 @@
         <button>Cargar Listado de Accesorio</button>
         <button><a href="./index.html">Volver</a></button>  
     </div>
- <script src="./accesorios.js"></script>
+
+    <script src="./accesorios.js"></script>
 </body>
 </html>
