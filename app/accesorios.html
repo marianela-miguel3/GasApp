@@ -99,24 +99,7 @@
               </tr>              
             </tbody>
           </table>
-          <!-- <table>
-            <thead>             
-                <td>idTramo</td>
-                <td>Nombre</td>
-                <td>Longitud real</td>
-                <td>Longitud de calculo</td>
-                <td>Consumo (m3)</td>
-                <td>Artefacto</td>
-            </thead>
-            <tbody id="containerTramo"></tbody>
-        </table> -->
         </div>
-        <div>
-          <!-- <button id="agregarTramo">Agregar Tramo</button> -->
-          <button id="eliminarTramo">Eliminar Tramo</button>
-          <input type="number" id="idTramoAEliminar">
-        </div>
-        <!-- <div id="error"></div> -->
 
     <div id="cargando2"></div>
     <div class="flex">
@@ -135,7 +118,6 @@
     </table>
     </div>
     <div class="div2">
-        <!-- <input type="number" id="idTramo">Ingrese el Id del tramo</input> -->
         <input type="number" id="accesorio">Ingrese el Id del accesorio</input>
         <input type="number" id="cantidad">Ingrese la cantidad</input>
         <div id="mostrarError"></div>
@@ -143,8 +125,7 @@
 
         <thead>
             <tr>
-            <th>idTA</th>
-            <!-- <th>idTramo</th> -->
+            <!-- <th>idTA</th> -->
             <th>idAccesorio</th>
             <th>Cantidad</th>
             <th>EquivalenteTramo</th>
@@ -155,11 +136,8 @@
     </table>
     <button id="cargar">Cargar Accesorio</button>
     <button id="cargarTramo">Cargar Tramo</button>
-    <!-- <div id="mostrarCalculo"></div> -->
-    <!-- <button><a href="./tramoAccesorio.html">Siguiente</a></button> -->
     <button><a href="./index.html">Volver</a></button>
     </div>
-    <!-- <div class="divGeneral"> -->
         <div id="recarga"></div>
     <table class="tabla1">
         <thead>
@@ -175,35 +153,22 @@
             <th>Diametro adoptado</th>
             </tr>
         </thead>
-        <tbody id="mostrarTA"></tbody>
-        <tr></tr> 
-        <tr></tr>
-        <tr></tr>
-        <tr></tr>
-        <tr>
-            <td id="mm"></td>
-        </tr>
-        <tr></tr>
-        <tr></tr>
-        
+        <tbody id="mostrarTA"></tbody>        
     </table>
-
-    <!-- <table class="tabla2">
-        <thead>
-            <tr>
-                <th>Equivalente Total</th>
-            </tr>
-            <tr id="mm"></tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td  id="mostrarEquivalente"></td>
-            </tr>
-        </tbody>
-    </table> -->
-    
-    <!-- </div> --> 
-    
+    <div id="errorTramoActualizado"></div>
+    <button id="eliminarTramo">Eliminar Tramo</button>
+    <input type="number" id="idTramoAEliminar">
+    <!-- <input type="number" id="idTramoAModificar"> -->
+    <div class="block">
+    Ingrese el id del Tramo que desea modificar<input id="inputId">
+    Ingrese el equivalente del Tramo<input id="inputEquivalente">
+    </div>
+    <div>
+    Ingrese el total del tramo (en mts)<input id="inputTotal">
+    Ingrese el consumo del tramo<input id="inputConsumo">
+    <button id="modificarTramo">Modificar Tramo</button>
+    </div>
+    <button id="siguiente" class="boton"><a href="./listado.html">Cargar listado de Accesorio<s/a></button>
     <script src="./accesorios.js"></script>
 </body>
 </html>

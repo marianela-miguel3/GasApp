@@ -23,9 +23,20 @@ let accesorios=[];
 let tramosAccesorios=[];
 let tramos=[];
 let tramosAccesoriosCargados=[];
+////////////////////////////
+let eliminarTramo=document.getElementById(`eliminarTramo`);
+let idTramoAEliminar=document.getElementById(`idTramoAEliminar`);
+let modificarTramo=document.getElementById(`modificarTramo`);
+let idTramoAModificar=document.getElementById(`idTramoAModificar`);
+let inputId=document.getElementById(`inputId`);
+let inputEquivalente=document.getElementById(`inputEquivalente`)
+let inputTotal=document.getElementById(`inputTotal`);
+let inputConsumo=document.getElementById(`inputConsumo`);
+let errorTramoActualizado=document.getElementById(`errorTramoActualizado`);
+let consumos=[];
+// let valoresPosibles=[];
+loadAccesorio();
 
-// loadTramoAccesorio();
-loadAccesorio()
  
 async function loadAccesorio() {
     cargando2.innerHTML = `<h1>Loading.....</h1>`;
@@ -33,7 +44,6 @@ async function loadAccesorio() {
       let response = await fetch(`/accesorios`);
       if (response.ok) {
         accesorios = await response.json();
-        // console.log(accesorios);
         // accesorios = t;
         actualizarListado();
         cargando2.innerHTML = '';
@@ -59,7 +69,7 @@ async function loadAccesorio() {
   }
 
   async function loadTramoAccesorio() {//LOAD TRAMOACCESORIO
-    //mostrarError.innerHTML = `<h1>Loading.....</h1>`;
+    // mostrarError.innerHTML = `<h1>Loading.....</h1>`;
     try {
       let response = await fetch(`/tramoaccesorio`);//me los busca
       if (response.ok) {
@@ -99,6 +109,8 @@ function cargarPrecio(){
     crearTramoAccesorio(tramoAccesorio);
     tramosAccesoriosCargados.push(tramoAccesorio);
     actualizarTramoAccesorioCargado();
+    accesorio.value='';
+    cantidad.value='';
 });
 
 
@@ -115,12 +127,11 @@ function cargarPrecio(){
   //  console.log(r)
   }
 
-  async function actualizarTramoAccesorioCargado() {
+  function actualizarTramoAccesorioCargado() {
     html = '';
     for (let i = 0; i <tramosAccesoriosCargados.length; i++) {
       html += `
                  <tr>
-                     <td>${tramosAccesoriosCargados[i].idTramoAccesorio}</td>
                      <td>${tramosAccesoriosCargados[i].idAccesorio}</td>
                      <td>${tramosAccesoriosCargados[i].cantidad}</td>
                      <td>${tramosAccesoriosCargados[i].equivalenteTramo}</td>
@@ -130,52 +141,63 @@ function cargarPrecio(){
     mostrar.innerHTML = html;
   }
 
-  // async function actualizarTramoAccesorio() {
-  //   html = '';
-  //   for (let i = 0; i <tramosAccesorios.length; i++) {
-  //     html += `
-  //                <tr>
-  //                    <td>${tramosAccesorios[i].idTramoAccesorio}</td>
-  //                    <td>${tramosAccesorios[i].idAccesorio}</td>
-  //                    <td>${tramosAccesorios[i].cantidad}</td>
-  //                    <td>${tramosAccesorios[i].equivalenteTramo}</td>
-  //                    <td>${tramosAccesorios[i].tramo_precio_accesorio}</td>
-  //                    </tr>`;
-  //   }
-  //   mostrar.innerHTML = html;
-  // }
-
-  cargarTramo.addEventListener('click',()=>{
+  cargarTramo.addEventListener('click', ()=>{
     let tramo={
       "nombre_tramo": `${comienzoTramo.value} ${finTramo.value}`,
       "longitud_real": longitudReal.value,
       "longitud_de_calculo":longitudCalculo.value,
-      "equivalente_total":calcularEquivalenteTotal().value,
+      "equivalente_total":calcularEquivalenteTotal(),
       "total":calcularTotal(),
-      "metros_cubicos":(calorias.value/9300).toFixed(2)
+      "metros_cubicos":(calorias.value/9300).toFixed(2),
+      "diametro_de_calculo":buscarPorLongitud()
   };
   tramos.push(tramo);
   crearTramo(tramo);
-  actualizarTramo();
+  loadTramo();
   tramosAccesoriosCargados=[];
-  // idTramo.value=0;
 });
 
 function calcularTotal(){
   let a=calcularEquivalenteTotal();
   let b=longitudCalculo.value;
   suma=parseFloat(a)+parseFloat(b)
-  console.log(suma);
   return suma;
 }
-async function calcularEquivalenteTotal(){
+function calcularEquivalenteTotal(){
   let total=0;
       for(let i=0;i<tramosAccesoriosCargados.length;i++){
         total+=parseFloat(tramosAccesoriosCargados[i].equivalenteTramo);
-        }
-        console.log(total);
+      }
  return total;
-} 
+}
+
+async function buscarPorLongitud() {//FUNCIONA
+  let valor=calcularTotal();
+  let response=await fetch ("/consumo/"+ parseInt(valor));
+  if(response.ok){
+      // publicaciones=[];
+      consumos=await response.json();
+      // actualizarPublicaciones();
+      console.log(consumos);
+  }
+  calcularDiametro(consumos);
+  // inputIdPost.value="";
+  return consumos;
+}
+
+function calcularDiametro(valoresPosibles){
+  let consumoTramo=(calorias.value/9300).toFixed(2);
+  for(let i=0;i<valoresPosibles.length;i++){
+    console.log("algo");
+        if(valoresPosibles[i].cantidad_consumo>consumoTramo){
+         console.log(valoresPosibles);
+         console.log(consumoTramo);
+         return valoresPosibles[i].diametro_canio;
+  }else{
+  console.log("error");
+}
+}
+}
 
 // function calcularEquivalenteTotal(){
 
@@ -195,8 +217,10 @@ let response= await fetch("/tramos",{
   },
   body:JSON.stringify(tramo)
 });
-let r=await response.json();
+  let r=await response.json();
 }
+
+
 
   // async function loadTramoAccesorio() {
   //   cargando.innerHTML = `<h1>Loading.....</h1>`;
@@ -226,7 +250,7 @@ let r=await response.json();
     }
   }
 
-  async function actualizarTramo() {
+  function actualizarTramo() {
     html = ``;
     for (let i = 0; i < tramos.length; i++) {
       html += `
@@ -238,8 +262,58 @@ let r=await response.json();
                      <td>${tramos[i].equivalente_total}</td>
                      <td>${tramos[i].total}</td>
                      <td>${tramos[i].metros_cubicos}</td>
+                     <td>${tramos[i].diametro_de_calculo}</td>
                      </tr>`;
     }
     mostrarTA.innerHTML = html;
-    // container.insertColumn(-1).innerHTML = '<tr><td>'+artefacto.value+'</td>'
+    longitudReal.value='';
+    longitudCalculo.value='';
+    calorias.value='';
 }
+
+eliminarTramo.addEventListener('click', async ()=>{
+  try{
+   let response=await fetch(`/tramos/${idTramoAEliminar.value}`,{
+     method:`DELETE`,
+     headers:{
+         "Content-Type":"aplicattion/json"
+     }
+ });
+       if(response.ok){
+       loadTramo()
+       idTramoAEliminar.value="";
+     }else{
+       error.innerHTML="Error en la lectura del servidor";
+     }
+     }catch(error){
+     error.innerHTML="Error en la conexion del servidor";
+     }
+ });
+////no modifica el consumo
+ modificarTramo.addEventListener('click',async ()=>{
+  try{
+      let tramo={
+          "idTramo":parseInt(inputId.value),
+          "equivalente_total":parseFloat(inputEquivalente.value),
+          "total":parseFloat(inputTotal.value),
+          "metros_cubicos":parseFloat(inputConsumo.value)
+      };
+      let response=await fetch("/tramos/",{
+          method:`PUT`,
+          headers:{ "Content-Type":"application/json"},
+          body:JSON.stringify(tramo)
+      });
+      if(response.ok){
+          loadTramo();
+          inputId.value="";
+          inputEquivalente.value="";
+          inputTotal.value="";
+          inputConsumo.value="";
+      }else{
+        errorTramoActualizado.innerHTML="Error en lectura de servidor";
+      }
+  }catch(error){
+    errorTramoActualizado.innerHTML="Error en conexion al servidor";
+  }  
+});
+

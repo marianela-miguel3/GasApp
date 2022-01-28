@@ -12,6 +12,11 @@ export class ConsumoController {
         return this.consumoService.getConsumos()
     };
 
+    @Get(':metros')
+    public async getConsumoFinal(@Param('metros') metros:string) :Promise<Consumo[]>{
+        return this.consumoService.getConsumoFinal(parseInt(metros));
+    };
+
     @Get(':idConsumo')
     public async getConsumo(@Param('idConsumo') idConsumo:string) :Promise<Consumo>{
         return this.consumoService.getConsumo(parseInt(idConsumo));
