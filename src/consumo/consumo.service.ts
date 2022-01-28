@@ -65,7 +65,6 @@ export class ConsumoService {
         }
     };
 
-    //DELETE
     public async deleteConsumo(idConsumo:number):Promise<Consumo[]> {
         try {
             const consumoDel:Consumo=await this.repoConsumo.findOne(idConsumo);
@@ -79,4 +78,13 @@ export class ConsumoService {
             throw new HttpException({ error: `Error al eliminar el consumo: ${error}` }, HttpStatus.NOT_FOUND);
         }
     };
+
+    public async getConsumoFinal(metros:number):Promise<Consumo[]>{
+        try {
+            const consumos:Consumo[]=await this.repoConsumo.find({where : { longitud : `${metros}`}});
+            return consumos;
+        } catch (error) {
+            throw new HttpException({ error: `Error buscando el consumo: ${error}` }, HttpStatus.NOT_FOUND);
+        };
+    }
 }
