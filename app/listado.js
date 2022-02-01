@@ -34,10 +34,12 @@ let tmpListado = {};
 
 // let tmpListado = {}
 function precargarArreglo(tramosAccesorios){
-    for (let i=0; i< tramosAccesorios.length; i++)
-        if ( !tmpListado.hasOwnProperty(tramosAccesorios[i].accesorio.idAccesorio) ){
-            tmpListado[tramosAccesorios[i].accesorio.idAccesorio] = tramosAccesorios[i]
-        }          
+    for (let i=0; i< tramosAccesorios.length; i++){
+          if ( !tmpListado.hasOwnProperty(tramosAccesorios[i].accesorio.idAccesorio) ){
+          tmpListado[tramosAccesorios[i].accesorio.idAccesorio] = tramosAccesorios[i]
+        }
+    }
+    return tmpListado;          
 } 
   //id="${tramosAccesorios[i]["accesorio"].idAccesorio}">
   ///////para consultar aca necesitariamos mostrar en el listado final
@@ -49,6 +51,7 @@ function precargarArreglo(tramosAccesorios){
       let response = await fetch(`/tramoaccesorio`);
       if (response.ok) {
         tramosAccesorios = await response.json();
+        console.log(tramosAccesorios)
         precargarArreglo(tramosAccesorios);
         actualizarTramoAccesorio();
         cargando.innerHTML = '';
