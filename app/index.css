@@ -2,7 +2,7 @@
     margin: 0;
 }
 .container{
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
 }
 .header{
     background-color:rgb(250, 170, 51);
@@ -73,4 +73,18 @@
     height: max-content;
     font-family:'Libre Franklin', sans-serif;
     border-radius: 10px;
+}
+.footer{
+    width: 10px;
+    height: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.face{
+    width: 20px;
+    height: 20px;
+}
+.imagenCentral{
+    width: 100%;
+    height: 400px;
 }
