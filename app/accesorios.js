@@ -142,6 +142,7 @@ function cargarPrecio(){
   }
 
   cargarTramo.addEventListener('click', ()=>{
+    buscarPorLongitud();
     let tramo={
       "nombre_tramo": `${comienzoTramo.value} ${finTramo.value}`,
       "longitud_real": longitudReal.value,
@@ -149,7 +150,7 @@ function cargarPrecio(){
       "equivalente_total":calcularEquivalenteTotal(),
       "total":calcularTotal(),
       "metros_cubicos":(calorias.value/9300).toFixed(2),
-      "diametro_de_calculo":buscarPorLongitud()
+      "diametro_de_calculo":calcularDiametro()
   };
   tramos.push(tramo);
   crearTramo(tramo);
@@ -175,28 +176,28 @@ async function buscarPorLongitud() {//FUNCIONA
   let valor=calcularTotal();
   let response=await fetch ("/consumo/"+ parseInt(valor));
   if(response.ok){
-      // publicaciones=[];
       consumos=await response.json();
       // actualizarPublicaciones();
       console.log(consumos);
   }
-  calcularDiametro(consumos);
-  // inputIdPost.value="";
-  return consumos;
+  // return consumos;
 }
 
-function calcularDiametro(valoresPosibles){
+async function calcularDiametro(){
+  // buscarPorLongitud();
   let consumoTramo=(calorias.value/9300).toFixed(2);
-  for(let i=0;i<valoresPosibles.length;i++){
-    console.log("algo");
-        if(valoresPosibles[i].cantidad_consumo>consumoTramo){
-         console.log(valoresPosibles);
-         console.log(consumoTramo);
-         return valoresPosibles[i].diametro_canio;
-  }else{
-  console.log("error");
-}
-}
+  // let cantidades=consumos.map(cantidad_consumo);
+  for(let i=0;i<consumos.length;i++){
+    console.log(consumos);
+      if(consumos[i].cantidad_consumo>consumoTramo){
+        console.log(consumos[i].diametro_canio);
+        console.log(consumos[i].cantidad_consumo);
+       return consumos[i].diametro_canio;
+      }else{
+        console.log(consumos[i+1].diametro_canio);
+        return consumos[i+1].diametro_canio;
+      }
+  } 
 }
 
 // function calcularEquivalenteTotal(){
@@ -294,9 +295,13 @@ eliminarTramo.addEventListener('click', async ()=>{
   try{
       let tramo={
           "idTramo":parseInt(inputId.value),
+          // "nombre_tramo":tramo.nombre_tramo,
+          // "longitud_real":tramo.longitudReal,
+          // "longitud_de_calculo":tramo.longitudCalculo,
           "equivalente_total":parseFloat(inputEquivalente.value),
           "total":parseFloat(inputTotal.value),
-          "metros_cubicos":parseFloat(inputConsumo.value)
+          "metros_cubicos":parseFloat(inputConsumo.value),
+          // "diametro_calculo":tramo.diametro_de_calculo
       };
       let response=await fetch("/tramos/",{
           method:`PUT`,
