@@ -12,10 +12,8 @@ export class ConsumoService {
     //GET
     public async getConsumos(): Promise<Consumo[]> {
         try {
-            const consumos: Consumo[] = await this.repoConsumo.find(
-                {relations: ['canio']}
-
-            );
+            const consumos: Consumo[] = await this.repoConsumo.find();
+                // {relations: ['canio']}
             return consumos;
         } catch (error) {
             throw new HttpException({ error: `Error buscando los consumos: ${error}` }, HttpStatus.NOT_FOUND);
@@ -25,9 +23,7 @@ export class ConsumoService {
     //GET(:ID)
     public async getConsumo(idConsumo: number): Promise<Consumo> {
         try {
-            const consumo: Consumo = await this.repoConsumo.findOne(idConsumo,
-                {relations: ['canio']}
-                );
+            const consumo: Consumo = await this.repoConsumo.findOne(idConsumo);        
             return consumo;
         } catch (error) {
             throw new HttpException({ error: `Error buscando el consumo: ${error}` }, HttpStatus.NOT_FOUND);
@@ -82,7 +78,14 @@ export class ConsumoService {
     public async getConsumoFinal(metros:number):Promise<Consumo[]>{
         try {
             const consumos:Consumo[]=await this.repoConsumo.find({where : { longitud : `${metros}`}});
-            return consumos;
+            if(consumos){
+                console.log(consumos)
+                return consumos;
+            }else{
+                const consumos2:Consumo[]=await this.repoConsumo.find({where : { longitud : `${metros+1}`}});
+                console.log(consumos2);
+                return consumos2;
+            }
         } catch (error) {
             throw new HttpException({ error: `Error buscando el consumo: ${error}` }, HttpStatus.NOT_FOUND);
         };

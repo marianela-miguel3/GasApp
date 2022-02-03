@@ -12,8 +12,6 @@ export default class Canio {
     // @OneToMany(type => Accesorio,accesorios => accesorios.canio)
     // public accesorios:Accesorio[];
 
-    @OneToOne(type => Consumo, consumo => consumo.canio)
-    public consumo:Consumo;
     
     constructor(idCanio:number, nombreCanio:string){
         this.idCanio=idCanio;

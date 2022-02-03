@@ -12,9 +12,9 @@ export default class Consumo {
     @Column()
     private diametro_canio:number;
 
-    @OneToOne(type => Canio,canio => canio.consumo)
-    @JoinColumn({name:'idCanio'})
-    public canio:Canio;
+    // @OneToOne(type => Canio,canio => canio.consumo)
+    // @JoinColumn({name:'idCanio'})
+    // public canio:Canio;
 
     constructor(idConsumo:number, longConsumo:number, cantConsumo:number, diamCanio:number) {
         this.idConsumo = idConsumo;
