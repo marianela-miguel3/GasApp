@@ -26,6 +26,7 @@ let tramosAccesoriosFinal=[];
   }
 
 // let tmpListado = {}
+
 // function precargarArreglo(){
 //     for (let t=0; t<tramosAccesorios.length; t++){
 //       // console.log(tramosAccesorios);
@@ -76,8 +77,7 @@ function precargarArreglo(){
 }          
       
   //id="${tramosAccesorios[i]["accesorio"].idAccesorio}">
-  ///////para consultar aca necesitariamos mostrar en el listado final
-  //////una lista de los nombres de los accesorios ademas del id
+  
   
   async function loadTramoAccesorio() {
     cargando.innerHTML = `<h1>Loading.....</h1>`;
@@ -118,11 +118,3 @@ function precargarArreglo(){
   });
 
 
-  // function actualizarTramosAccesorios() {
-  // let padre=document.createElement(`<tr>`);
-  // let elemento=document.createElement(`<td>`);
-  // let contenido=parseInt(cargarEquivalenteTotal());
-  // padre.appendChild(elemento);
-  // elemento.appendChild(contenido);
-  // mostrarTA.innerHTML=elemento;
-  // }
