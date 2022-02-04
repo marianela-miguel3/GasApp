@@ -42,35 +42,64 @@
     margin-right: 40px;
     list-style: none;
 }
-.main{
+.cuerpo{
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 500px;
+    height: 50%;
 }
 .titulo{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 30px;
+    font-size: 170%;
     position: absolute;
-    margin: 250px;
+    margin: 14% 13%;
     color: whitesmoke;
 }
 .parrafo{
-    margin-top: 350px;
-    margin-left: 250px;
-    width: 500px;
+    margin: 19% 13%;
+    width: 30%;
     position: absolute;
-    font-size: 30px;
+    font-size: 170%;
     color: honeydew;
 }
 .boton{
-    background: rgba(248, 248, 248, 0.959);
-    margin-top: 650px;
-    margin-left: 250px;
+    color: whitesmoke;
+    border: 2px solid whitesmoke;
     position: absolute;
     font-size: 30px;
-    width: max-content;
-    height: max-content;
     font-family:'Libre Franklin', sans-serif;
     border-radius: 10px;
+    text-decoration: none;
+    width: max-content;
+    padding: 2%;
+    margin-top: 4%;
+}
+.boton:hover{
+    background-color:rgb(250, 170, 51);
+    border-radius: 10px;
+    transition: 0.5s;
+}
+.pie{
+    background-color:rgb(250, 170, 51);
+    width: 100%;
+    height: 110px;
+    display: flex;
+}
+.redes{
+    margin-left: 20%;
+    padding: 18px;
+    font-size: 16px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+.copyrigth{
+    margin: 45px 70px;
+    display: flex;
+    justify-content:center;
+
+}
+.iconos{
+    padding-top: 5px;
+    margin-left: 20px;
 }
