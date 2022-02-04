@@ -17,7 +17,7 @@ export class TramoController {
         return await this.tramoService.getTramo(parseInt(idTramo));
     }
     @Post()
-    public async createTramo(@Body() tramoDto:TramoDto): Promise<Tramo>{
+    public async createTramo(@Body() tramoDto:TramoDto): Promise<Tramo[]>{
         return await this.tramoService.addTramo(tramoDto);
     }
     @Put()

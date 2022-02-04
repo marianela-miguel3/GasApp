@@ -76,15 +76,17 @@ export class ConsumoService {
     };
 
     public async getConsumoFinal(metros:number):Promise<Consumo[]>{
+        let consumos:Consumo[];
         try {
-            const consumos:Consumo[]=await this.repoConsumo.find({where : { longitud : `${metros}`}});
-            if(consumos){
-                console.log(consumos)
-                return consumos;
-            }else{
-                const consumos2:Consumo[]=await this.repoConsumo.find({where : { longitud : `${metros+1}`}});
-                console.log(consumos2);
-                return consumos2;
+            if(metros<=10){
+            consumos=await this.repoConsumo.find({where : { longitud : `${metros}`}});
+            return consumos;
+                 }else if(metros>10 && metros%2==0){
+                 consumos=await this.repoConsumo.find({where : { longitud : `${metros}`}});
+                 return consumos;
+                     }else{
+                      consumos=await this.repoConsumo.find({where : { longitud : `${metros+1}`}});
+                      return consumos;
             }
         } catch (error) {
             throw new HttpException({ error: `Error buscando el consumo: ${error}` }, HttpStatus.NOT_FOUND);

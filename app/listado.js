@@ -8,7 +8,7 @@ let tramosAccesorios=[];
 loadTramoAccesorio();
 let tramosAccesoriosFinal=[];
 // let tmpListado = {};
-// let tmpListado = [];
+let tmpListado = [];
 
   function actualizarTramoAccesorio() {
     html = '';
@@ -54,7 +54,6 @@ let tramosAccesoriosFinal=[];
 // }          
 
 function precargarArreglo(){
-  let tmpListado=[];
     for (let t=0; t<tramosAccesorios.length; t++){
       // console.log(tramosAccesorios);
       let accesorios=tramosAccesorios[t].accesorio;
@@ -63,7 +62,7 @@ function precargarArreglo(){
             //  let accesorioRecorrido=accesorios[t];
                if ( !accesorios[i].idAccesorio) {
                   tramoAccesorio= {
-                    "idTramoAccesorio":tramosAccesorios[t].idTramoAccesorio,
+                    // "idTramoAccesorio":tramosAccesorios[t].idTramoAccesorio,
                     "idAccesorio":accesorios[i].idAccesorio,
                     "nombre_accesorio":accesorios[i].nombre_accesorio,
                     "cantidad":accesorios[i].cantidad,

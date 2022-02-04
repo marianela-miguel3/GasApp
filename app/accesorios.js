@@ -99,11 +99,9 @@ function cargarPrecio(){
   }
   cargar.addEventListener('click',()=>{
     let tramoAccesorio={
-        // "idTramo": parseInt(idTramo.value),
         "idAccesorio": parseInt(accesorio.value),
         "cantidad":parseInt(cantidad.value),
         "equivalenteTramo":parseFloat(cargarEquivalente()*cantidad.value).toFixed(2),
-        // "equivalenteTramo":Number(cargarEquivalente()*cantidad.value).toFixed(2),
         "tramo_precio_accesorio":cargarPrecio()*cantidad.value
     };
     crearTramoAccesorio(tramoAccesorio);
@@ -124,7 +122,6 @@ function cargarPrecio(){
       body:JSON.stringify(tramoAccesorio)
    });
    let r=await response.json();
-  //  console.log(r)
   }
 
   function actualizarTramoAccesorioCargado() {
@@ -141,28 +138,35 @@ function cargarPrecio(){
     mostrar.innerHTML = html;
   }
 
-  cargarTramo.addEventListener('click', ()=>{
-    buscarPorLongitud();
+  cargarTramo.addEventListener('click', async ()=>{
+    let diametro= await calcularDiametro();
+    parseInt(diametro);
+    let total=calcularTotal()
+    parseFloat(total);
+    let equivalente=calcularEquivalenteTotal()
+    parseFloat(equivalente);
     let tramo={
       "nombre_tramo": `${comienzoTramo.value} ${finTramo.value}`,
       "longitud_real": longitudReal.value,
       "longitud_de_calculo":longitudCalculo.value,
-      "equivalente_total":calcularEquivalenteTotal(),
-      "total":calcularTotal(),
+      "equivalente_total":equivalente,
+      "total":total,
       "metros_cubicos":(calorias.value/9300).toFixed(2),
-      "diametro_de_calculo":calcularDiametro()
+      "diametro_de_calculo":diametro
   };
   tramos.push(tramo);
   crearTramo(tramo);
   loadTramo();
   tramosAccesoriosCargados=[];
+  console.log(tramo.total);
+  console.log(tramo.metros_cubicos);
 });
 
 function calcularTotal(){
   let a=calcularEquivalenteTotal();
   let b=longitudCalculo.value;
   suma=parseFloat(a)+parseFloat(b)
-  return suma;
+  return parseFloat(suma);
 }
 function calcularEquivalenteTotal(){
   let total=0;
@@ -174,40 +178,31 @@ function calcularEquivalenteTotal(){
 
 async function buscarPorLongitud() {//FUNCIONA
   let valor=calcularTotal();
-  let response=await fetch ("/consumo/"+ parseInt(valor));
+  let response=await fetch (`/consumo/${parseInt(valor)}`);
   if(response.ok){
       consumos=await response.json();
       // actualizarPublicaciones();
       console.log(consumos);
   }
-  // return consumos;
+  return consumos;
 }
 
 async function calcularDiametro(){
-  // buscarPorLongitud();
+  let valoresPosibles= await buscarPorLongitud();
   let consumoTramo=(calorias.value/9300).toFixed(2);
-  // let cantidades=consumos.map(cantidad_consumo);
-  for(let i=0;i<consumos.length;i++){
-    console.log(consumos);
-      if(consumos[i].cantidad_consumo>consumoTramo){
-        console.log(consumos[i].diametro_canio);
-        console.log(consumos[i].cantidad_consumo);
-       return consumos[i].diametro_canio;
+  for(let i=0;i<valoresPosibles.length;i++){
+    console.log(valoresPosibles);
+      if(valoresPosibles[i].cantidad_consumo>consumoTramo){
+        console.log(valoresPosibles[i].diametro_canio);
+        console.log(valoresPosibles[i].cantidad_consumo);
+       return valoresPosibles[i].diametro_canio;
       }else{
-        console.log(consumos[i+1].diametro_canio);
-        return consumos[i+1].diametro_canio;
+        console.log(valoresPosibles[i+1].diametro_canio);
+        return valoresPosibles[i+1].diametro_canio;
       }
-  } 
+    } 
+    valoresPosibles=[];
 }
-
-// function calcularEquivalenteTotal(){
-
-// const numeros= [3,10,20,78];
-// const acumular=(acumulador,numero)=> acumulador+numero;
-// let total= numeros.reduce(acumular,0);
-// console.log(total)
-// return total;
-// }
 
 
 async function crearTramo(tramo){

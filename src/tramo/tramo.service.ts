@@ -32,14 +32,12 @@ export class TramoService {
             throw new HttpException( { error: `Error Buscando el Tramo de: ${idTramo} ${error}`}, HttpStatus.NOT_FOUND)
         }
     }
-    public async addTramo(tramoDto:TramoDto): Promise<Tramo> {
+    public async addTramo(tramoDto:TramoDto): Promise<Tramo[]> {
         try {
-            const tramoCreado: Tramo = await this.repoTramo.save(new Tramo(tramoDto.nombre_tramo,tramoDto.longitud_real,tramoDto.longitud_de_calculo,tramoDto.equivalente_total,tramoDto.total,tramoDto.metros_cubicos,tramoDto.diametro_de_calculo,tramoDto.diametro_adoptado)) //tramoDto.artefacto
-            if(tramoCreado.getIdTramo()){
-                return tramoCreado;
-            }else{
-                throw new HttpException("No se pudo crear el Tramo", HttpStatus.NOT_FOUND)
-            }
+            const tramoCreado= new Tramo (tramoDto.nombre_tramo,tramoDto.longitud_real,tramoDto.longitud_de_calculo,tramoDto.equivalente_total,tramoDto.total,tramoDto.metros_cubicos,tramoDto.diametro_de_calculo,tramoDto.diametro_adoptado);//tramoDto.artefacto
+            await this.repoTramo.save(tramoCreado);
+            const tramos: Tramo[] = await this.repoTramo.find()
+            return tramos;
         } catch (error) {
             throw new HttpException({status: HttpStatus.NOT_FOUND, error: "Hay un error en la solicitud:" + error,}, HttpStatus.NOT_FOUND)
         }
