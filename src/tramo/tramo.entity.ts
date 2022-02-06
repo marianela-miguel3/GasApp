@@ -47,10 +47,12 @@ export default class Tramo{
     public setTotal(totalNuevo:number):void{
         this.total=totalNuevo;
     }
+    public setConsumo(consumoNuevo:number):void {
+        this.metros_cubicos=consumoNuevo;
+    }
     public setDiametroAdoptado(diametroNuevo:number):void{
         this.diametro_adoptado=diametroNuevo;
     }
-
     public setNombre_tramo(nombre_tramo:string){
         this.nombre_tramo=nombre_tramo;
     }
