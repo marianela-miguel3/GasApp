@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="./CSS/accesorios.css">
     <title>Document</title>
 </head>
+
 <body>
     <div class="flex">
         <header class="header">
@@ -18,88 +20,76 @@
         </header>
         <div class="cargaTramo">
             <div class="container"></div>
-                <table class="table">
+            <table class="table">
                 <thead>
-                <tr>
-                    <th scope="col">Comienzo del Tramo</th>
-                    <th scope="col">Fin del Tramo</th>
-                    <th scope="col">Longitud Real</th>
-                    <th scope="col">Longitud de Calculo</th>
-                    <th scope="col">Tipo de Artefacto</th>
-                    <th scope="col">Calorias</th>
-                </tr>
+                    <tr>
+                        <th scope="col">Comienzo del Tramo</th>
+                        <th scope="col">Fin del Tramo</th>
+                        <th scope="col">Longitud Real</th>
+                        <th scope="col">Longitud de Calculo</th>
+                        <th scope="col">Tipo de Artefacto</th>
+                        <th scope="col">Calorias</th>
+                    </tr>
                 </thead>
-                    <tbody>
-                        <tr>
-                            <td ><select name="" id="comienzoTramo">
-                                    <option value="-">-</option>
-                                    <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="E">E</option>
-                                    <option value="F">F</option>
-                                    <option value="G">G</option>
-                                    <option value="H">H</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
+                <tbody>
+                    <tr>
+                        <td><select name="" id="comienzoTramo">
+                                <option value="-">-</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                                <option value="F">F</option>
+                                <option value="G">G</option>
+                                <option value="H">H</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
                             </select></td>
-                            <td><select name="" id="finTramo">
-                                    <option value="-">-</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="M">M</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="number" id="longitudReal">
-                            </td>
-                            <td>
-                                <input type="number" id="longitudCalculo">
-                            </td>
-                            <td>
-                                <select name="" id="artefacto">
-                                    <option value="-">-</option>
-                                    <option value="Calefactor">Calefactor</option>
-                                    <option value="Termotanque">Termotanque</option>
-                                    <option value="Cocina">Cocina</option>
-                                    <option value="Calefon">Calefon</option>
-                                    <option value="Caldera">Caldera</option>
-                                    <option value="Anafe">Anafe</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="number" id="calorias">
-                            </td>
-                        </tr>              
-                    </tbody>
-                </table>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Eliminar Tramo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="number" id="idTramoAEliminar"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <td><select name="" id="finTramo">
+                                <option value="-">-</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="M">M</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" id="longitudReal">
+                        </td>
+                        <td>
+                            <input type="number" id="longitudCalculo">
+                        </td>
+                        <td>
+                            <select name="" id="artefacto">
+                                <option value="-">-</option>
+                                <option value="Calefactor">Calefactor</option>
+                                <option value="Termotanque">Termotanque</option>
+                                <option value="Cocina">Cocina</option>
+                                <option value="Calefon">Calefon</option>
+                                <option value="Caldera">Caldera</option>
+                                <option value="Anafe">Anafe</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" id="calorias">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="accesorios">
             <div class="cargaAccesorios">
@@ -116,22 +106,24 @@
                     </tbody>
                 </table>
                 <div id="mostrarError"></div>
-            <button id="cargar">Cargar Accesorio</button>
-            <button id="cargarTramo">Cargar Tramo</button>
-            <button id="eliminarTramo">Eliminar Tramo</button>
-             
+
+                <button id="cargar">Cargar Accesorio</button>
+
                 <table class="tabla">
                     <thead>
                         <tr>
-                        <th>idAccesorio</th>
-                        <th>Cantidad</th>
-                        <th>EquivalenteTramo</th>
-                        <th>Precio</th>
+                            <th>idAccesorio</th>
+                            <th>Cantidad</th>
+                            <th>EquivalenteTramo</th>
+                            <th>Precio</th>
                         </tr>
                     </thead>
                     <tbody id="mostrar"></tbody>
-                </table>               
+                </table>
+                <button id="cargarTramo">Cargar Tramo</button>
+
             </div>
+
             <div class="accesoriosCargados">
                 <div id="cargando2"></div>
                 <table>
@@ -146,27 +138,45 @@
                     </thead>
                     <tbody id="container"></tbody>
                 </table>
-            </div>    
-        </div> 
+            </div>
+        </div>
         <div class="mostrarTablas">
             <div id="recarga"></div>
             <table>
                 <thead>
                     <tr>
-                    <th>idTramo</th>  
-                    <th>Nombre de tramo</th>
-                    <th>Longitud real</th>
-                    <th>Longitud de calculo</th>
-                    <th>Equivalente Total</th>
-                    <th>Total</th>
-                    <th>Consumo</th>
-                    <th>Diametro de calculo</th>
-                    <th>Diametro adoptado</th>
+                        <th>idTramo</th>
+                        <th>Nombre de tramo</th>
+                        <th>Longitud real</th>
+                        <th>Longitud de calculo</th>
+                        <th>Equivalente Total</th>
+                        <th>Total</th>
+                        <th>Consumo</th>
+                        <th>Diametro de calculo</th>
+                        <th>Diametro adoptado</th>
                     </tr>
                 </thead>
                 <tbody id="mostrarTA"></tbody>
-            </table> 
+            </table>
+
+            <div class="containerEliminar">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Eliminar Tramo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="number" id="idTramoAEliminar"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="buttonEliminar"><button id="eliminarTramo">Eliminar Tramo</button></div>
+            </div>
+
         </div>
+       
         <div class="modificarTramo">
             <!-- <h2 class="modTramo">Modificar Tramo</h2> -->
             <table>
@@ -176,14 +186,16 @@
                         <th>Equivalente del Tramo</th>
                         <th>Total del Tramo en Metros</th>
                         <th>Consumo del Tramo</th>
+                        <th>Diametro adoptado</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
+                        <td><input type="number" id="inputId"></td>
+                        <td><input type="number" id="inputEquivalente"></td>
+                        <td><input type="number" id="inputTotal"></td>
+                        <td><input type="number" id="inputConsumo"></td>
+                        <td><input type="number" id="inputDiametro"></td>
                     </tr>
                 </tbody>
             </table>
@@ -191,7 +203,7 @@
         </div>
         <button><a href="./listado.html">Cargar Listado de Accesorio</a></button>
         <button><a href="./index.html">Volver</a></button>
-        
+
         <div class="pie">
             <div class="redes">
                 <div>
@@ -204,11 +216,12 @@
                 </div>
             </div>
             <div class="copyrigth">
-                <p>Copirigth 2022. GasApp es un marca registrada. Todos los derechos reservados.</p>
+                <p>Copyrigth 2022. GasApp es un marca registrada. Todos los derechos reservados.</p>
             </div>
         </div>
     </div>
 
     <script src="./accesorios.js"></script>
 </body>
+
 </html>

@@ -24,16 +24,18 @@ let tramosAccesorios = [];
 let tramos = [];
 let tramosAccesoriosCargados = [];
 ////////////////////////////
-let eliminarTramo = document.getElementById(`eliminarTramo`);
-let idTramoAEliminar = document.getElementById(`idTramoAEliminar`);
-let modificarTramo = document.getElementById(`modificarTramo`);
-let idTramoAModificar = document.getElementById(`idTramoAModificar`);
-let inputId = document.getElementById(`inputId`);
-let inputEquivalente = document.getElementById(`inputEquivalente`);
-let inputTotal = document.getElementById(`inputTotal`);
-let inputConsumo = document.getElementById(`inputConsumo`);
-let errorTramoActualizado = document.getElementById(`errorTramoActualizado`);
-let consumos = [];
+let eliminarTramo=document.getElementById(`eliminarTramo`);
+let idTramoAEliminar=document.getElementById(`idTramoAEliminar`);
+let modificarTramo=document.getElementById(`modificarTramo`);
+let idTramoAModificar=document.getElementById(`idTramoAModificar`);
+let inputId=document.getElementById(`inputId`);
+let inputEquivalente=document.getElementById(`inputEquivalente`)
+let inputTotal=document.getElementById(`inputTotal`);
+let inputConsumo=document.getElementById(`inputConsumo`);
+let inputDiametro=document.getElementById(`inputDiametro`);
+let errorTramoActualizado=document.getElementById(`errorTramoActualizado`);
+let consumos=[];
+
 // let valoresPosibles=[];
 loadAccesorio();
 
@@ -264,6 +266,7 @@ function actualizarTramo() {
                      <td>${tramos[i].total}</td>
                      <td>${tramos[i].metros_cubicos}</td>
                      <td>${tramos[i].diametro_de_calculo}</td>
+                     <td>${tramos[i].diametro_adoptado}</td>
                      </tr>`;
   }
   mostrarTA.innerHTML = html;
@@ -291,33 +294,32 @@ eliminarTramo.addEventListener('click', async () => {
   }
 });
 ////no modifica el consumo
-modificarTramo.addEventListener('click', async () => {
-  try {
-    let tramo = {
-      idTramo: parseInt(inputId.value),
-      // "nombre_tramo":tramo.nombre_tramo,
-      // "longitud_real":tramo.longitudReal,
-      // "longitud_de_calculo":tramo.longitudCalculo,
-      equivalente_total: parseFloat(inputEquivalente.value),
-      total: parseFloat(inputTotal.value),
-      metros_cubicos: parseFloat(inputConsumo.value),
-      // "diametro_calculo":tramo.diametro_de_calculo
-    };
-    let response = await fetch('/tramos/', {
-      method: `PUT`,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(tramo),
-    });
-    if (response.ok) {
-      loadTramo();
-      inputId.value = '';
-      inputEquivalente.value = '';
-      inputTotal.value = '';
-      inputConsumo.value = '';
-    } else {
-      errorTramoActualizado.innerHTML = 'Error en lectura de servidor';
-    }
-  } catch (error) {
-    errorTramoActualizado.innerHTML = 'Error en conexion al servidor';
-  }
+
+ modificarTramo.addEventListener('click',async ()=>{
+  try{
+      let tramo={
+          "idTramo":parseInt(inputId.value),
+          "equivalente_total":parseFloat(inputEquivalente.value),
+          "total":parseFloat(inputTotal.value),
+          "metros_cubicos":parseFloat(inputConsumo.value),
+          "diametro_adoptado":parseInt(inputDiametro.value)
+      };
+      let response=await fetch("/tramos/",{
+          method:`PUT`,
+          headers:{ "Content-Type":"application/json"},
+          body:JSON.stringify(tramo)
+      });
+      if(response.ok){
+          loadTramo();
+          inputId.value="";
+          inputEquivalente.value="";
+          inputTotal.value="";
+          inputConsumo.value="";
+      }else{
+        errorTramoActualizado.innerHTML="Error en lectura de servidor";
+      }
+  }catch(error){
+    errorTramoActualizado.innerHTML="Error en conexion al servidor";
+  }  
+
 });
