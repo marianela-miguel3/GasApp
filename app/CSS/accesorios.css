@@ -102,3 +102,10 @@ table, tr, td, th, tbody{
     padding-top: 5px;
     margin-left: 20px;
 }
+.containerEliminar{
+    display: flex;
+}
+.buttonEliminar{
+    margin: 30px 10px;
+    font-size: 20px;
+}

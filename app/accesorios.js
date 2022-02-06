@@ -32,6 +32,7 @@ let inputId=document.getElementById(`inputId`);
 let inputEquivalente=document.getElementById(`inputEquivalente`)
 let inputTotal=document.getElementById(`inputTotal`);
 let inputConsumo=document.getElementById(`inputConsumo`);
+let inputDiametro=document.getElementById(`inputDiametro`);
 let errorTramoActualizado=document.getElementById(`errorTramoActualizado`);
 let consumos=[];
 // let valoresPosibles=[];
@@ -259,6 +260,7 @@ let response= await fetch("/tramos",{
                      <td>${tramos[i].total}</td>
                      <td>${tramos[i].metros_cubicos}</td>
                      <td>${tramos[i].diametro_de_calculo}</td>
+                     <td>${tramos[i].diametro_adoptado}</td>
                      </tr>`;
     }
     mostrarTA.innerHTML = html;
@@ -290,13 +292,10 @@ eliminarTramo.addEventListener('click', async ()=>{
   try{
       let tramo={
           "idTramo":parseInt(inputId.value),
-          // "nombre_tramo":tramo.nombre_tramo,
-          // "longitud_real":tramo.longitudReal,
-          // "longitud_de_calculo":tramo.longitudCalculo,
           "equivalente_total":parseFloat(inputEquivalente.value),
           "total":parseFloat(inputTotal.value),
           "metros_cubicos":parseFloat(inputConsumo.value),
-          // "diametro_calculo":tramo.diametro_de_calculo
+          "diametro_adoptado":parseInt(inputDiametro.value)
       };
       let response=await fetch("/tramos/",{
           method:`PUT`,
