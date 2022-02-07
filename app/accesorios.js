@@ -204,8 +204,10 @@ async function calcularDiametro() {
         console.log(valoresPosibles[i + 1].diametro_canio);
         return valoresPosibles[i + 1].diametro_canio;
          } else if (valoresPosibles[i + 2].cantidad_consumo > consumoTramo) {
+          console.log(valoresPosibles[i + 2].diametro_canio);
           return valoresPosibles[i + 2].diametro_canio;
             } else if (valoresPosibles[i + 3].cantidad_consumo > consumoTramo) {
+              console.log(valoresPosibles[i + 3].diametro_canio);
             return valoresPosibles[i + 3].diametro_canio;
               } else {
               return valoresPosibles[i + 4].diametro_canio;
