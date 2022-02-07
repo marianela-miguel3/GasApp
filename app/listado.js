@@ -6,8 +6,8 @@ let inputId = document.getElementById(`inputId`);
 let inputCantidad = document.getElementById(`inputCantidad`);
 let tramosAccesorios = [];
 // let tramosAccesoriosFinal = [];
-let tmpListado = {};
-let arrayListado = [];
+// let tmpListado = {};
+
 loadTramoAccesorio();
 
 
@@ -17,8 +17,8 @@ async function loadTramoAccesorio() {
     let response = await fetch(`/tramoaccesorio`);
     if (response.ok) {
       tramosAccesorios = await response.json();
-      // console.log(tramosAccesorios);
-      precargarArreglo(tramosAccesorios);
+      console.log(tramosAccesorios);
+      precargarArreglo();
       actualizarTramoAccesorio();
       cargando.innerHTML = '';
     } else cargando.innerHTML = `<h1>Error=Failed URL</h1>`;
@@ -29,31 +29,80 @@ async function loadTramoAccesorio() {
 
 ////////////////////////////////////////////
 
+let tmpListado = [];
 function precargarArreglo() {
-  let filtro1 = [];
-  // let accesoriosRecorrido = [];
-  for (let t = 0; t < tramosAccesorios.length; t++) {
-    filtro1 = tramosAccesorios[t];
-
-    let identificadorAccesorio = filtro1.accesorio.idAccesorio
-    console.log(identificadorAccesorio);
-    while (identificadorAccesorio) {
-      if (!identificadorAccesorio) {
-        let arreglo = [];
-        arreglo.push(identificadorAccesorio)
+  
+  for (let i = 0; i < tramosAccesorios.length; i++) {
+    let accesorio = tramosAccesorios[i].accesorio;
+    if (!EstaEnTmp(accesorio.idAccesorio, tmpListado)) {
+      tmpListado.push({
+        "idTramoAccesorio": tramosAccesorios[i].idTramoAccesorio,
+        "idAccesorio": accesorio.idAccesorio,
+        "nombre_accesorio": accesorio.nombre_accesorio,
+        "cantidad": tramosAccesorios[i].cantidad,
+        "tramo_precio_accesorio": tramosAccesorios[i].tramo_precio_accesorio
+      })} else{
+      for (let j = i + 1; j < tramosAccesorios.length; j++) {
+        if (accesorio.idAccesorio == tramosAccesorios[j].accesorio.idAccesorio) {
+          tmpListado.push({
+            "idTramoAccesorio": tramosAccesorios[i].idTramoAccesorio,
+            "idAccesorio": accesorio.idAccesorio,
+            "nombre_accesorio": accesorio.nombre_accesorio,
+            "cantidad": tramosAccesorios[i].cantidad,
+            "tramo_precio_accesorio": tramosAccesorios[i].tramo_precio_accesorio
+          })
+        }
       }
     }
-    console.log(arreglo);
+    
   }
-}
+  console.log(tmpListado);
+};
 
 
 
+
+// let tmpListado = [];
+// function precargarArreglo() {
+//   for (let i = 0; i < tramosAccesorios.length; i++) {
+//     let accesorio = tramosAccesorios[i].accesorio;
+//     if (!EstaEnTmp(accesorio.idAccesorio, tmpListado)) {
+//       tmpListado.push({
+//         "idTramoAccesorio": tramosAccesorios[i].idTramoAccesorio,
+//         "idAccesorio": accesorio.idAccesorio,
+//         "nombre_accesorio": accesorio.nombre_accesorio,
+//         "cantidad": tramosAccesorios[i].cantidad,
+//         "tramo_precio_accesorio": tramosAccesorios[i].tramo_precio_accesorio
+//       })} else{
+//       for (let j = i + 1; j < tramosAccesorios.length; j++) {
+//         if (accesorio.idAccesorio == tramosAccesorios[j].accesorio.idAccesorio) {
+//           tmpListado.push({
+//             "idTramoAccesorio": tramosAccesorios[i].idTramoAccesorio,
+//             "idAccesorio": accesorio.idAccesorio,
+//             "nombre_accesorio": accesorio.nombre_accesorio,
+//             "cantidad": tramosAccesorios[i].cantidad,
+//             "tramo_precio_accesorio": tramosAccesorios[i].tramo_precio_accesorio
+//           })
+//         }
+//       }
+//     }
+//   }
+//   console.log(tmpListado);
+// };
+
+function EstaEnTmp(id, arreglo) {
+  for (let t = 0; t < arreglo.length; t++) {
+    if (id == arreglo[t].idAccesorio) {
+      return true
+    }
+  }
+  return false;
+};
 
 
 function actualizarTramoAccesorio() {
   html = '';
-  for (let i = 0; i < arrayListado.length; i++) {
+  for (let i = 0; i < tmpListado.length; i++) {
     html += `
                   <tr>
                      <td>${tmpListado[i].idTramoAccesorio}</td>
@@ -63,9 +112,24 @@ function actualizarTramoAccesorio() {
                      <td>${tmpListado[i].tramo_precio_accesorio}</td>
                      </tr>`;
   }
-  // console.log(arrayListado);
   mostrar.innerHTML = html;
-}
+};
+
+
+async function load() {
+  try {
+    let response = await fetch(`/tramoaccesorio`);
+    if (response.ok) {
+      tramosAccesorios = await response.json();
+      console.log(tramosAccesorios);
+      actualizarTramoAccesorio();
+      cargando.innerHTML = '';
+    } else cargando.innerHTML = `<h1>Error=Failed URL</h1>`;
+  } catch (err) {
+    cargando.innerHTML = `<h1> ${err.message} </h1>`;
+  }
+};
+
 
 
 
@@ -76,12 +140,12 @@ modificarListado.addEventListener('click', async () => {
       "cantidad": parseInt(inputCantidad.value),
     };
     let response = await fetch("/tramoaccesorio/", {
-      method: `PUT`,
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(tramoAccesorio)
     });
     if (response.ok) {
-      loadTramoAccesorio();
+      load();
       inputId.value = "";
       inputCantidad.value = "";
     } else {
@@ -92,89 +156,3 @@ modificarListado.addEventListener('click', async () => {
   }
 });
 
-
-
-
-
-////////////////////////////////////////////////////
-//Versiones de la funcion precargas arreglo
-
-
-////////VERSION ANI
-// function precargarArreglo() {
-//   // console.log(tramosAccesorios);
-//   let filtro1 = [];
-//   for (let t = 0; t < tramosAccesorios.length; t++) {
-//     filtro1 = tramosAccesorios[t];
-//     console.log(filtro1);
-//     for (let i = 0; i < filtro1.length; i++) {
-//       let accesorioRecorrido = filtro1[i];
-//        console.log(accesorioRecorrido);
-//       //  if ( !tmpListado.hasOwnProperty(accesorioRecorrido.idAccesorio) ){
-//       if (!tmpListado.hasOwnProperty(accesorioRecorrido.idAccesorio)) {
-//         // tmpListado[accesorioRecorrido.idAccesorio]= {
-//         tmpListado = {
-//           "idTramoAccesorio": tramosAccesorios[t].idTramoAccesorio,
-//           "idAccesorio": accesorioRecorrido.idAccesorio,
-//           "nombre_accesorio": tramosAccesorios[t].nombre_accesorio,
-//           "cantidad": tramosAccesorios[t].cantidad,
-//           "tramo_precio_accesorio": tramosAccesorios[t].precio
-//         }
-//         arrayListado.push(tmpListado)
-//       }
-//       // console.log(accesorioRecorrido);
-//     }
-//   }
-//   // console.log(arrayListado);
-//   console.log(tmpListado);
-// };
-
-////////////////////
-
-// //VERSION 4/2
-// function precargarArreglo() {
-//   for (let i = 0; i < tramosAccesorios.length; i++) {
-//       if (!tramosAccesorios[i].accesorio.idAccesorio) {
-//         console.log(tramosAccesorios[i].accesorio.idAccesorio);
-//         tmpListado.push(tramosAccesorios[i]);
-//         // let tramoAccesorio = {
-//         //   "idTramoAccesorio":tramosAccesorios[i].idTramoAccesorio,
-//         //   "idAccesorio": tramosAccesorios[i].accesorio.idAccesorio,
-//         //   "nombre_accesorio": tramosAccesorios[i].accesorio.nombre_accesorio,
-//         //   "cantidad": tramosAccesorios[i].accesorio.cantidad,
-//         //   "tramo_precio_accesorio": tramosAccesorios[i].accesorio.precio
-//         // }
-//         console.log(tmpListado);
-//       }
-//       // console.log(tmpListado);
-//   }
-// };
-
-///////////////////
-
-//VERSION MARI
-// function precargarArreglo() {
-//   for (let t = 0; t < tramosAccesorios.length; t++) {
-//     // console.log(tramosAccesorios);
-//     let accesorios=[];
-//     accesorios = tramosAccesorios[t].accesorio;
-//     // console.log(accesorios);
-
-//       // for (let i = 0; i < accesorios.length; i++) {
-//       //  let accesorioRecorrido = accesorios[t];
-//       //  console.log(accesorioRecorrido);
-//        if (!accesorios.idAccesorio) {
-//           tmpListado = {
-//             // "idTramoAccesorio":tramosAccesorios[t].idTramoAccesorio,
-//            "idAccesorio": accesorios.idAccesorio,
-//            "nombre_accesorio": accesorios.nombre_accesorio,
-//            "cantidad": accesorios.cantidad,
-//            "tramo_precio_accesorio": accesorios.precio
-//          }
-//           arrayListado.push(tmpListado);
-//         }
-//       //  console.log(arrayListado);
-//     // };//fin for 2
-
-//   };//fin for 1
-// };
