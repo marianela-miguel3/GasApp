@@ -1,0 +1,138 @@
+*{
+    margin: 0;
+}
+.flex{
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+}
+.header{
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    background-color:rgb(250, 170, 51);
+    height: 80px;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.nav{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0 auto;
+}
+.logo{
+    font-size: 40px;
+    color: white;
+    padding: 0 40px;
+    line-height: 80px;
+    text-decoration: none;
+}
+.iniciar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 1%;
+    font-size: 24px;
+}
+.campos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.datos{
+    padding: 1% 0%;
+}
+.ingreso{
+    margin-right: 0.5%;
+    padding: 1% 0%;
+}
+.ingresar{
+    font-size: 24px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 6% 6%;
+    font-family:'Libre Franklin', sans-serif;
+}
+.ingresar:hover{
+    background-color:rgb(250, 170, 51);
+    transition: 0.5s;
+}
+.noRegistrado{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.registrarme{
+    margin: 1% 1%;
+    font-size: 24px;
+    border: 2px solid black;
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family:'Libre Franklin', sans-serif;
+    padding: 1% 1%;
+}
+.registrarme:hover{
+    background-color:rgb(250, 170, 51);
+    transition: 0.5s;
+}
+.modificar{
+    display: none;
+}
+.mostrarModificar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.botonModificar{
+    font-size: 24px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 2% 2%;
+    margin: 4% 0%;
+    font-family:'Libre Franklin', sans-serif;
+}
+.botonModificar:hover{
+    background-color:rgb(250, 170, 51);
+    transition: 0.5s;
+}
+#contraOlvidada{
+    margin: 4% 0%;
+    font-size: 15px;
+    background-color: white;
+    border: none;
+    color: blue;
+}
+#contraOlvidada:link{
+   text-decoration: dashed;
+}
+input{
+    font-size: 24px;
+}
+.pie{
+    margin-top: 30%;
+    background-color:rgb(250, 170, 51);
+    width: 100%;
+    height: 110px;
+    display: flex;
+    align-items: flex-end;
+}
+.redes{
+    margin-left: 20%;
+    padding: 18px;
+    font-size: 16px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+.copyrigth{
+    margin: 45px 70px;
+    display: flex;
+    justify-content:center;
+
+}
+.iconos{
+    padding-top: 5px;
+    margin-left: 20px;
+}
