@@ -17,8 +17,8 @@ export class UsuarioController {
     }
 
     @Post()
-    public async addUsuario(@Body()usuarioDTO:UsuarioDTO):Promise<Usuario[]>{
-        return await this.usuarioService.addUsuario(usuarioDTO);
+    public async addUsuario(@Body()usuarioDTO:UsuarioDTO):Promise<boolean>{
+        return await this.usuarioService.addUsuario(usuarioDTO); 
     }
 
     @Put()
