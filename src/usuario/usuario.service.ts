@@ -34,12 +34,21 @@ export class UsuarioService {
     }
   }
 
-  public async addUsuario(usuario: UsuarioDTO): Promise<Usuario[]> {
+  public async addUsuario(usuario: UsuarioDTO): Promise<boolean> {
     try {
-      let usuarioNuevo = new Usuario(usuario.nombre, usuario.contraseña, usuario.domicilio, usuario.telefono, usuario.email);
-      await this.repoUsuario.save(usuarioNuevo);
-      const usuarios: Usuario[] = await this.repoUsuario.find()
-      return usuarios;
+      const nuevo: Usuario[] = await this.repoUsuario.find( )
+      for (let i = 0; i < nuevo.length; i++){
+        if (usuario.email !== nuevo[i].email) {
+          const usuarioNuevo = new Usuario(usuario.nombre, usuario.contraseña, usuario.domicilio, usuario.telefono, usuario.email);
+          await this.repoUsuario.save(usuarioNuevo);
+          // const usuarios: Usuario[] = await this.repoUsuario.find()
+          // return usuarios;
+          return true;
+        } else {
+          return false;
+          alert("ya existe")
+        }
+      }
     } catch (error) {
       throw new HttpException({ error: `Error agregando nuevo usuario: ${error}` }, HttpStatus.NOT_FOUND);
     }
@@ -70,7 +79,7 @@ export class UsuarioService {
     try {
       const usuario: Usuario = await this.repoUsuario.findOne(id
         // {where : { idUsuario : `${id}`}}
-        );
+      );
       if (!usuario) {
         throw new HttpException({ error: `error buscando el usuario de id ${id}` }, HttpStatus.NOT_FOUND);
       }
