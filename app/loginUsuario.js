@@ -11,36 +11,33 @@ let modifiContraseña = document.getElementById("modificarContraseña"); // boto
 let ingresar = document.getElementById("ingresar");
 let contenido = document.getElementById("contenido") // muestra errores
 let usuarios=[];
-loadUsuario();
 
-async function loadUsuario() {
-    try {
-        let response = await fetch("/usuario");
-        if(response.ok) {
-            usuarios = await response.json();
-            console.log(usuarios);
-        }else{
-            contenido.innerHTML="Error en lectura del servidor";
-        }
-    } catch (error) {
-        contenido.innerHTML="Error en conexion con servidor";
-    }
-}
-ingresar.addEventListener("click", async () =>{
-    for(let i=0;i<usuarios.length;i++){
-        if((usuarios[i].email === loginEmail.value) && (usuarios[i].contraseña === loginContraseña.value)){
-            console.log(usuarios[i]);
+// loadUsuario();
+
+// async function loadUsuario() {
+//     try {
+//         let response = await fetch("/usuario");
+//         if(response.ok) {
+//             usuarios = await response.json();
+//             console.log(usuarios);
+
+//         }else{
+//             contenido.innerHTML="Error en lectura del servidor";
+//         }
+//     } catch (error) {
+//         contenido.innerHTML="Error en conexion con servidor";
+//     }
+// }      
+
+ingresar.addEventListener("click", () =>{
+    let usuario = JSON.parse(localStorage.getItem("usuario"));
+        if( (usuario.email == loginEmail.value) && (usuario.contraseña == loginContraseña.value) ){
             window.location.href = "accesorios.html";
-            return true;
         }else{
-            alert("El usuario o la contraseña son incorrectos!");
-            return false;
+            alert("El Email o la contraseña son Incorrectos");
         }
-    }
-})
-
-
-
+    
+});
 
 // modifiContraseña.addEventListener("click", async () => {
 //     try {
