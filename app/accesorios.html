@@ -18,8 +18,14 @@
                 </h2>
             </nav>
         </header>
+        <div class="textPaso1">
+            <h1>Paso 1: Completar los Datos del Tramo</h1>
+            <p>En la siguiente tabla tendras que completar los datos: Comienzo y fin de Tramo indicando letra y numero segun corresponda, con su longitud real y longitud de calculo. Tambien especificar el tipo de artefacto con sus calorias.
+            </p>
+            </div>
         <div class="cargaTramo">
             <div class="container"></div>
+
             <table class="table">
                 <thead>
                     <tr>
@@ -91,9 +97,15 @@
                 </tbody>
             </table>
         </div>
+            <div class="textPaso2">
+                <h1>Paso 2: Carga de Accesorios</h1>
+                <p>Tendras que completar la siguiente tabla con los accesorios, indicando el Id asociado a cada accesorio. Puedes ver todo el listado de accesorios en la tabla de la derecha.</p>
+            </div>
         <div class="accesorios">
             <div class="cargaAccesorios">
-                <table class="tabla">
+                <h2 class="tituloAccesorios">Cargar Accesorios:</h2>
+            
+                <table>
                     <tr>
                         <th class="cabecera">Ingrese el Id del accesorio</th>
                         <th class="cabecera">Ingrese la cantidad</th>
@@ -107,8 +119,8 @@
                 </table>
                 <div id="mostrarError"></div>
 
-                <button id="cargar">Cargar Accesorio</button>
-
+                <button id="botonCargarAcc">Cargar Accesorio</button>
+                <h2 class="tituloAccesorioTramo">Listado de Accesorios Cargados:</h2>
                 <table class="tabla">
                     <thead>
                         <tr>
@@ -120,12 +132,15 @@
                     </thead>
                     <tbody id="mostrar"></tbody>
                 </table>
-                <button id="cargarTramo">Cargar Tramo</button>
+                
 
             </div>
 
             <div class="accesoriosCargados">
-                <div id="cargando2"></div>
+                <div class="tituloAccesorios">
+                    <h2>Listado de Accesorios:</h2>
+                </div>
+                <div class="listaAccesoriosCargados">
                 <table>
                     <thead>
                         <tr>
@@ -138,10 +153,20 @@
                     </thead>
                     <tbody id="container"></tbody>
                 </table>
+                </div>
+                <div id="cargando2"></div>
+                
+
             </div>
+        </div>
+        <div class="textPaso3">
+            <h1>Paso 3: Carga de Tramo</h1>
+            <p>Una vez que hayas completado todos los campos y cargado todos los accesorios podras cargar el tramo dandole al Boton!</p>
+            <button id="botonCargarTramo">Cargar Tramo</button>
         </div>
         <div class="mostrarTablas">
             <div id="recarga"></div>
+            <h2 class="tituloTramosCargados">Tramos Cargados</h2>
             <table>
                 <thead>
                     <tr>
@@ -158,49 +183,39 @@
                 </thead>
                 <tbody id="mostrarTA"></tbody>
             </table>
-
-            <div class="containerEliminar">
+            <div class="modificarTramo">
+                <div class="modificarEliminar">
+                    <h1>Modifica los datos o Elimina un Tramo</h1>
+                <p>Puedes modificar el Tramo para agregar el Diametro Adoptado ingresando el Id del mismo. Tambien puedes modificar otros datos y eliminar el tramo. Para eliminar es necesario ingresar solo el Id.</p>
+                </div>
                 <table>
                     <thead>
                         <tr>
-                            <th>Eliminar Tramo</th>
+                            <th>Id del Tramo</th>
+                            <th>Equivalente del Tramo</th>
+                            <th>Total del Tramo en Metros</th>
+                            <th>Consumo del Tramo</th>
+                            <th>Diametro adoptado</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type="number" id="idTramoAEliminar"></td>
+                            <td><input type="number" id="inputId"></td>
+                            <td><input type="number" id="inputEquivalente"></td>
+                            <td><input type="number" id="inputTotal"></td>
+                            <td><input type="number" id="inputConsumo"></td>
+                            <td><input type="number" id="inputDiametro"></td>
                         </tr>
                     </tbody>
                 </table>
-                <div class="buttonEliminar"><button id="eliminarTramo">Eliminar Tramo</button></div>
+                
+                <div class="buttonModEliminar">
+                    <button id="modificarTramo">Modificar</button>
+                    <button id="eliminarTramo">Eliminar</button>
+                </div>
             </div>
-
         </div>
-       
-        <div class="modificarTramo">
-            <!-- <h2 class="modTramo">Modificar Tramo</h2> -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>Id del Tramo a Modificar</th>
-                        <th>Equivalente del Tramo</th>
-                        <th>Total del Tramo en Metros</th>
-                        <th>Consumo del Tramo</th>
-                        <th>Diametro adoptado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="number" id="inputId"></td>
-                        <td><input type="number" id="inputEquivalente"></td>
-                        <td><input type="number" id="inputTotal"></td>
-                        <td><input type="number" id="inputConsumo"></td>
-                        <td><input type="number" id="inputDiametro"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <button id="modificarTramo">Modificar</button>
-        </div>
+ 
         <button><a href="./listado.html">Cargar Listado de Accesorio</a></button>
         <button><a href="./index.html">Volver</a></button>
 

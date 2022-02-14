@@ -41,24 +41,25 @@ function precargarArreglo() {
         "nombre_accesorio": accesorio.nombre_accesorio,
         "cantidad": tramosAccesorios[i].cantidad,
         "tramo_precio_accesorio": tramosAccesorios[i].tramo_precio_accesorio
-      })} else{
-      for (let j = i + 1; j < tramosAccesorios.length; j++) {
-        if (accesorio.idAccesorio == tramosAccesorios[j].accesorio.idAccesorio) {
-          tmpListado.push({
-            "idTramoAccesorio": tramosAccesorios[i].idTramoAccesorio,
-            "idAccesorio": accesorio.idAccesorio,
-            "nombre_accesorio": accesorio.nombre_accesorio,
-            "cantidad": tramosAccesorios[i].cantidad,
-            "tramo_precio_accesorio": tramosAccesorios[i].tramo_precio_accesorio
-          })
-        }
-      }
-    }
-    
+      });
+    }  
   }
   console.log(tmpListado);
 };
 
+   // } 
+       // else{
+      // for (let j = i + 1; j < tramosAccesorios.length; j++) {
+      //   if (accesorio.idAccesorio == tramosAccesorios[j].accesorio.idAccesorio) {
+      //     tmpListado.push({
+      //       "idTramoAccesorio": tramosAccesorios[i].idTramoAccesorio,
+      //       "idAccesorio": accesorio.idAccesorio,
+      //       "nombre_accesorio": accesorio.nombre_accesorio,
+      //       "cantidad": tramosAccesorios[i].cantidad,
+      //       "tramo_precio_accesorio": tramosAccesorios[i].tramo_precio_accesorio
+      //     })
+      //   }
+      // }
 
 
 

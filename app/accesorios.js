@@ -15,9 +15,9 @@ let accesorio = document.getElementById(`accesorio`); //input
 let cantidad = document.getElementById(`cantidad`); //input
 // let sumaEquivalente=document.getElementById(`sumaEquivalente`);//??
 let precio = document.getElementById(`precio`);
-let cargar = document.getElementById(`cargar`); //boton cargar los accesorios
+let cargar = document.getElementById(`botonCargarAcc`); //boton cargar los accesorios
 let mostrar = document.getElementById(`mostrar`); //muestra los tramosaccesorios
-let cargarTramo = document.getElementById(`cargarTramo`); //boton para agregar un tramo
+let cargarTramo = document.getElementById(`botonCargarTramo`); //boton para agregar un tramo
 let mostrarTA = document.getElementById(`mostrarTA`); //mostrar los tramos
 let accesorios = [];
 let tramosAccesorios = [];
@@ -25,7 +25,7 @@ let tramos = [];
 let tramosAccesoriosCargados = [];
 ////////////////////////////
 let eliminarTramo=document.getElementById(`eliminarTramo`);
-let idTramoAEliminar=document.getElementById(`idTramoAEliminar`);
+// let idTramoAEliminar=document.getElementById(`idTramoAEliminar`);
 let modificarTramo=document.getElementById(`modificarTramo`);
 let idTramoAModificar=document.getElementById(`idTramoAModificar`);
 let inputId=document.getElementById(`inputId`);
@@ -279,7 +279,7 @@ function actualizarTramo() {
 
 eliminarTramo.addEventListener('click', async () => {
   try {
-    let response = await fetch(`/tramos/${idTramoAEliminar.value}`, {
+    let response = await fetch(`/tramos/${inputId.value}`, {
       method: `DELETE`,
       headers: {
         'Content-Type': 'aplicattion/json',

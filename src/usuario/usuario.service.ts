@@ -3,7 +3,6 @@ import { Repository } from 'typeorm';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import UsuarioDTO from './UsuarioDTO';
-import Presupuesto from 'src/presupuesto/presupuesto.entity';
 @Injectable()
 export class UsuarioService {
   constructor(
@@ -34,24 +33,15 @@ export class UsuarioService {
     }
   }
 
-  public async addUsuario(usuario: UsuarioDTO): Promise<boolean> {
+  public async addUsuario(usuario: UsuarioDTO): Promise<Usuario[]> {
     try {
-      const nuevo: Usuario[] = await this.repoUsuario.find( )
-      for (let i = 0; i < nuevo.length; i++){
-        if (usuario.email !== nuevo[i].email) {
-          const usuarioNuevo = new Usuario(usuario.nombre, usuario.contraseña, usuario.domicilio, usuario.telefono, usuario.email);
-          await this.repoUsuario.save(usuarioNuevo);
-          // const usuarios: Usuario[] = await this.repoUsuario.find()
-          // return usuarios;
-          return true;
-        } else {
-          return false;
-          alert("ya existe")
-        }
-      }
-    } catch (error) {
-      throw new HttpException({ error: `Error agregando nuevo usuario: ${error}` }, HttpStatus.NOT_FOUND);
-    }
+      let usuarioNuevo = new Usuario(usuario.nombre, usuario.contraseña, usuario.domicilio, usuario.telefono, usuario.email);
+      await this.repoUsuario.save(usuarioNuevo);
+      const usuarios: Usuario[] = await this.repoUsuario.find()
+      return usuarios;
+  } catch (error) {
+      throw new HttpException({status: HttpStatus.NOT_FOUND, error: "Hay un error en la solicitud:" + error,}, HttpStatus.NOT_FOUND)
+  }
   }
 
   public async updateUsuario(usuario: UsuarioDTO): Promise<Usuario[]> {
