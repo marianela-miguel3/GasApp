@@ -39,19 +39,59 @@
     display: flex;
 }
 .cargaAccesorios{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 0 12%;
     font-size: 18px;
 }
-.accesoriosCargados{
+.listaAccesoriosCargados{
     font-size: 18px;
     height: 300px;
-    width: 40%;
+    width: 100%;
     overflow-y: scroll;
+}
+.accesoriosCargados{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 18px;
+}
+.tituloAccesorioTramo{
+    margin: 2% 0%;
+}
+.tituloTramosCargados{
+    margin-bottom: 1%;
+}
+#botonCargarTramo{
+    font-size: 30px;
+    margin-top: 1%;
+    background-color:rgb(250, 170, 51);
+    color: aliceblue;
+    border: 2px solid rgb(248, 91, 0);
+    border-radius: 2px;
+}
+#botonCargarTramo:hover{
+    cursor: pointer;
+    border: 3px solid rgb(248, 91, 0);
+}
+#botonCargarAcc{
+    font-size: 25px;
+    margin-top: 4%;
+    background-color:rgb(250, 170, 51);
+    color: aliceblue;
+    border: 2px solid rgb(248, 91, 0);
+    border-radius: 2px;
+}
+#botonCargarAcc:hover{
+    cursor: pointer;
+    border: 3px solid rgb(248, 91, 0);
 }
 .mostrarTablas{
     width: 60%;
     font-size: 18px;
     margin: 1% 20%;
+    text-align: center;
 }
 button{
     margin: 5px;
@@ -72,9 +112,7 @@ table, tr, td, th, tbody{
     font-size: 18px;
     display: flex;
     justify-content: center;
-}
-.modTramo{
-    margin: 1% 1%;
+    flex-direction: column;
 }
 .pie{
     margin-top: 10%;
@@ -105,7 +143,59 @@ table, tr, td, th, tbody{
 .containerEliminar{
     display: flex;
 }
-.buttonEliminar{
-    margin: 30px 10px;
-    font-size: 20px;
+#modificarTramo{
+    font-size: 25px;
+    margin-top: 2%;
+    background-color:rgb(250, 170, 51);
+    color: aliceblue;
+    border: 2px solid rgb(248, 91, 0);
+    border-radius: 2px;
+}
+#modificarTramo:hover{
+    cursor: pointer;
+    border: 3px solid rgb(248, 91, 0);
+}
+#eliminarTramo{
+    font-size: 25px;
+    margin-top: 2%;
+    background-color:rgb(250, 170, 51);
+    color: aliceblue;
+    border: 2px solid rgb(248, 91, 0);
+    border-radius: 2px;
+}
+#eliminarTramo:hover{
+    cursor: pointer;
+    border: 3px solid rgb(248, 91, 0);
+}
+.tituloAccesorios{
+    padding-bottom: 2%;
+}
+.textPaso1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 1% 12%;
+    font-size: 24px;
+}
+.textPaso2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 23px;
+    margin: 1% 12%;
+}
+.textPaso3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 23px;
+}
+.modificarEliminar{
+    margin-top: 2%;
+    margin-bottom: 1%;
+    font-size: 23px;
+    padding: 2% 0%;
 }

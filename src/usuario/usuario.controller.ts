@@ -15,12 +15,10 @@ export class UsuarioController {
     public async getUsuari(@Param(`id`) id:string):Promise<Usuario>{
         return await this.usuarioService.getUsuario(parseInt(id));
     }
-
     @Post()
-    public async addUsuario(@Body()usuarioDTO:UsuarioDTO):Promise<boolean>{
-        return await this.usuarioService.addUsuario(usuarioDTO); 
+    public async addUsuario(@Body() usuarioDto:UsuarioDTO): Promise<Usuario[]>{
+        return await this.usuarioService.addUsuario(usuarioDto);
     }
-
     @Put()
     public async updateUsuario(@Body() usuarioDTO:UsuarioDTO):Promise<Usuario[]>{
         return await this.usuarioService.updateUsuario(usuarioDTO);
