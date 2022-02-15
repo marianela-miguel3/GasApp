@@ -35,7 +35,7 @@ export class UsuarioService {
 
   public async addUsuario(usuario: UsuarioDTO): Promise<Usuario[]> {
     try {
-      let usuarioNuevo = new Usuario(usuario.nombre, usuario.contraseña, usuario.domicilio, usuario.telefono, usuario.email);
+      let usuarioNuevo = new Usuario(usuario.nombre, usuario.contrasenia, usuario.domicilio, usuario.telefono, usuario.email);
       await this.repoUsuario.save(usuarioNuevo);
       const usuarios: Usuario[] = await this.repoUsuario.find()
       return usuarios;
@@ -51,7 +51,7 @@ export class UsuarioService {
         throw new HttpException({ error: `error buscando el usuario de id ${usuario.idUsuario}` }, HttpStatus.NOT_FOUND);
       }
       usuarioActualizado.setNombre(usuario.nombre);
-      usuarioActualizado.setContraseña(usuario.contraseña);
+      usuarioActualizado.setContrasenia(usuario.contrasenia);
       usuarioActualizado.setDomicilio(usuario.domicilio);
       usuarioActualizado.setTelefono(usuario.telefono);
       usuarioActualizado.setEmail(usuario.email);
@@ -77,7 +77,7 @@ export class UsuarioService {
       const usuarios: Usuario[] = await this.repoUsuario.find()
       return usuarios;
     } catch (error) {
-      throw new HttpException({ error: `error al eliminar el consumo ${error}` }, HttpStatus.NOT_FOUND);
+      throw new HttpException({ error: `error al eliminar el usuario ${error}` }, HttpStatus.NOT_FOUND);
     }
   }
 

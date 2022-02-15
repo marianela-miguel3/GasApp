@@ -1,6 +1,6 @@
 let nombre = document.getElementById("nombre");
 let email = document.getElementById("email");
-let contraseña = document.getElementById("contraseña");
+let contrasenia = document.getElementById("contrasenia");
 let telefono = document.getElementById("telefono");
 let domicilio = document.getElementById("domicilio");
 let registrar = document.getElementById("registrarse");
@@ -25,7 +25,7 @@ async function loadUsuario() {
 // registrar.addEventListener('click', async ()=>{
 //   let usuario = {
 //       "nombre":nombre.value,
-//       "contraseña":contraseña.value,
+//       "contrasenia":contrasenia.value,
 //       "domicilio":domicilio.value,
 //       "telefono":telefono.value,
 //       "email":email.value
@@ -49,35 +49,42 @@ async function loadUsuario() {
 //   }
 // });
 
-registrar.addEventListener('click', async ()=>{
+registrar.addEventListener('click', async () => {
   let usuario = {
-      "nombre":nombre.value,
-      "contraseña":contraseña.value,
-      "domicilio":domicilio.value,
-      "telefono":telefono.value,
-      "email":email.value
+    "nombre": nombre.value,
+    "contrasenia": contrasenia.value,
+    "domicilio": domicilio.value,
+    "telefono": telefono.value,
+    "email": email.value
   };
-  if(usuarios.length==0){
+
+  if (usuarios.length == 0) {
     crearUsuario(usuario);
     usuarios.push(usuario);
     loadUsuario();
     window.location.href = "loginUsuario.html";
-  }else if(usuarios.length>0){
-    for(let i=0;i<usuarios.length;i++){
-      if(usuarios[i].email == email.value){
-        alert("La Direccion de correo electronico usada ya existe!");  
+    return true;     
+  } else if (usuarios.length > 0) {
+    for (let i = 0; i < usuarios.length; i++) {
+      if (usuarios[i].email == email.value) {
+        alert("La Direccion de correo electronico usada ya existe!");
+        nombre.value = "";
+        contrasenia.value = "";
+        domicilio.value = "";
+        telefono.value = "";
+        email.value = "";
         return false;
       }
     }
-      crearUsuario(usuario);
-      usuarios.push(usuario);
-      loadUsuario();
-      window.location.href = "loginUsuario.html";
+    crearUsuario(usuario);
+    usuarios.push(usuario);
+    loadUsuario();
+    window.location.href = "loginUsuario.html";
   }
 });
 
 async function crearUsuario(usuario) {
-  
+
   let response = await fetch(`/usuario`, {
     method: "POST",
     headers: {
@@ -97,7 +104,7 @@ async function crearUsuario(usuario) {
 // function crearUsuario(){
 //     let usuario = {
 //     "nombre": nombre.value,
-//     "contraseña": contraseña.value,
+//     "contrasenia": contrasenia.value,
 //     "domicilio": domicilio.value,
 //     "telefono": telefono.value,
 //     "email": email.value
