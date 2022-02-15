@@ -8,7 +8,7 @@ export default class Usuario{
     @Column()
     nombre:string;
     @Column()
-    contraseña:string;
+    contrasenia:string;
     @Column()
     domicilio:string;
     @Column()
@@ -19,10 +19,10 @@ export default class Usuario{
     @OneToMany(() =>Presupuesto, presupuesto => presupuesto.usuario)
     public presupuestos : Presupuesto[];
     
-    constructor(nombre:string,contraseña:string,domicilio:string,telefono:number,email:string){
+    constructor(nombre:string,contrasenia:string,domicilio:string,telefono:number,email:string){
         // this.idUsuario=idUsuario; 
         this.nombre=nombre;
-        this.contraseña=contraseña;
+        this.contrasenia=contrasenia;
         this.domicilio=domicilio;
         this.telefono=telefono;
         this.email=email;
@@ -37,10 +37,10 @@ export default class Usuario{
     public setNombre(nombreNuevo:string):void{
         this.nombre = nombreNuevo;
     }
-    public setContraseña(contraseñaNueva:string):void{
-        this.contraseña=contraseñaNueva;
+    public setContrasenia(contraseniaNueva:string):void{
+        this.contrasenia=contraseniaNueva;
     }
-    public setDomicilio(domicilioNuevo):void{
+    public setDomicilio(domicilioNuevo:string):void{
         this.domicilio=domicilioNuevo;
     }
     public setTelefono(telefonoNuevo:number):void{
