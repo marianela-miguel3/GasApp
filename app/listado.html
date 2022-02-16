@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="./CSS/listado.css">
     <title>Listado</title>
 </head>
+
 <body>
     <div class="flex">
         <header class="header">
@@ -33,27 +35,32 @@
                             <td><input id="inputCantidad"></td>
                         </tr>
                     </tbody>
-                </table>   
+                </table>
             </div>
             <div class="taCargados">
                 <table>
                     <thead>
                         <tr>
-                        <th>idTA</th>
-                        <th>idAccesorio</th>
-                        <th>Nombre</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
+                            <th>idTA</th>
+                            <th>idAccesorio</th>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
                         </tr>
                     </thead>
                     <tbody id="mostrar"> </tbody>
                 </table>
-                <div id="error"></div> 
+                <button id="presupuesto">Calcular presupuesto</button>
+
+                <div id="error"></div>
+                <div id="divPresupuesto">
+                    <h1>El total de su presupuesto es: </h1>
+                    <p id="presupuestoTotal"></p>
+                </div>
             </div>
-  
+
         </div>
         <button id="modificarListado">Modificar Lista</button>
-
         <div class="pie">
             <div class="redes">
                 <div>
@@ -69,9 +76,10 @@
                 <p>Copyrigth 2022. GasApp es un marca registrada. Todos los derechos reservados.</p>
             </div>
         </div>
-        
+
     </div>
 
     <script src="./listado.js"></script>
 </body>
+
 </html>

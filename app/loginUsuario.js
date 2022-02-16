@@ -39,12 +39,6 @@ ingresar.addEventListener("click", async () => {
             window.location.href = "accesorios.html";
             return true;
         }
-        // else {
-        //     alert("El usuario o la contraseña son incorrectos!");
-        //     loginEmail.value = "";
-        //     loginContrasenia.value = "";
-        //     return false;
-        // }
     };
     alert("El usuario o la contraseña son incorrectos!");
     loginEmail.value = "";
