@@ -1,12 +1,13 @@
 let cargando = document.getElementById(`cargando`);
 let mostrar = document.getElementById(`mostrar`);
 let modificarListado = document.getElementById(`modificarListado`);
+let calcularPresupuesto = document.getElementById(`presupuesto`);
+let textoPresupuesto = document.getElementById(`presupuestoTotal`);
 let divError = document.getElementById(`error`);
 let inputId = document.getElementById(`inputId`);
 let inputCantidad = document.getElementById(`inputCantidad`);
 let tramosAccesorios = [];
-// let tramosAccesoriosFinal = [];
-// let tmpListado = {};
+let tmpListado = [];
 
 loadTramoAccesorio();
 
@@ -26,27 +27,6 @@ async function loadTramoAccesorio() {
     cargando.innerHTML = `<h1> ${err.message} </h1>`;
   }
 };
-
-////////////////////////////////////////////
-
-// let tmpListado = [];
-// function precargarArreglo() {
-  
-//   for (let i = 0; i < tramosAccesorios.length; i++) {
-//     let accesorio = tramosAccesorios[i].accesorio;
-//     if (!EstaEnTmp(accesorio.idAccesorio, tmpListado)) {
-//       tmpListado.push({
-//         "idTramoAccesorio": tramosAccesorios[i].idTramoAccesorio,
-//         "idAccesorio": accesorio.idAccesorio,
-//         "nombre_accesorio": accesorio.nombre_accesorio,
-//         "cantidad": tramosAccesorios[i].cantidad,
-//         "tramo_precio_accesorio": tramosAccesorios[i].tramo_precio_accesorio
-//       });
-//     }  
-//   }
-//   console.log(tmpListado);
-// };
-
   
 function EstaEnTmp(id, arreglo) {
   for (let t = 0; t < arreglo.length; t++) {
@@ -57,44 +37,50 @@ function EstaEnTmp(id, arreglo) {
   return false;
 };
 
-
-
-let tmpListado = [];
 function precargarArreglo() {
   
   for (let i = 0; i < tramosAccesorios.length; i++) {
     let accesorio = tramosAccesorios[i].accesorio;
-    console.log(accesorio);
+    // console.log(accesorio);
     if (!EstaEnTmp(accesorio.idAccesorio, tmpListado)) {
       tmpListado.push({
         "idTramoAccesorio": tramosAccesorios[i].idTramoAccesorio,
         "idAccesorio": accesorio.idAccesorio,
         "nombre_accesorio": accesorio.nombre_accesorio,
         // "cantidad": tramosAccesorios[i].cantidad,
-        "cantidad": cantidad(),
-        "tramo_precio_accesorio": tramosAccesorios[i].tramo_precio_accesorio
+        "cantidad": cantidad(accesorio.idAccesorio),
+        "tramo_precio_accesorio": precio(accesorio.idAccesorio)
       });
     }  
   }
   console.log(tmpListado);
 };
 
-
 function cantidad(idAccesorio) {
   let suma = 0;
   for(let i=0;i<tramosAccesorios.length;i++){
-    if (idAccesorio == tramosAccesorios[i].accesorio.idAccesorio) {
-      console.log(tramosAccesorios[i].idAccesorio)
-      console.log('entro2');
-      console.log(idAccesorio);
-      suma += tramosAccesorios[i].accesorio.cantidad;
-      console.log(suma);
+    let accesorio = tramosAccesorios[i].accesorio;
+    console.log(accesorio)
+    if (idAccesorio == accesorio.idAccesorio) {
+      suma += tramosAccesorios[i].cantidad;
+      // console.log(suma);
     }
-    return suma;  
   }
+  return suma;
 };
 
-
+function precio(idAccesorio) {
+  let suma = 0;
+  for(let i=0;i<tramosAccesorios.length;i++){
+    let accesorio = tramosAccesorios[i].accesorio;
+    console.log(accesorio)
+    if (idAccesorio == accesorio.idAccesorio) {
+      suma += tramosAccesorios[i].tramo_precio_accesorio;
+      console.log(suma);
+    }
+  }
+  return suma;
+};
 
 function actualizarTramoAccesorio() {
   html = '';
@@ -111,7 +97,6 @@ function actualizarTramoAccesorio() {
   mostrar.innerHTML = html;
 };
 
-
 async function load() {
   try {
     let response = await fetch(`/tramoaccesorio`);
@@ -125,9 +110,6 @@ async function load() {
     cargando.innerHTML = `<h1> ${err.message} </h1>`;
   }
 };
-
-
-
 
 modificarListado.addEventListener('click', async () => {
   try {
@@ -151,4 +133,14 @@ modificarListado.addEventListener('click', async () => {
     error.innerHTML = "Error en conexion al servidor";
   }
 });
+
+calcularPresupuesto.addEventListener('click', async () => {
+  let suma = 0;
+  for (let i=0; i<tmpListado.length; i++) {
+    suma += tmpListado[i].tramo_precio_accesorio;
+  }
+  // return suma;
+  textoPresupuesto.innerHTML = `$ ${suma}`;
+  // console.log(suma)
+})
 
