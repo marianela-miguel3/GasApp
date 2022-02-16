@@ -29,42 +29,9 @@ async function loadTramoAccesorio() {
 
 ////////////////////////////////////////////
 
-let tmpListado = [];
-function precargarArreglo() {
-  
-  for (let i = 0; i < tramosAccesorios.length; i++) {
-    let accesorio = tramosAccesorios[i].accesorio;
-    if (!EstaEnTmp(accesorio.idAccesorio, tmpListado)) {
-      tmpListado.push({
-        "idTramoAccesorio": tramosAccesorios[i].idTramoAccesorio,
-        "idAccesorio": accesorio.idAccesorio,
-        "nombre_accesorio": accesorio.nombre_accesorio,
-        "cantidad": tramosAccesorios[i].cantidad,
-        "tramo_precio_accesorio": tramosAccesorios[i].tramo_precio_accesorio
-      });
-    }  
-  }
-  console.log(tmpListado);
-};
-
-   // } 
-       // else{
-      // for (let j = i + 1; j < tramosAccesorios.length; j++) {
-      //   if (accesorio.idAccesorio == tramosAccesorios[j].accesorio.idAccesorio) {
-      //     tmpListado.push({
-      //       "idTramoAccesorio": tramosAccesorios[i].idTramoAccesorio,
-      //       "idAccesorio": accesorio.idAccesorio,
-      //       "nombre_accesorio": accesorio.nombre_accesorio,
-      //       "cantidad": tramosAccesorios[i].cantidad,
-      //       "tramo_precio_accesorio": tramosAccesorios[i].tramo_precio_accesorio
-      //     })
-      //   }
-      // }
-
-
-
 // let tmpListado = [];
 // function precargarArreglo() {
+  
 //   for (let i = 0; i < tramosAccesorios.length; i++) {
 //     let accesorio = tramosAccesorios[i].accesorio;
 //     if (!EstaEnTmp(accesorio.idAccesorio, tmpListado)) {
@@ -74,23 +41,13 @@ function precargarArreglo() {
 //         "nombre_accesorio": accesorio.nombre_accesorio,
 //         "cantidad": tramosAccesorios[i].cantidad,
 //         "tramo_precio_accesorio": tramosAccesorios[i].tramo_precio_accesorio
-//       })} else{
-//       for (let j = i + 1; j < tramosAccesorios.length; j++) {
-//         if (accesorio.idAccesorio == tramosAccesorios[j].accesorio.idAccesorio) {
-//           tmpListado.push({
-//             "idTramoAccesorio": tramosAccesorios[i].idTramoAccesorio,
-//             "idAccesorio": accesorio.idAccesorio,
-//             "nombre_accesorio": accesorio.nombre_accesorio,
-//             "cantidad": tramosAccesorios[i].cantidad,
-//             "tramo_precio_accesorio": tramosAccesorios[i].tramo_precio_accesorio
-//           })
-//         }
-//       }
-//     }
+//       });
+//     }  
 //   }
 //   console.log(tmpListado);
 // };
 
+  
 function EstaEnTmp(id, arreglo) {
   for (let t = 0; t < arreglo.length; t++) {
     if (id == arreglo[t].idAccesorio) {
@@ -99,6 +56,44 @@ function EstaEnTmp(id, arreglo) {
   }
   return false;
 };
+
+
+
+let tmpListado = [];
+function precargarArreglo() {
+  
+  for (let i = 0; i < tramosAccesorios.length; i++) {
+    let accesorio = tramosAccesorios[i].accesorio;
+    console.log(accesorio);
+    if (!EstaEnTmp(accesorio.idAccesorio, tmpListado)) {
+      tmpListado.push({
+        "idTramoAccesorio": tramosAccesorios[i].idTramoAccesorio,
+        "idAccesorio": accesorio.idAccesorio,
+        "nombre_accesorio": accesorio.nombre_accesorio,
+        // "cantidad": tramosAccesorios[i].cantidad,
+        "cantidad": cantidad(),
+        "tramo_precio_accesorio": tramosAccesorios[i].tramo_precio_accesorio
+      });
+    }  
+  }
+  console.log(tmpListado);
+};
+
+
+function cantidad(idAccesorio) {
+  let suma = 0;
+  for(let i=0;i<tramosAccesorios.length;i++){
+    if (idAccesorio == tramosAccesorios[i].accesorio.idAccesorio) {
+      console.log(tramosAccesorios[i].idAccesorio)
+      console.log('entro2');
+      console.log(idAccesorio);
+      suma += tramosAccesorios[i].accesorio.cantidad;
+      console.log(suma);
+    }
+    return suma;  
+  }
+};
+
 
 
 function actualizarTramoAccesorio() {
