@@ -13,7 +13,7 @@ export class PresupuestoService {
     public async getPresupuestos(): Promise<Presupuesto[]> {
         try {
             const presupuestos: Presupuesto[] = await this.repoPresupuesto.find(
-                { relations: ['presupuestoArtefactos'] }
+                { relations: ['usuario'] }
 
             );
             return presupuestos;
@@ -24,7 +24,7 @@ export class PresupuestoService {
     public async getPresupuesto(idPresupuesto:number): Promise<Presupuesto> {
         try {
             const presupuesto: Presupuesto = await this.repoPresupuesto.findOne(idPresupuesto,
-                { relations: ['presupuestoArtefactos'] }
+                { relations: ['usuario'] }
                 );
             return presupuesto;
         } catch (error) {

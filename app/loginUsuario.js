@@ -36,9 +36,17 @@ ingresar.addEventListener("click", async () => {
             console.log(usuarios[i].email);
             console.log(usuarios[i].contrasenia);
             console.log("Entro en el if");
+            localStorage.setItem("nombre", usuarios[i].nombre);
+            localStorage.setItem("idUsuario", usuarios[i].idUsuario);
             window.location.href = "accesorios.html";
             return true;
         }
+        // else {
+        //     alert("El usuario o la contraseña son incorrectos!");
+        //     loginEmail.value = "";
+        //     loginContrasenia.value = "";
+        //     return false;
+        // }
     };
     alert("El usuario o la contraseña son incorrectos!");
     loginEmail.value = "";

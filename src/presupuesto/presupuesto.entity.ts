@@ -17,8 +17,8 @@ export default class Presupuesto{
     @JoinColumn({name:"idUsuario"})
     public usuario:Usuario;
 
-    @OneToMany(type => PresupuestoDeArtefactos, presupuestoArtefactos => presupuestoArtefactos.presupuesto)
-    public presupuestoArtefactos: PresupuestoDeArtefactos[];
+    // @OneToMany(type => PresupuestoDeArtefactos, presupuestoArtefactos => presupuestoArtefactos.presupuesto)
+    // public presupuestoArtefactos: PresupuestoDeArtefactos[];
 
     public constructor(fecha:Date,total:number,idUsuario:Usuario){
         // this.idPresupuesto=idPresupuesto; 

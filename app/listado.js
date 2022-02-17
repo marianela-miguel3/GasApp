@@ -6,11 +6,14 @@ let textoPresupuesto = document.getElementById(`presupuestoTotal`);
 let divError = document.getElementById(`error`);
 let inputId = document.getElementById(`inputId`);
 let inputCantidad = document.getElementById(`inputCantidad`);
+let presupuestoOculto = document.getElementById(`presupuestoOculto`);
+let mostrarTablaPresupuesto = document.getElementById(`mostrarTablaPresupuesto`)
 let tramosAccesorios = [];
 let tmpListado = [];
+let presupuestos = [];
 
 loadTramoAccesorio();
-
+loadPresupuesto();
 
 async function loadTramoAccesorio() {
   cargando.innerHTML = `<h1>Loading.....</h1>`;
@@ -21,6 +24,21 @@ async function loadTramoAccesorio() {
       console.log(tramosAccesorios);
       precargarArreglo();
       actualizarTramoAccesorio();
+      cargando.innerHTML = '';
+    } else cargando.innerHTML = `<h1>Error=Failed URL</h1>`;
+  } catch (err) {
+    cargando.innerHTML = `<h1> ${err.message} </h1>`;
+  }
+};
+
+async function loadPresupuesto() {
+  cargando.innerHTML = `<h1>Loading.....</h1>`;
+  try {
+    let response = await fetch(`/presupuesto`);
+    if (response.ok) {
+      presupuestos = await response.json();
+      console.log(presupuestos);
+      mostrarPresupuesto();
       cargando.innerHTML = '';
     } else cargando.innerHTML = `<h1>Error=Failed URL</h1>`;
   } catch (err) {
@@ -60,7 +78,7 @@ function cantidad(idAccesorio) {
   let suma = 0;
   for(let i=0;i<tramosAccesorios.length;i++){
     let accesorio = tramosAccesorios[i].accesorio;
-    console.log(accesorio)
+    // console.log(accesorio)
     if (idAccesorio == accesorio.idAccesorio) {
       suma += tramosAccesorios[i].cantidad;
       // console.log(suma);
@@ -73,7 +91,7 @@ function precio(idAccesorio) {
   let suma = 0;
   for(let i=0;i<tramosAccesorios.length;i++){
     let accesorio = tramosAccesorios[i].accesorio;
-    console.log(accesorio)
+    // console.log(accesorio)
     if (idAccesorio == accesorio.idAccesorio) {
       suma += tramosAccesorios[i].tramo_precio_accesorio;
       console.log(suma);
@@ -111,36 +129,55 @@ async function load() {
   }
 };
 
-modificarListado.addEventListener('click', async () => {
-  try {
-    let tramoAccesorio = {
-      "idTramoAccesorio": parseInt(inputId.value),
-      "cantidad": parseInt(inputCantidad.value),
-    };
-    let response = await fetch("/tramoaccesorio/", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(tramoAccesorio)
-    });
-    if (response.ok) {
-      load();
-      inputId.value = "";
-      inputCantidad.value = "";
-    } else {
-      divError.innerHTML = "Error en lectura de servidor";
-    }
-  } catch (error) {
-    error.innerHTML = "Error en conexion al servidor";
-  }
-});
-
 calcularPresupuesto.addEventListener('click', async () => {
+  presupuestoOculto.classList.remove("presupuestoOculto")
+  let nuevafecha = new Date();
+  let fechaActual = `${nuevafecha.getDate()}-${nuevafecha.getMonth()}-${nuevafecha.getFullYear()}`
+  let idUsuario = localStorage.getItem("idUsuario");
+  console.log(idUsuario)
   let suma = 0;
   for (let i=0; i<tmpListado.length; i++) {
     suma += tmpListado[i].tramo_precio_accesorio;
   }
   // return suma;
-  textoPresupuesto.innerHTML = `$ ${suma}`;
+  // textoPresupuesto.innerHTML = `$ ${suma}`;
   // console.log(suma)
-})
+    let presupuesto = {
+      "fecha": nuevafecha,
+      "total": suma,
+      "idUsuario": parseInt(idUsuario),
+    }
+    console.log
+    presupuestos.push(presupuesto);
+    crearPresupuesto(presupuesto);
+    loadPresupuesto();
+});
+
+async function crearPresupuesto(presupuesto) {
+  let response = await fetch(`/presupuesto`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(presupuesto),
+  });
+  let r = await response.json();
+  console.log(r)
+}
+
+function mostrarPresupuesto() {
+  let nombre = localStorage.getItem("nombre");
+  html = '';
+  for (let i = 0; i < presupuestos.length; i++) {
+    html += `
+                  <tr>
+                     <td>${presupuestos[i].idPresupuesto}</td>
+                     <td>${nombre}</td>
+                     <td>${presupuestos[i].fecha}</td>
+                     <td>$${presupuestos[i].total}</td>
+                     <td>${presupuestos[i].idUsuario}</td>
+                     </tr>`;
+  }
+  mostrarTablaPresupuesto.innerHTML = html;
+};
 

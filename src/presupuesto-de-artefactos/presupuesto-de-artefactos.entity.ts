@@ -19,19 +19,19 @@ export default class PresupuestoDeArtefactos{
     @JoinColumn({name:"idArtefacto"})
     public artefacto: Artefacto;
 
-    @ManyToOne(type => Presupuesto, presupuesto => presupuesto.presupuestoArtefactos)
-    @JoinColumn({name:"idPresupuesto"})
-    public presupuesto: Presupuesto;
+    // @ManyToOne(type => Presupuesto, presupuesto => presupuesto.presupuestoArtefactos)
+    // @JoinColumn({name:"idPresupuesto"})
+    // public presupuesto: Presupuesto;
     
     public constructor(idPresupuesto:Presupuesto,idArtefacto:Artefacto,cantidad:number,precio:number){
-        this.presupuesto=idPresupuesto;
+        // this.presupuesto=idPresupuesto;
         this.artefacto=idArtefacto;
         this.cantidad=cantidad;
         this.precio=precio;
     }
-    public getIdPresupuesto():Presupuesto{
-        return this.presupuesto;
-    }
+    // public getIdPresupuesto():Presupuesto{
+    //     return this.presupuesto;
+    // }
     public getIdArtefacto():Artefacto{
         return this.artefacto;
     }
