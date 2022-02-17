@@ -21,22 +21,7 @@
         </header>
         <div id="cargando"></div>
         <div class="tramoAccesorios">
-            <div class="modificarTramo">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Ingrese el id del Tramo a modificar</th>
-                            <th>Ingrese la cantidad final</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input id="inputId"></td>
-                            <td><input id="inputCantidad"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            
             <div class="taCargados">
                 <table>
                     <thead>
@@ -51,16 +36,24 @@
                     <tbody id="mostrar"> </tbody>
                 </table>
                 <button id="presupuesto">Calcular presupuesto</button>
-
-                <div id="error"></div>
-                <div id="divPresupuesto">
-                    <h1>El total de su presupuesto es: </h1>
-                    <p id="presupuestoTotal"></p>
+                <div class="presupuestoOculto" id="presupuestoOculto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nro Presupuesto</th>
+                                <th>Nombre</th>
+                                <th>Fecha</th>
+                                <th>Precio Total</th>
+                                <th>Id de Usuario</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mostrarTablaPresupuesto"></tbody>
+                    </table>
                 </div>
+                <div id="error"></div>
             </div>
 
         </div>
-        <button id="modificarListado">Modificar Lista</button>
         <div class="pie">
             <div class="redes">
                 <div>
