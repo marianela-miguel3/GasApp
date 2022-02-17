@@ -1,4 +1,3 @@
-import Artefacto from "src/artefacto/artefacto.entity";
 import TramoAccesorio from "src/tramoaccesorio/TramoAccesorio.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 

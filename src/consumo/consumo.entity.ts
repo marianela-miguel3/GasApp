@@ -1,4 +1,3 @@
-import Canio from "src/canio/canio.entity";
 import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
 
 @Entity('consumo')
