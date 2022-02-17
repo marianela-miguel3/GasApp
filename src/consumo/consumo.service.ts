@@ -13,7 +13,6 @@ export class ConsumoService {
     public async getConsumos(): Promise<Consumo[]> {
         try {
             const consumos: Consumo[] = await this.repoConsumo.find();
-                // {relations: ['canio']}
             return consumos;
         } catch (error) {
             throw new HttpException({ error: `Error buscando los consumos: ${error}` }, HttpStatus.NOT_FOUND);

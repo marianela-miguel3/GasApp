@@ -1,4 +1,3 @@
-import PresupuestoDeArtefactos from "src/presupuesto-de-artefactos/presupuesto-de-artefactos.entity";
 import Usuario from "src/usuario/usuario.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 

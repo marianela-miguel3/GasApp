@@ -175,6 +175,7 @@ function mostrarPresupuesto() {
   for (let i = 0; i < presupuestos.length; i++) {
     html += `
                   <tr>
+                     <td>${presupuestos[i].idPresupuesto}</td>
                      <td>${fechaActual}</td>
                      <td>$${presupuestos[i].total}</td>
                      <td>${nombre}</td>

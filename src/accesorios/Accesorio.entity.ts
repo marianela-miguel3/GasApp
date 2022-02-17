@@ -1,4 +1,3 @@
-import Canio from "src/canio/canio.entity";
 import TramoAccesorio from "src/tramoaccesorio/TramoAccesorio.entity";
 import {Column, Entity, OneToMany,PrimaryColumn} from "typeorm";
 

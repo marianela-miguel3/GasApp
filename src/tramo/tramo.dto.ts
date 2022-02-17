@@ -1,5 +1,3 @@
-import Artefacto from "src/artefacto/artefacto.entity";
-
 export class TramoDto{
     readonly idTramo:number;
     readonly nombre_tramo:string;
