@@ -14,6 +14,7 @@ let presupuestos = [];
 
 loadTramoAccesorio();
 loadPresupuesto();
+let nuevafecha;
 
 async function loadTramoAccesorio() {
   cargando.innerHTML = `<h1>Loading.....</h1>`;
@@ -94,7 +95,6 @@ function precio(idAccesorio) {
     // console.log(accesorio)
     if (idAccesorio == accesorio.idAccesorio) {
       suma += tramosAccesorios[i].tramo_precio_accesorio;
-      console.log(suma);
     }
   }
   return suma;
@@ -131,8 +131,10 @@ async function load() {
 
 calcularPresupuesto.addEventListener('click', async () => {
   presupuestoOculto.classList.remove("presupuestoOculto")
-  let nuevafecha = new Date();
-  let fechaActual = `${nuevafecha.getDate()}-${nuevafecha.getMonth()}-${nuevafecha.getFullYear()}`
+  nuevafecha =new Date();
+  //let nuevafecha= Date.now();
+  console.log(nuevafecha);
+  //let fechaActual = `${nuevafecha.getDate()}-${nuevafecha.getMonth()}-${nuevafecha.getFullYear()}`
   let idUsuario = localStorage.getItem("idUsuario");
   console.log(idUsuario)
   let suma = 0;
@@ -147,8 +149,9 @@ calcularPresupuesto.addEventListener('click', async () => {
       "total": suma,
       "idUsuario": parseInt(idUsuario),
     }
-    console.log
-    presupuestos.push(presupuesto);
+    //console.log
+    //presupuestos.push(presupuesto);
+    console.log(presupuesto);
     crearPresupuesto(presupuesto);
     loadPresupuesto();
 });
@@ -167,17 +170,26 @@ async function crearPresupuesto(presupuesto) {
 
 function mostrarPresupuesto() {
   let nombre = localStorage.getItem("nombre");
+  let fechaActual = `${nuevafecha.getDate()}-${nuevafecha.getMonth()}-${nuevafecha.getFullYear()}`
   html = '';
   for (let i = 0; i < presupuestos.length; i++) {
     html += `
                   <tr>
-                     <td>${presupuestos[i].idPresupuesto}</td>
-                     <td>${nombre}</td>
-                     <td>${presupuestos[i].fecha}</td>
+                     <td>${fechaActual}</td>
                      <td>$${presupuestos[i].total}</td>
-                     <td>${presupuestos[i].idUsuario}</td>
+                     <td>${nombre}</td>
                      </tr>`;
   }
   mostrarTablaPresupuesto.innerHTML = html;
 };
+
+// html += `
+//                   <tr>
+//                      <td>${presupuestos[i].idPresupuesto}</td>
+//                      <td>${nombre}</td>
+//                      <td>${presupuestos[i].fecha}</td>
+//                      <td>$${presupuestos[i].total}</td>
+//                      <td>${presupuestos[i].idUsuario}</td>
+//                      </tr>`;
+//   }
 
