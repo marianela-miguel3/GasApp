@@ -227,20 +227,6 @@ async function crearTramo(tramo) {
   let r = await response.json();
 }
 
-// async function loadTramoAccesorio() {
-//   cargando.innerHTML = `<h1>Loading.....</h1>`;
-//   try {
-//     let response = await fetch(`/tramoaccesorio`);
-//     if (response.ok) {
-//       tramosAccesorios = await response.json();
-//       // console.log(tramosAccesorios);
-//       cargando.innerHTML = '';
-//     } else cargando.innerHTML = `<h1>Error=Failed URL</h1>`;
-//   } catch (err) {
-//     cargando.innerHTML = `<h1> ${err.message} </h1>`;
-//   }
-// }
-
 async function loadTramo() {
   recarga.innerHTML = `<h1>Loading.....</h1>`;
   try {
@@ -298,19 +284,24 @@ eliminarTramo.addEventListener('click', async () => {
 ////no modifica el consumo
 
  modificarTramo.addEventListener('click',async ()=>{
+  // let diametroModificado = await calcularDiametroModificado();
+  // console.log(diametroModificado);
+  // parseInt(diametroModificado);
   try{
       let tramo={
-          "idTramo":parseInt(inputId.value),
-          "equivalente_total":parseFloat(inputEquivalente.value),
-          "total":parseFloat(inputTotal.value),
-          "metros_cubicos":parseFloat(inputConsumo.value),
-          "diametro_adoptado":parseInt(inputDiametro.value)
+          idTramo:parseInt(inputId.value),
+          equivalente_total:parseFloat(inputEquivalente.value),
+          total:parseFloat(inputTotal.value),
+          metros_cubicos:parseFloat(inputConsumo.value),
+          diametro_de_calculo:await calcularDiametroModificado(),
+          diametro_adoptado:parseInt(inputDiametro.value)
       };
       let response=await fetch("/tramos/",{
           method:`PUT`,
           headers:{ "Content-Type":"application/json"},
           body:JSON.stringify(tramo)
-      });
+        });
+        console.log(tramo);
       if(response.ok){
           loadTramo();
           inputId.value="";
@@ -325,3 +316,42 @@ eliminarTramo.addEventListener('click', async () => {
   }  
 
 });
+
+async function buscarPorLongitudModificado() {
+  //FUNCIONA
+  // let valor = calcularTotal();
+  let response = await fetch(`/consumo/${parseInt(inputTotal.value)}`);
+  if (response.ok) {
+    consumos = await response.json();
+    // actualizarPublicaciones();
+    console.log(consumos);
+  }
+  return consumos;
+}
+
+async function calcularDiametroModificado() {
+  //tenemos que hacer un case
+  let valoresPosibles = await buscarPorLongitudModificado();
+  let consumoTramo = parseFloat(inputConsumo.value);
+  for (let i = 0; i < valoresPosibles.length; i++) {
+    console.log("entre");
+     console.log(valoresPosibles);
+    if (valoresPosibles[i].cantidad_consumo > consumoTramo) {
+      console.log(valoresPosibles[i].diametro_canio);
+      console.log(valoresPosibles[i].cantidad_consumo);
+      return valoresPosibles[i].diametro_canio;
+        } else if (valoresPosibles[i + 1].cantidad_consumo > consumoTramo) {
+        console.log(valoresPosibles[i + 1].diametro_canio);
+        return valoresPosibles[i + 1].diametro_canio;
+         } else if (valoresPosibles[i + 2].cantidad_consumo > consumoTramo) {
+          console.log(valoresPosibles[i + 2].diametro_canio);
+          return valoresPosibles[i + 2].diametro_canio;
+            } else if (valoresPosibles[i + 3].cantidad_consumo > consumoTramo) {
+              console.log(valoresPosibles[i + 3].diametro_canio);
+            return valoresPosibles[i + 3].diametro_canio;
+              } else {
+              return valoresPosibles[i + 4].diametro_canio;
+            }
+  }
+  valoresPosibles = [];
+}
