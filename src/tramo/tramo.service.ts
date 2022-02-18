@@ -34,7 +34,7 @@ export class TramoService {
     }
     public async addTramo(tramoDto:TramoDto): Promise<Tramo[]> {
         try {
-            const tramoCreado= new Tramo (tramoDto.nombre_tramo,tramoDto.longitud_real,tramoDto.longitud_de_calculo,tramoDto.equivalente_total,tramoDto.total,tramoDto.metros_cubicos,tramoDto.diametro_de_calculo,tramoDto.diametro_adoptado);//tramoDto.artefacto
+            const tramoCreado= new Tramo (tramoDto.nombre_tramo,tramoDto.longitud_real,tramoDto.longitud_de_calculo,tramoDto.artefacto,tramoDto.equivalente_total,tramoDto.total,tramoDto.metros_cubicos,tramoDto.diametro_de_calculo,tramoDto.diametro_adoptado);//tramoDto.artefacto
             await this.repoTramo.save(tramoCreado);
             const tramos: Tramo[] = await this.repoTramo.find()
             return tramos;

@@ -27,14 +27,19 @@
 }
 .tramoAccesorios{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     font-size: 20px;
+    align-items: center;
+    margin: 1% 0%;
 }
 .modificarTramo{
     margin: 1% 1%;
 }
 .taCargados{
-    margin: 1% 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1% 0%;
 }
 table, tr, td, th, tbody{
     border: 2px solid black;
@@ -47,12 +52,35 @@ th{
 .presupuestoOculto{
     display: none;
 }
-input{
-    font-size: 80%;
+#presupuesto{
+    font-size: 24px;
+    background-color:rgb(250, 170, 51);
+    border: 2px solid rgb(248, 91, 0);
+    color: aliceblue;
+    margin: 4% 0%;
+    padding: 2% 2%;
 }
-button{
-    font-size: 20px;
-    margin: 0% 24%;
+#presupuesto:hover{
+    cursor: pointer;
+    border: 3px solid rgb(248, 91, 0);
+}
+.tituloGracias{
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+}
+.botonInicio{
+    font-size: 24px;
+    background-color:rgb(250, 170, 51);
+    border: 2px solid rgb(248, 91, 0);
+    color: aliceblue;
+    margin: 4% 0%;
+    padding: 2% 2%;
+    text-decoration: none;
+}
+.botonInicio:hover{
+    cursor: pointer;
+    border: 3px solid rgb(248, 91, 0);
 }
 .pie{
     margin-top: 40%;
