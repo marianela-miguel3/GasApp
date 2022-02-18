@@ -12,6 +12,8 @@ export default class Tramo{
     @Column()
     private longitud_de_calculo:number;
     @Column()
+    private artefacto:string;
+    @Column()
     private equivalente_total:number;
     @Column()
     private total:number;
@@ -27,10 +29,11 @@ export default class Tramo{
     })
     public tramoAccesorios:TramoAccesorio[];
 
-    public constructor(nombre_tramo:string,longitud_real:number,longitud_de_calculo:number,equivalente_total:number, total:number,metros_cubicos:number,diametro_de_calculo:number,diametro_adoptado:number){    
+    public constructor(nombre_tramo:string,longitud_real:number,longitud_de_calculo:number,artefacto:string,equivalente_total:number, total:number,metros_cubicos:number,diametro_de_calculo:number,diametro_adoptado:number){    
         this.nombre_tramo=nombre_tramo;
         this.longitud_real=longitud_real;
         this.longitud_de_calculo=longitud_de_calculo;
+        this.artefacto=artefacto;
         this.equivalente_total=equivalente_total;
         this.total=total;
         this.metros_cubicos=metros_cubicos;

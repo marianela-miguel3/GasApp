@@ -3,6 +3,7 @@ let comienzoTramo = document.getElementById(`comienzoTramo`); //input
 let finTramo = document.getElementById(`finTramo`); //input
 let longitudReal = document.getElementById(`longitudReal`); //input
 let longitudCalculo = document.getElementById(`longitudCalculo`); //input
+let artefacto = document.getElementById(`artefacto`);
 let calorias = document.getElementById(`calorias`); //input
 //let cargando=document.getElementById(`cargando`);//
 let cargando2 = document.getElementById(`cargando2`); //mensaje de carga los accesorios
@@ -151,6 +152,7 @@ cargarTramo.addEventListener('click', async () => {
     nombre_tramo: `${comienzoTramo.value}-${finTramo.value}`,
     longitud_real: longitudReal.value,
     longitud_de_calculo: longitudCalculo.value,
+    artefacto:artefacto.value,
     equivalente_total: equivalente,
     total: total,
     metros_cubicos: (calorias.value / 9300).toFixed(2),
@@ -249,6 +251,7 @@ function actualizarTramo() {
                      <td>${tramos[i].nombre_tramo}</td>
                      <td>${tramos[i].longitud_real}</td>
                      <td>${tramos[i].longitud_de_calculo}</td>
+                     <td>${tramos[i].artefacto}</td>
                      <td>${tramos[i].equivalente_total}</td>
                      <td>${tramos[i].total}</td>
                      <td>${tramos[i].metros_cubicos}</td>

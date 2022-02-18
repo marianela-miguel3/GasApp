@@ -70,6 +70,7 @@
     color: aliceblue;
     border: 2px solid rgb(248, 91, 0);
     border-radius: 2px;
+    padding: 0.5% 0.5%;
 }
 #botonCargarTramo:hover{
     cursor: pointer;
@@ -82,6 +83,7 @@
     color: aliceblue;
     border: 2px solid rgb(248, 91, 0);
     border-radius: 2px;
+    padding: 2% 2%;
 }
 #botonCargarAcc:hover{
     cursor: pointer;
@@ -150,6 +152,7 @@ table, tr, td, th, tbody{
     color: aliceblue;
     border: 2px solid rgb(248, 91, 0);
     border-radius: 2px;
+    padding: 1% 1%;
 }
 #modificarTramo:hover{
     cursor: pointer;
@@ -162,6 +165,7 @@ table, tr, td, th, tbody{
     color: aliceblue;
     border: 2px solid rgb(248, 91, 0);
     border-radius: 2px;
+    padding: 1% 1%;
 }
 #eliminarTramo:hover{
     cursor: pointer;

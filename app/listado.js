@@ -43,7 +43,7 @@ async function loadPresupuesto() {
       cargando.innerHTML = '';
     } else cargando.innerHTML = `<h1>Error=Failed URL</h1>`;
   } catch (err) {
-    cargando.innerHTML = `<h1> ${err.message} </h1>`;
+    // cargando.innerHTML = `<h1> ${err.message} </h1>`;
   }
 };
   
@@ -109,7 +109,7 @@ function actualizarTramoAccesorio() {
                      <td>${tmpListado[i].idAccesorio}</td>
                      <td>${tmpListado[i].nombre_accesorio}</td>
                      <td>${tmpListado[i].cantidad}</td>
-                     <td>${tmpListado[i].tramo_precio_accesorio}</td>
+                     <td>$${tmpListado[i].tramo_precio_accesorio}</td>
                      </tr>`;
   }
   mostrar.innerHTML = html;
