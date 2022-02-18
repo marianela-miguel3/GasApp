@@ -49,6 +49,9 @@ export default class Tramo{
     public setConsumo(consumoNuevo:number):void {
         this.metros_cubicos=consumoNuevo;
     }
+    public setDiametroCalculo(diametroCalNuevo:number):void{
+        this.diametro_de_calculo=diametroCalNuevo;
+    }
     public setDiametroAdoptado(diametroNuevo:number):void{
         this.diametro_adoptado=diametroNuevo;
     }

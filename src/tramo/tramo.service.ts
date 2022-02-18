@@ -51,6 +51,7 @@ export class TramoService {
             tramoCambia.setEquivalenteTotal(tramoDto.equivalente_total);
             tramoCambia.setTotal(tramoDto.total);
             tramoCambia.setConsumo(tramoDto.metros_cubicos);
+            tramoCambia.setDiametroCalculo(tramoDto.diametro_de_calculo);
             tramoCambia.setDiametroAdoptado(tramoDto.diametro_adoptado);
             await this.repoTramo.save(tramoCambia);
             const tramos: Tramo[] = await this.repoTramo.find();

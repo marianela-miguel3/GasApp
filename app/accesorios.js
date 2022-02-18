@@ -105,7 +105,7 @@ cargar.addEventListener('click', () => {
     cantidad: parseInt(cantidad.value),
     equivalenteTramo: parseFloat(cargarEquivalente() * cantidad.value).toFixed(
       2,
-    ),
+),
     tramo_precio_accesorio: cargarPrecio() * cantidad.value,
   };
   crearTramoAccesorio(tramoAccesorio);
@@ -148,7 +148,7 @@ cargarTramo.addEventListener('click', async () => {
   let equivalente = calcularEquivalenteTotal();
   parseFloat(equivalente);
   let tramo = {
-    nombre_tramo: `${comienzoTramo.value} ${finTramo.value}`,
+    nombre_tramo: `${comienzoTramo.value}-${finTramo.value}`,
     longitud_real: longitudReal.value,
     longitud_de_calculo: longitudCalculo.value,
     equivalente_total: equivalente,
@@ -156,12 +156,10 @@ cargarTramo.addEventListener('click', async () => {
     metros_cubicos: (calorias.value / 9300).toFixed(2),
     diametro_de_calculo: diametro,
   };
-  tramos.push(tramo);
+  //tramos.push(tramo);
   crearTramo(tramo);
   loadTramo();
   tramosAccesoriosCargados = [];
-  console.log(tramo.total);
-  console.log(tramo.metros_cubicos);
 });
 
 function calcularTotal() {
@@ -242,6 +240,7 @@ async function loadTramo() {
 }
 
 function actualizarTramo() {
+  console.log(tramos)//vacio
   html = ``;
   for (let i = 0; i < tramos.length; i++) {
     html += `
@@ -281,11 +280,11 @@ eliminarTramo.addEventListener('click', async () => {
     error.innerHTML = 'Error en la conexion del servidor';
   }
 });
-////no modifica el consumo
+
 
  modificarTramo.addEventListener('click',async ()=>{
-  // let diametroModificado = await calcularDiametroModificado();
-  // console.log(diametroModificado);
+  let diametroModificado = await calcularDiametroModificado();
+  console.log(diametroModificado);
   // parseInt(diametroModificado);
   try{
       let tramo={
@@ -293,7 +292,7 @@ eliminarTramo.addEventListener('click', async () => {
           equivalente_total:parseFloat(inputEquivalente.value),
           total:parseFloat(inputTotal.value),
           metros_cubicos:parseFloat(inputConsumo.value),
-          diametro_de_calculo:await calcularDiametroModificado(),
+          diametro_de_calculo:diametroModificado,
           diametro_adoptado:parseInt(inputDiametro.value)
       };
       let response=await fetch("/tramos/",{
@@ -301,8 +300,9 @@ eliminarTramo.addEventListener('click', async () => {
           headers:{ "Content-Type":"application/json"},
           body:JSON.stringify(tramo)
         });
-        console.log(tramo);
+        
       if(response.ok){
+        console.log(tramo);
           loadTramo();
           inputId.value="";
           inputEquivalente.value="";
