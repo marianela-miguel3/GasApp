@@ -34,7 +34,7 @@ public async getTramoAccesorio(id:number): Promise<TramoAccesorio> {
 
   public async addTramoAccesorio(tramoAccesorio: TramoAccesorioDTO): Promise<TramoAccesorio[]>{
     try{
-      let tramoAccesorioNuevo= new TramoAccesorio(tramoAccesorio.idTramo,tramoAccesorio.idAccesorio,tramoAccesorio.cantidad,tramoAccesorio.equivalenteTramo,tramoAccesorio.tramo_precio_accesorio);
+      let tramoAccesorioNuevo= new TramoAccesorio(tramoAccesorio.idAccesorio,tramoAccesorio.cantidad,tramoAccesorio.equivalenteTramo,tramoAccesorio.tramo_precio_accesorio);
       await this.repoTramoAccesorio.save(tramoAccesorioNuevo);
       const tramosAccesorios: TramoAccesorio[]=await this.repoTramoAccesorio.find()
       return tramosAccesorios;
@@ -51,7 +51,7 @@ public async getTramoAccesorio(id:number): Promise<TramoAccesorio> {
         if(!tramoAccesorioActualizado){
           throw new HttpException({ error: `error buscando el tramoaccesorio de id ${tramoAccesorio.idTramoAccesorio}`}, HttpStatus.NOT_FOUND);
         }
-        tramoAccesorioActualizado.setTramo(tramoAccesorio.idTramo);
+        // tramoAccesorioActualizado.setTramo(tramoAccesorio.idTramo);
         tramoAccesorioActualizado.setAccesorio(tramoAccesorio.idAccesorio);
         tramoAccesorioActualizado.setCantidad(tramoAccesorio.cantidad);
         tramoAccesorioActualizado.setEquivalenteTramo(tramoAccesorio.equivalenteTramo);              

@@ -3,7 +3,7 @@ import Tramo from "src/tramo/tramo.entity";
 
 export default class TramoAccesorioDTO{
   readonly idTramoAccesorio:number;
-  readonly idTramo:Tramo;
+  // readonly idTramo:Tramo;
   readonly idAccesorio:Accesorio;
   readonly cantidad:number;
   readonly equivalenteTramo:number;

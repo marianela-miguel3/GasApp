@@ -156,7 +156,7 @@ cargarTramo.addEventListener('click', async () => {
     metros_cubicos: (calorias.value / 9300).toFixed(2),
     diametro_de_calculo: diametro,
   };
-  //tramos.push(tramo);
+  tramos.push(tramo);
   crearTramo(tramo);
   loadTramo();
   tramosAccesoriosCargados = [];
@@ -231,6 +231,7 @@ async function loadTramo() {
     let response = await fetch(`/tramos`);
     if (response.ok) {
       tramos = await response.json();
+      console.log(tramos);
       actualizarTramo();
       recarga.innerHTML = '';
     } else recarga.innerHTML = `<h1>Error=Failed URL</h1>`;

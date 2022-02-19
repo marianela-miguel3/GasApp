@@ -22,9 +22,9 @@ export default class Tramo{
     @Column()
     private diametro_adoptado:number;
 
-    @OneToMany(type => TramoAccesorio,tramoAccesorios => tramoAccesorios.tramo,{
-        cascade: true,
-    })
+    // @OneToMany(type => TramoAccesorio,tramoAccesorios => tramoAccesorios.tramo,{
+    //     cascade: true,
+    // })
     public tramoAccesorios:TramoAccesorio[];
 
     public constructor(nombre_tramo:string,longitud_real:number,longitud_de_calculo:number,equivalente_total:number, total:number,metros_cubicos:number,diametro_de_calculo:number,diametro_adoptado:number){    
