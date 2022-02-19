@@ -15,7 +15,7 @@ export class TramoService {
     public async getTramos(): Promise<Tramo[]> {
         try {
             const tramos: Tramo[] = await this.repoTramo.find(
-                { relations: ['tramoAccesorios'] },
+                // { relations: ['tramoAccesorios'] },
             );
             return tramos;
         } catch (error) {
@@ -25,7 +25,7 @@ export class TramoService {
     public async getTramo(idTramo:number): Promise<Tramo> {
         try {
             const tramos: Tramo = await this.repoTramo.findOne(idTramo,
-                { relations: ['tramoAccesorios'] }
+                // { relations: ['tramoAccesorios'] }
                 );
             return tramos;
         } catch (error) {

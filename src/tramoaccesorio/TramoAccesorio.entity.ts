@@ -15,15 +15,15 @@ private tramo_precio_accesorio:number;
 @ManyToOne(type => Tramo, tramo => tramo.tramoAccesorios, {
     onDelete: 'CASCADE',
 })
-@JoinColumn({name:'idTramo'})
-public tramo:Tramo;
+// @JoinColumn({name:'idTramo'})
+// public tramo:Tramo;
 
 @ManyToOne(type => Accesorio, accesorio => accesorio.tramoAccesorios)
 @JoinColumn({name:'idAccesorio'})
 public accesorio:Accesorio;
-constructor(idTramo:Tramo,idAccesorio:Accesorio,cantidad:number,equivalenteTramo:number,tramo_precio_accesorio:number){
+constructor(idAccesorio:Accesorio,cantidad:number,equivalenteTramo:number,tramo_precio_accesorio:number){
     //this.idTramoAccesorio=idTramoAccesorio;
-    this.tramo=idTramo;
+    // this.tramo=idTramo;
     this.accesorio=idAccesorio;
     this.cantidad=cantidad;
     this.equivalenteTramo=equivalenteTramo;
@@ -48,9 +48,9 @@ public setCantidad(cantidadNuevo:number):void{
 public setEquivalenteTramo(equivalenteNuevo:number):void{
     this.equivalenteTramo=equivalenteNuevo;
 }
-public setTramo(tramoNuevo:Tramo):void{
-    this.tramo=tramoNuevo;
-}
+// public setTramo(tramoNuevo:Tramo):void{
+//     this.tramo=tramoNuevo;
+// }
 public setAccesorio(accesorioNuevo:Accesorio):void{
     this.accesorio=accesorioNuevo;
 }
