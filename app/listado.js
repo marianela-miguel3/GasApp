@@ -1,13 +1,13 @@
-let cargando = document.getElementById(`cargando`);
-let mostrar = document.getElementById(`mostrar`);
-let modificarListado = document.getElementById(`modificarListado`);
-let calcularPresupuesto = document.getElementById(`presupuesto`);
-let textoPresupuesto = document.getElementById(`presupuestoTotal`);
-let divError = document.getElementById(`error`);
-let inputId = document.getElementById(`inputId`);
-let inputCantidad = document.getElementById(`inputCantidad`);
-let presupuestoOculto = document.getElementById(`presupuestoOculto`);
-let mostrarTablaPresupuesto = document.getElementById(`mostrarTablaPresupuesto`);
+let cargando = document.getElementById("cargando");
+let mostrar = document.getElementById("mostrar");
+let modificarListado = document.getElementById("modificarListado");
+let calcularPresupuesto = document.getElementById("presupuesto");
+let textoPresupuesto = document.getElementById("presupuestoTotal");
+let divError = document.getElementById("error");
+let inputId = document.getElementById("inputId");
+let inputCantidad = document.getElementById("inputCantidad");
+let presupuestoOculto = document.getElementById("presupuestoOculto");
+let mostrarTablaPresupuesto = document.getElementById("mostrarTablaPresupuesto");
 let tramosAccesorios = [];
 let tmpListado = [];
 let presupuestos = [];
@@ -16,29 +16,29 @@ loadPresupuesto();
 let nuevafecha;
 
 async function loadTramoAccesorio() {
-  cargando.innerHTML = `<h1>Loading.....</h1>`;
+  cargando.innerHTML = "<h1>Loading.....</h1>";
   try {
-    let response = await fetch(`/tramoaccesorio`);
+    let response = await fetch("/tramoaccesorio");
     if (response.ok) {
       tramosAccesorios = await response.json();
       precargarArreglo();
       actualizarTramoAccesorio();
-      cargando.innerHTML = '';
-    } else cargando.innerHTML = `<h1>Error=Failed URL</h1>`;
+      cargando.innerHTML = "";
+    } else cargando.innerHTML = "<h1>Error=Failed URL</h1>";
   } catch (err) {
     cargando.innerHTML = `<h1> ${err.message} </h1>`;
   }
 };
 
 async function loadPresupuesto() {
-  cargando.innerHTML = `<h1>Loading.....</h1>`;
+  cargando.innerHTML = "<h1>Loading.....</h1>";
   try {
-    let response = await fetch(`/presupuesto`);
+    let response = await fetch("/presupuesto");
     if (response.ok) {
       presupuestos = await response.json();
       mostrarPresupuesto();
-      cargando.innerHTML = '';
-    } else cargando.innerHTML = `<h1>Error=Failed URL</h1>`;
+      cargando.innerHTML = "";
+    } else cargando.innerHTML = "<h1>Error=Failed URL</h1>";
   } catch (err) {
   }
 };
@@ -91,7 +91,7 @@ function precio(idAccesorio) {
 };
 
 function actualizarTramoAccesorio() {
-  html = '';
+  html = "";
   for (let i = 0; i < tmpListado.length; i++) {
     html += `
                   <tr>
@@ -107,18 +107,18 @@ function actualizarTramoAccesorio() {
 
 async function load() {
   try {
-    let response = await fetch(`/tramoaccesorio`);
+    let response = await fetch("/tramoaccesorio");
     if (response.ok) {
       tramosAccesorios = await response.json();
       actualizarTramoAccesorio();
-      cargando.innerHTML = '';
-    } else cargando.innerHTML = `<h1>Error=Failed URL</h1>`;
+      cargando.innerHTML = "";
+    } else cargando.innerHTML = "<h1>Error=Failed URL</h1>";
   } catch (err) {
     cargando.innerHTML = `<h1> ${err.message} </h1>`;
   }
 };
 
-calcularPresupuesto.addEventListener('click', async () => {
+calcularPresupuesto.addEventListener("click", async () => {
   presupuestoOculto.classList.remove("presupuestoOculto")
   nuevafecha =new Date();
   let idUsuario = localStorage.getItem("idUsuario");
@@ -136,7 +136,7 @@ calcularPresupuesto.addEventListener('click', async () => {
 });
 
 async function crearPresupuesto(presupuesto) {
-  let response = await fetch(`/presupuesto`, {
+  let response = await fetch("/presupuesto", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -150,7 +150,7 @@ async function crearPresupuesto(presupuesto) {
 function mostrarPresupuesto() {
   let nombre = localStorage.getItem("nombre");
   let fechaActual = `${nuevafecha.getDate()}-${nuevafecha.getMonth()}-${nuevafecha.getFullYear()}`
-  html = '';
+  html = "";
   for (let i = 0; i < presupuestos.length; i++) {
     html += `
                   <tr>
