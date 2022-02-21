@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS/accesorios.css">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Carga de datos</title>
 </head>
 
 <body>
@@ -20,9 +22,11 @@
         </header>
         <div class="textPaso1">
             <h1>Paso 1: Completar los Datos del Tramo</h1>
-            <p>En la siguiente tabla tendras que completar los datos: Comienzo y fin de Tramo indicando letra y numero segun corresponda, con su longitud real y longitud de calculo. Tambien especificar el tipo de artefacto con sus calorias.
+            <p>En la siguiente tabla tendras que completar los datos: Comienzo y fin de Tramo indicando letra y numero
+                segun corresponda, con su longitud real y longitud de calculo. Tambien especificar el tipo de artefacto
+                con sus calorias.
             </p>
-            </div>
+        </div>
         <div class="cargaTramo">
             <div class="container"></div>
 
@@ -97,14 +101,17 @@
                 </tbody>
             </table>
         </div>
-            <div class="textPaso2">
-                <h1>Paso 2: Carga de Accesorios</h1>
-                <p>Tendras que completar la siguiente tabla con los accesorios, indicando el Id asociado a cada accesorio. Puedes ver todo el listado de accesorios en la tabla de la derecha.</p>
-            </div>
+
+        <div class="textPaso2">
+            <h1>Paso 2: Carga de Accesorios</h1>
+            <p>Tendras que completar la siguiente tabla con los accesorios, indicando el Id asociado a cada accesorio.
+                Puedes ver todo el listado de accesorios en la tabla de la derecha.</p>
+        </div>
+
         <div class="accesorios">
             <div class="cargaAccesorios">
                 <h2 class="tituloAccesorios">Cargar Accesorios:</h2>
-            
+
                 <table>
                     <tr>
                         <th class="cabecera">Ingrese el Id del accesorio</th>
@@ -132,7 +139,7 @@
                     </thead>
                     <tbody id="mostrar"></tbody>
                 </table>
-                
+
 
             </div>
 
@@ -141,27 +148,28 @@
                     <h2>Listado de Accesorios:</h2>
                 </div>
                 <div class="listaAccesoriosCargados">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Id de Accesorio</th>
-                            <th>Nombre de Accesorio</th>
-                            <th>Diametro</th>
-                            <th>Equivalente</th>
-                            <th>Precio</th>
-                        </tr>
-                    </thead>
-                    <tbody id="container"></tbody>
-                </table>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Id de Accesorio</th>
+                                <th>Nombre de Accesorio</th>
+                                <th>Diametro</th>
+                                <th>Equivalente</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody id="container"></tbody>
+                    </table>
                 </div>
                 <div id="cargando2"></div>
-                
+
 
             </div>
         </div>
         <div class="textPaso3">
             <h1>Paso 3: Carga de Tramo</h1>
-            <p>Una vez que hayas completado todos los campos y cargado todos los accesorios podras cargar el tramo dandole al Boton!</p>
+            <p>Una vez que hayas completado todos los campos y cargado todos los accesorios podras cargar el tramo
+                dandole al Boton!</p>
             <button id="botonCargarTramo">Cargar Tramo</button>
         </div>
         <div class="mostrarTablas">
@@ -184,10 +192,14 @@
                 </thead>
                 <tbody id="mostrarTA"></tbody>
             </table>
+
             <div class="modificarTramo">
                 <div class="modificarEliminar">
                     <h1>Modifica los datos o Elimina un Tramo</h1>
-                <p>Puedes modificar el Tramo para agregar el Diametro Adoptado ingresando el Id del mismo. Tambien puedes modificar otros datos y eliminar el tramo. Para eliminar es necesario ingresar solo el Id.</p>
+                    <p>Puedes modificar el Tramo para agregar el Diametro Adoptado ingresando el Id del mismo. Tambien
+                        puedes modificar otros datos y eliminar el tramo. Para eliminar es necesario ingresar solo el
+                        Id.
+                    </p>
                 </div>
                 <table>
                     <thead>
@@ -209,7 +221,7 @@
                         </tr>
                     </tbody>
                 </table>
-                
+
                 <div class="buttonModEliminar">
                     <button id="modificarTramo">Modificar</button>
                     <button id="eliminarTramo">Eliminar</button>
@@ -217,7 +229,8 @@
             </div>
         </div>
         <div class="textCambioPag">
-            <p>Una vez que tengas cargados todos los tramos con sus respectivos accesorios y sus datos, puedes continuar dandole al boton para cargar el listado de accesorios con el presupuesto.</p>
+            <p>Una vez que tengas cargados todos los tramos con sus respectivos accesorios y sus datos, puedes continuar
+                dandole al boton para cargar el listado de accesorios con el presupuesto.</p>
         </div>
         <div class="cambioPagina">
             <a class="botonCambioPag" href="./index.html">Volver</a>
