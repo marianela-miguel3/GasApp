@@ -7,11 +7,10 @@ let divError = document.getElementById(`error`);
 let inputId = document.getElementById(`inputId`);
 let inputCantidad = document.getElementById(`inputCantidad`);
 let presupuestoOculto = document.getElementById(`presupuestoOculto`);
-let mostrarTablaPresupuesto = document.getElementById(`mostrarTablaPresupuesto`)
+let mostrarTablaPresupuesto = document.getElementById(`mostrarTablaPresupuesto`);
 let tramosAccesorios = [];
 let tmpListado = [];
 let presupuestos = [];
-
 loadTramoAccesorio();
 loadPresupuesto();
 let nuevafecha;
@@ -22,7 +21,6 @@ async function loadTramoAccesorio() {
     let response = await fetch(`/tramoaccesorio`);
     if (response.ok) {
       tramosAccesorios = await response.json();
-      console.log(tramosAccesorios);
       precargarArreglo();
       actualizarTramoAccesorio();
       cargando.innerHTML = '';
@@ -38,12 +36,10 @@ async function loadPresupuesto() {
     let response = await fetch(`/presupuesto`);
     if (response.ok) {
       presupuestos = await response.json();
-      console.log(presupuestos);
       mostrarPresupuesto();
       cargando.innerHTML = '';
     } else cargando.innerHTML = `<h1>Error=Failed URL</h1>`;
   } catch (err) {
-    // cargando.innerHTML = `<h1> ${err.message} </h1>`;
   }
 };
   
@@ -60,29 +56,24 @@ function precargarArreglo() {
   
   for (let i = 0; i < tramosAccesorios.length; i++) {
     let accesorio = tramosAccesorios[i].accesorio;
-    // console.log(accesorio);
     if (!EstaEnTmp(accesorio.idAccesorio, tmpListado)) {
       tmpListado.push({
         "idTramoAccesorio": tramosAccesorios[i].idTramoAccesorio,
         "idAccesorio": accesorio.idAccesorio,
         "nombre_accesorio": accesorio.nombre_accesorio,
-        // "cantidad": tramosAccesorios[i].cantidad,
         "cantidad": cantidad(accesorio.idAccesorio),
         "tramo_precio_accesorio": precio(accesorio.idAccesorio)
       });
     }  
   }
-  console.log(tmpListado);
 };
 
 function cantidad(idAccesorio) {
   let suma = 0;
   for(let i=0;i<tramosAccesorios.length;i++){
     let accesorio = tramosAccesorios[i].accesorio;
-    // console.log(accesorio)
     if (idAccesorio == accesorio.idAccesorio) {
       suma += tramosAccesorios[i].cantidad;
-      // console.log(suma);
     }
   }
   return suma;
@@ -92,7 +83,6 @@ function precio(idAccesorio) {
   let suma = 0;
   for(let i=0;i<tramosAccesorios.length;i++){
     let accesorio = tramosAccesorios[i].accesorio;
-    // console.log(accesorio)
     if (idAccesorio == accesorio.idAccesorio) {
       suma += tramosAccesorios[i].tramo_precio_accesorio;
     }
@@ -120,7 +110,6 @@ async function load() {
     let response = await fetch(`/tramoaccesorio`);
     if (response.ok) {
       tramosAccesorios = await response.json();
-      console.log(tramosAccesorios);
       actualizarTramoAccesorio();
       cargando.innerHTML = '';
     } else cargando.innerHTML = `<h1>Error=Failed URL</h1>`;
@@ -132,26 +121,16 @@ async function load() {
 calcularPresupuesto.addEventListener('click', async () => {
   presupuestoOculto.classList.remove("presupuestoOculto")
   nuevafecha =new Date();
-  //let nuevafecha= Date.now();
-  console.log(nuevafecha);
-  //let fechaActual = `${nuevafecha.getDate()}-${nuevafecha.getMonth()}-${nuevafecha.getFullYear()}`
   let idUsuario = localStorage.getItem("idUsuario");
-  console.log(idUsuario)
   let suma = 0;
   for (let i=0; i<tmpListado.length; i++) {
     suma += tmpListado[i].tramo_precio_accesorio;
   }
-  // return suma;
-  // textoPresupuesto.innerHTML = `$ ${suma}`;
-  // console.log(suma)
     let presupuesto = {
       "fecha": nuevafecha,
       "total": suma,
       "idUsuario": parseInt(idUsuario),
     }
-    //console.log
-    //presupuestos.push(presupuesto);
-    console.log(presupuesto);
     crearPresupuesto(presupuesto);
     loadPresupuesto();
 });
@@ -184,13 +163,11 @@ function mostrarPresupuesto() {
   mostrarTablaPresupuesto.innerHTML = html;
 };
 
-// html += `
-//                   <tr>
-//                      <td>${presupuestos[i].idPresupuesto}</td>
-//                      <td>${nombre}</td>
-//                      <td>${presupuestos[i].fecha}</td>
-//                      <td>$${presupuestos[i].total}</td>
-//                      <td>${presupuestos[i].idUsuario}</td>
-//                      </tr>`;
-//   }
 
+
+
+
+
+
+
+ 

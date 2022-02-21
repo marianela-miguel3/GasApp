@@ -48,9 +48,7 @@ public setCantidad(cantidadNuevo:number):void{
 public setEquivalenteTramo(equivalenteNuevo:number):void{
     this.equivalenteTramo=equivalenteNuevo;
 }
-// public setTramo(tramoNuevo:Tramo):void{
-//     this.tramo=tramoNuevo;
-// }
+
 public setAccesorio(accesorioNuevo:Accesorio):void{
     this.accesorio=accesorioNuevo;
 }
