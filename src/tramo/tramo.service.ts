@@ -14,9 +14,7 @@ export class TramoService {
 
     public async getTramos(): Promise<Tramo[]> {
         try {
-            const tramos: Tramo[] = await this.repoTramo.find(
-                // { relations: ['tramoAccesorios'] },
-            );
+            const tramos: Tramo[] = await this.repoTramo.find();
             return tramos;
         } catch (error) {
             throw new HttpException( { error: `Error Buscando los Tramos: ${error}`}, HttpStatus.NOT_FOUND)
@@ -24,9 +22,7 @@ export class TramoService {
     }
     public async getTramo(idTramo:number): Promise<Tramo> {
         try {
-            const tramos: Tramo = await this.repoTramo.findOne(idTramo,
-                // { relations: ['tramoAccesorios'] }
-                );
+            const tramos: Tramo = await this.repoTramo.findOne(idTramo);
             return tramos;
         } catch (error) {
             throw new HttpException( { error: `Error Buscando el Tramo de: ${idTramo} ${error}`}, HttpStatus.NOT_FOUND)
@@ -61,17 +57,10 @@ export class TramoService {
         }
     }
     public async delTramo(idTramo:number): Promise<Tramo[]> {
-        // try {
             const tramo: Tramo = await this.repoTramo.findOne(idTramo);
-            console.log(tramo);
-            // if(!tramo) {
-            //     throw new HttpException("El tramo no existe", 404);
-            // }
             await this.repoTramo.remove(tramo);
             const tramos: Tramo[] = await this.repoTramo.find();
             return tramos;
     }
-        // } catch (error) {
-        //     throw new HttpException("El tramo no existe", 404);
-        // }
+        
 }

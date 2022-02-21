@@ -46,12 +46,10 @@ public async getTramoAccesorio(id:number): Promise<TramoAccesorio> {
     public async updateTramoAccesorio(tramoAccesorio:TramoAccesorioDTO):Promise<TramoAccesorio[]>{
       try{
         const tramoAccesorioActualizado:TramoAccesorio=await this.repoTramoAccesorio.findOne(tramoAccesorio.idTramoAccesorio);
-            //where: { idTramo : `${tramoAccesorio.idTramo}`, idAccesorio : `${tramoAccesorio.idAccesorio}`}});
         console.log(tramoAccesorioActualizado);
         if(!tramoAccesorioActualizado){
           throw new HttpException({ error: `error buscando el tramoaccesorio de id ${tramoAccesorio.idTramoAccesorio}`}, HttpStatus.NOT_FOUND);
         }
-        // tramoAccesorioActualizado.setTramo(tramoAccesorio.idTramo);
         tramoAccesorioActualizado.setAccesorio(tramoAccesorio.idAccesorio);
         tramoAccesorioActualizado.setCantidad(tramoAccesorio.cantidad);
         tramoAccesorioActualizado.setEquivalenteTramo(tramoAccesorio.equivalenteTramo);              

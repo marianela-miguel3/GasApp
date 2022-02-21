@@ -243,7 +243,7 @@ async function loadTramo() {
 }
 
 function actualizarTramo() {
-  console.log(tramos)//vacio
+  console.log(tramos)
   html = ``;
   for (let i = 0; i < tramos.length; i++) {
     html += `
@@ -283,6 +283,7 @@ eliminarTramo.addEventListener('click', async () => {
   } catch (error) {
     error.innerHTML = 'Error en la conexion del servidor';
   }
+  inputId.value="";
 });
 
 
