@@ -11,8 +11,8 @@ export default class Tramo{
     private longitud_real:number;
     @Column()
     private longitud_de_calculo:number;
-    @Column()
-    private artefacto:string;
+    // @Column()
+    // private artefacto:string;
     @Column()
     private equivalente_total:number;
     @Column()
@@ -33,7 +33,7 @@ export default class Tramo{
         this.nombre_tramo=nombre_tramo;
         this.longitud_real=longitud_real;
         this.longitud_de_calculo=longitud_de_calculo;
-        this.artefacto=artefacto;
+        // this.artefacto=artefacto;
         this.equivalente_total=equivalente_total;
         this.total=total;
         this.metros_cubicos=metros_cubicos;
