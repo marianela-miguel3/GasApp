@@ -1,62 +1,62 @@
-let idTramo = document.getElementById(`idTramo`); //input
-let comienzoTramo = document.getElementById(`comienzoTramo`); //input
-let finTramo = document.getElementById(`finTramo`); //input
-let longitudReal = document.getElementById(`longitudReal`); //input
-let longitudCalculo = document.getElementById(`longitudCalculo`); //input
-let artefacto = document.getElementById(`artefacto`);
-let calorias = document.getElementById(`calorias`); //input
-//let cargando=document.getElementById(`cargando`);//
-let cargando2 = document.getElementById(`cargando2`); //mensaje de carga los accesorios
+let idTramo = document.getElementById("idTramo"); //input
+let comienzoTramo = document.getElementById("comienzoTramo"); //input
+let finTramo = document.getElementById("finTramo"); //input
+let longitudReal = document.getElementById("longitudReal"); //input
+let longitudCalculo = document.getElementById("longitudCalculo"); //input
+let artefacto = document.getElementById("artefacto");
+let calorias = document.getElementById("calorias"); //input
+//let cargando=document.getElementById("cargando");//
+let cargando2 = document.getElementById("cargando2"); //mensaje de carga los accesorios
 //hasta aca
-let mostrarError = document.getElementById(`mostrarError`); //mensaje de carga de tramosacessorios
-let container = document.getElementById(`container`); //muestra los accesorios[]
-let recarga = document.getElementById(`recarga`); //mensaje de carga de tramos
-// let idTramo=document.getElementById(`idTramo`);
-let accesorio = document.getElementById(`accesorio`); //input
-let cantidad = document.getElementById(`cantidad`); //input
-// let sumaEquivalente=document.getElementById(`sumaEquivalente`);//??
-let precio = document.getElementById(`precio`);
-let cargar = document.getElementById(`botonCargarAcc`); //boton cargar los accesorios
-let mostrar = document.getElementById(`mostrar`); //muestra los tramosaccesorios
-let cargarTramo = document.getElementById(`botonCargarTramo`); //boton para agregar un tramo
-let mostrarTA = document.getElementById(`mostrarTA`); //mostrar los tramos
+let mostrarError = document.getElementById("mostrarError"); //mensaje de carga de tramosacessorios
+let container = document.getElementById("container"); //muestra los accesorios[]
+let recarga = document.getElementById("recarga"); //mensaje de carga de tramos
+// let idTramo=document.getElementById("idTramo");
+let accesorio = document.getElementById("accesorio"); //input
+let cantidad = document.getElementById("cantidad"); //input
+// let sumaEquivalente=document.getElementById("sumaEquivalente");//??
+let precio = document.getElementById("precio");
+let cargar = document.getElementById("botonCargarAcc"); //boton cargar los accesorios
+let mostrar = document.getElementById("mostrar"); //muestra los tramosaccesorios
+let cargarTramo = document.getElementById("botonCargarTramo"); //boton para agregar un tramo
+let mostrarTA = document.getElementById("mostrarTA"); //mostrar los tramos
 let accesorios = [];
 let tramosAccesorios = [];
 let tramos = [];
 let tramosAccesoriosCargados = [];
 ////////////////////////////
-let eliminarTramo=document.getElementById(`eliminarTramo`);
-// let idTramoAEliminar=document.getElementById(`idTramoAEliminar`);
-let modificarTramo=document.getElementById(`modificarTramo`);
-let idTramoAModificar=document.getElementById(`idTramoAModificar`);
-let inputId=document.getElementById(`inputId`);
-let inputEquivalente=document.getElementById(`inputEquivalente`)
-let inputTotal=document.getElementById(`inputTotal`);
-let inputConsumo=document.getElementById(`inputConsumo`);
-let inputDiametro=document.getElementById(`inputDiametro`);
-let errorTramoActualizado=document.getElementById(`errorTramoActualizado`);
+let eliminarTramo=document.getElementById("eliminarTramo");
+// let idTramoAEliminar=document.getElementById("idTramoAEliminar");
+let modificarTramo=document.getElementById("modificarTramo");
+let idTramoAModificar=document.getElementById("idTramoAModificar");
+let inputId=document.getElementById("inputId");
+let inputEquivalente=document.getElementById("inputEquivalente")
+let inputTotal=document.getElementById("inputTotal");
+let inputConsumo=document.getElementById("inputConsumo");
+let inputDiametro=document.getElementById("inputDiametro");
+let errorTramoActualizado=document.getElementById("errorTramoActualizado");
 let consumos=[];
 
 // let valoresPosibles=[];
 loadAccesorio();
 
 async function loadAccesorio() {
-  cargando2.innerHTML = `<h1>Loading.....</h1>`;
+  cargando2.innerHTML = "<h1>Loading.....</h1>";
   try {
-    let response = await fetch(`/accesorios`);
+    let response = await fetch("/accesorios");
     if (response.ok) {
       accesorios = await response.json();
       // accesorios = t;
       actualizarListado();
-      cargando2.innerHTML = '';
-    } else cargando2.innerHTML = `<h1>Error=Failed URL</h1>`;
+      cargando2.innerHTML = "";
+    } else cargando2.innerHTML = "<h1>Error=Failed URL</h1>";
   } catch (err) {
     cargando2.innerHTML = `<h1> ${err.message} </h1>`;
   }
 }
 
 function actualizarListado() {
-  html = '';
+  html = "";
   for (let i = 0; i < accesorios.length; i++) {
     html += `
                  <tr>
@@ -72,14 +72,14 @@ function actualizarListado() {
 
 async function loadTramoAccesorio() {
   //LOAD TRAMOACCESORIO
-  // mostrarError.innerHTML = `<h1>Loading.....</h1>`;
+  // mostrarError.innerHTML = "<h1>Loading.....</h1>";
   try {
-    let response = await fetch(`/tramoaccesorio`); //me los busca
+    let response = await fetch("/tramoaccesorio"); //me los busca
     if (response.ok) {
       tramosAccesorios = await response.json(); //me los guarda en tramosAccesorios
       //console.log(tramosAccesorios);
       actualizarTramoAccesorio();
-    } else mostrarError.innerHTML = `<h1>Error=Failed URL</h1>`;
+    } else mostrarError.innerHTML = "<h1>Error=Failed URL</h1>";
   } catch (err) {
     mostrarError.innerHTML = `<h1> ${err.message} </h1>`;
   }
@@ -100,7 +100,7 @@ function cargarPrecio() {
     }
   }
 }
-cargar.addEventListener('click', () => {
+cargar.addEventListener("click", () => {
   let tramoAccesorio = {
     idAccesorio: parseInt(accesorio.value),
     cantidad: parseInt(cantidad.value),
@@ -112,12 +112,12 @@ cargar.addEventListener('click', () => {
   crearTramoAccesorio(tramoAccesorio);
   tramosAccesoriosCargados.push(tramoAccesorio);
   actualizarTramoAccesorioCargado();
-  accesorio.value = '';
-  cantidad.value = '';
+  accesorio.value = "";
+  cantidad.value = "";
 });
 
 async function crearTramoAccesorio(tramoAccesorio) {
-  let response = await fetch(`/tramoaccesorio`, {
+  let response = await fetch("/tramoaccesorio", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -128,7 +128,7 @@ async function crearTramoAccesorio(tramoAccesorio) {
 }
 
 function actualizarTramoAccesorioCargado() {
-  html = '';
+  html = "";
   for (let i = 0; i < tramosAccesoriosCargados.length; i++) {
     html += `
                  <tr>
@@ -141,7 +141,7 @@ function actualizarTramoAccesorioCargado() {
   mostrar.innerHTML = html;
 }
 
-cargarTramo.addEventListener('click', async () => {
+cargarTramo.addEventListener("click", async () => {
   let diametro = await calcularDiametro();
   parseInt(diametro);
   let total = calcularTotal();
@@ -217,7 +217,7 @@ async function calcularDiametro() {
 }
 
 async function crearTramo(tramo) {
-  let response = await fetch('/tramos', {
+  let response = await fetch("/tramos", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -228,15 +228,15 @@ async function crearTramo(tramo) {
 }
 
 async function loadTramo() {
-  recarga.innerHTML = `<h1>Loading.....</h1>`;
+  recarga.innerHTML = "<h1>Loading.....</h1>";
   try {
-    let response = await fetch(`/tramos`);
+    let response = await fetch("/tramos");
     if (response.ok) {
       tramos = await response.json();
       console.log(tramos);
       actualizarTramo();
-      recarga.innerHTML = '';
-    } else recarga.innerHTML = `<h1>Error=Failed URL</h1>`;
+      recarga.innerHTML = "";
+    } else recarga.innerHTML = "<h1>Error=Failed URL</h1>";
   } catch (err) {
     recarga.innerHTML = `<h1> ${err.message} </h1>`;
   }
@@ -244,7 +244,7 @@ async function loadTramo() {
 
 function actualizarTramo() {
   console.log(tramos)
-  html = ``;
+  html = "";
   for (let i = 0; i < tramos.length; i++) {
     html += `
                  <tr>
@@ -261,12 +261,12 @@ function actualizarTramo() {
                      </tr>`;
   }
   mostrarTA.innerHTML = html;
-  longitudReal.value = '';
-  longitudCalculo.value = '';
-  calorias.value = '';
+  longitudReal.value = "";
+  longitudCalculo.value = "";
+  calorias.value = "";
 }
 
-eliminarTramo.addEventListener('click', async () => {
+eliminarTramo.addEventListener("click", async () => {
   try {
     let response = await fetch(`/tramos/${inputId.value}`, {
       method: `DELETE`,
@@ -276,18 +276,18 @@ eliminarTramo.addEventListener('click', async () => {
     });
     if (response.ok) {
       loadTramo();
-      idTramoAEliminar.value = '';
+      idTramoAEliminar.value = "";
     } else {
-      error.innerHTML = 'Error en la lectura del servidor';
+      error.innerHTML = "Error en la lectura del servidor";
     }
   } catch (error) {
-    error.innerHTML = 'Error en la conexion del servidor';
+    error.innerHTML = "Error en la conexion del servidor";
   }
   inputId.value="";
 });
 
 
- modificarTramo.addEventListener('click',async ()=>{
+ modificarTramo.addEventListener("click",async ()=>{
   let diametroModificado = await calcularDiametroModificado();
   console.log(diametroModificado);
   // parseInt(diametroModificado);

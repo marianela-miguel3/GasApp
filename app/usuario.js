@@ -22,34 +22,8 @@ async function loadUsuario() {
     contenido.innerHTML = "Error en conexion con servidor";
   }
 }
-// registrar.addEventListener('click', async ()=>{
-//   let usuario = {
-//       "nombre":nombre.value,
-//       "contrasenia":contrasenia.value,
-//       "domicilio":domicilio.value,
-//       "telefono":telefono.value,
-//       "email":email.value
-//   };
-//   if(usuarios.length>0){
-//     for(let i=0;i<usuarios.length;i++){
-//       if(usuarios[i].email != email.value){
-//         crearUsuario(usuario);
-//         usuarios.push(usuario);
-//         loadUsuario();
-//         window.location.href = "loginUsuario.html";
-//       }else{
-//         alert("La Direccion de correo electronico usada ya existe!");
-//       }
-//     }
-//   }else{
-//     crearUsuario(usuario);
-//     usuarios.push(usuario);
-//     loadUsuario();
-//     window.location.href = "loginUsuario.html";
-//   }
-// });
 
-registrar.addEventListener('click', async () => {
+registrar.addEventListener("click", async () => {
   let usuario = {
     "nombre": nombre.value,
     "contrasenia": contrasenia.value,
@@ -85,7 +59,7 @@ registrar.addEventListener('click', async () => {
 
 async function crearUsuario(usuario) {
 
-  let response = await fetch(`/usuario`, {
+  let response = await fetch("/usuario", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -95,32 +69,7 @@ async function crearUsuario(usuario) {
   let r = await response.json();
   console.log(r);
   return r;
-  // loadUsuario();
 };
 
 
 
-// -----------------------LOCAL STORANGE-----------------------------------------------------
-// function crearUsuario(){
-//     let usuario = {
-//     "nombre": nombre.value,
-//     "contrasenia": contrasenia.value,
-//     "domicilio": domicilio.value,
-//     "telefono": telefono.value,
-//     "email": email.value
-//   };
-//   localStorage.setItem("usuario", JSON.stringify(usuario))//localstorage solo almacena string, por eso le paso el objeto con la funcion stringfy que me lo convierte a string
-// }
-
-// registrar.addEventListener('click', () => {
-//   let usuario = JSON.parse(localStorage.getItem("usuario")); //obtengo el objeto, que es un string, por eso lo parseo con JSON.PARSE para que me lo vuelva a convertir en un objeto
-//   if(!usuario){
-//       crearUsuario();
-//       window.location.href = "loginUsuario.html";
-//   }else if(email.value == usuario.email){
-//     alert("El email ingresado ya existe");
-//   }else{
-//     crearUsuario();
-//     window.location.href = "loginUsuario.html";
-//    }  
-// });
